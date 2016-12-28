@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { SignupService } from './signup.service.service';
+import { SignupService } from './signup.service';
 /*
   Generated class for the Signup page.
 
@@ -25,7 +25,7 @@ export class SignupPage {
 
   onTestGet() {
     // this.httpService.getCurrentTime()
-    console.log('Hello pooper')
+    console.log('You clicked me')
   }
 
 

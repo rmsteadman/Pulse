@@ -7,10 +7,10 @@ import { Observable } from 'rxjs/Observable'
 export class SignupService {
     constructor(public http: Http) {}
 
-    getCurrentTime(): Observable<any> {
-        return this.http.get('http://date.jsontest.com')
-            .map(res => res.json())
-    };
+    // getCurrentTime(): Observable<any> {
+    //     // return this.http.get('http://date.jsontest.com')
+    //     //     .map(res => res.json())
+    // };
 
     postJSON() {
 
