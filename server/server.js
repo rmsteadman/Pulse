@@ -22,38 +22,7 @@ app.use(cors());
 // establish tables
 require('./models').Sync();
 
-// const Sequelize = require('sequelize')
-
-// import all models
-// ex. const User = require('./user.model.js')(Models)
-// const Account = require('./models/account.model.js')(Models)
-// const Beacon = require('./models/beacon.model.js')(Models)
-// const Category = require('./models/category.model.js')(Models)
-// const Chatroom = require('./models/chatroom.model.js')(Models)
-// const History = require('./models/history.model.js')(Models)
-// const Preferences = require('./models/preferences.model.js')(Models)
-// const Rating = require('./models/rating.model.js')(Models)
-// const Request = require('./models/request.model.js')(Models)
-// const RSVP = require('./models/rsvp.model.js')(Models)
-// const Status = require('./models/status.model.js')(Models)
-// const User = require('./models/user.model.js')(Models)
-
-// define any extra models
-
-// Define db relations here
-
-// helper to drop tables (force:true)
-// Models.sync({ force: true }).then(function () {
-//   console.log('Successfully dropped tables.')
-// })
-
-// sync all files
-
-// Models.sync().then(() => {
-//   console.log('Successfully initialized tables.')
-// })
-
-// app.use('/', express.static(path.join(__dirname, '../client')))
+app.use('/', express.static(path.join(__dirname, '../src')))
 app.get('/', function (req, res) {
   res.send('We have contact.');
 });
