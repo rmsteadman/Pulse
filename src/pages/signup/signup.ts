@@ -14,9 +14,9 @@ import { SignupService } from './signup.service';
 })
 export class SignupPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams /*, httpService: SignupService*/) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, public httpService: SignupService) {}
 
-  getData: string;
+  public getData = [];
   postData: string;
 
   ionViewDidLoad() {
@@ -24,8 +24,13 @@ export class SignupPage {
   }
 
   onTestGet() {
-    // this.httpService.getCurrentTime()
     console.log('You clicked me')
+    this.httpService.getCurrentTime()
+    // need to subscribe to returned observable
+    //see testing app at first component
+      // .subscribe(data => {
+      //   console.log('A Data: ', data)
+      // })
   }
 
 
