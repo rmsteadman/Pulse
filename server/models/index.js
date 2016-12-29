@@ -37,7 +37,12 @@ User.hasMany(Request);
 User.hasMany(RSVP);
 
 // sync all files
-const Sync = function () {
+const Sync = function (keyword) {
+  if (keyword) {
+    Models.sync({ force: true }).then(() => {
+      console.log('Successfully dropped tables.');
+    });
+  }
   Models.sync().then(() => {
     console.log('Successfully initialized tables.');
   });
