@@ -2,7 +2,6 @@ const Models = require('./config');
 const Sequelize = require('sequelize');
 
 // import all models
-// ex. const User = require('./user.model.js')(Models)
 const Account = require('./account')(Models);
 const Beacon = require('./beacon')(Models);
 const Category = require('./category')(Models);
@@ -17,14 +16,25 @@ const User = require('./user')(Models);
 
 // define any extra models
 
-// Define db relations here
+// relation definitions
+Beacon.belongsTo(User);
+Beacon.belongsTo(Category);
+Beacon.belongsTo(Chatroom);
+History.belongsTo(Beacon);
+Preferences.belongsTo(User);
+Preferences.belongsTo(Category);
+Rating.belongsTo(User);
+Rating.belongsTo(Beacon);
+Request.belongsTo(User);
+Request.belongsTo(Category);
+RSVP.belongsTo(User);
+RSVP.belongsTo(Beacon);
 
-// helper to drop tables (force:true)
-// const Sync = function () {
-//   return Models.sync({ force: true }).then(function () {
-//     console.log('Successfully dropped tables.')
-//   })
-// }
+User.hasMany(Beacon);
+User.hasMany(Preferences);
+User.hasMany(Rating);
+User.hasMany(Request);
+User.hasMany(RSVP);
 
 // sync all files
 const Sync = function () {
