@@ -6,7 +6,19 @@ module.exports = (Models) => {
     accountId: {
       type: Sequelize.INTEGER
     },
-    name: {
+    email: {
+      type: Sequelize.STRING
+    },
+    password: {
+      type: Sequelize.STRING
+    },
+    firstName: {
+      type: Sequelize.STRING
+    },
+    lastName: {
+      type: Sequelize.STRING
+    },
+    phoneNumber: {
       type: Sequelize.STRING
     },
     photo: {
@@ -23,16 +35,6 @@ module.exports = (Models) => {
     },
     verified: {
       type: Sequelize.BOOLEAN
-    }
-  }, {
-    /**
-     * freezeTableName: Model tableName will be the same as the model name
-     *  */
-    freezeTableName: true,
-    classMethods: {
-      associate: (models) => {
-        User.hasMany(__INSERTHERE_);
-      }
     }
   });
 
