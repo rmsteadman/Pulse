@@ -14,6 +14,17 @@ beaconController.createBeacon = (req, res) => {
     });
 };
 
+beaconController.getAllBeacons = (req, res) => {
+  beaconQuery.getAllBeacons()
+    .then(beacons => {
+      res.send(beacons);
+    })
+    .catch(err => {
+      console.log('Error in beacon controller, (get all beacons)', err);
+      return err;
+    });
+};
+
 // more logic
 
 module.exports = beaconController;

@@ -1,4 +1,4 @@
-const Router = require('express').Router();
+const mainRouter = require('express').Router();
 
 const accountRouter = require('./account');
 const beaconRouter = require('./beacon');
@@ -12,16 +12,16 @@ const rsvpRouter = require('./rsvp');
 const statusRouter = require('./status');
 const userRouter = require('./user');
 
-Router.use('/accounts', accountRouter);
-Router.use('/beacons', beaconRouter);
-Router.use('/categories', categoryRouter);
-Router.use('/chatrooms', chatroomRouter);
-Router.use('/history', historyRouter);
-Router.use('/preferences', preferencesRouter);
-Router.use('/ratings', ratingRouter);
-Router.use('/requests', requestRouter);
-Router.use('/rsvps', rsvpRouter);
-Router.use('/statuses', statusRouter);
-Router.use('/users', userRouter);
+mainRouter.use('/accounts', accountRouter);
+mainRouter.use('/beacons', beaconRouter);
+mainRouter.use('/categories', categoryRouter);
+mainRouter.use('/chatrooms', chatroomRouter);
+mainRouter.use('/history', historyRouter);
+mainRouter.use('/preferences', preferencesRouter);
+mainRouter.use('/ratings', ratingRouter);
+mainRouter.use('/requests', requestRouter);
+mainRouter.use('/rsvps', rsvpRouter);
+mainRouter.use('/statuses', statusRouter);
+mainRouter.use('/users', userRouter);
 
-module.exports = Router;
+module.exports = mainRouter;

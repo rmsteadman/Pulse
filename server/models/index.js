@@ -42,10 +42,11 @@ const Sync = function (keyword) {
     Models.sync({ force: true }).then(() => {
       console.log('Successfully dropped tables.');
     });
+  } else {
+    Models.sync().then(() => {
+      console.log('Successfully initialized tables.');
+    });
   }
-  Models.sync().then(() => {
-    console.log('Successfully initialized tables.');
-  });
 };
 
 module.exports = {
