@@ -28,6 +28,7 @@ beaconQueries.createBeacon = (data) => {
 //   end: Date.now() + 86400000
 // })
 };
+
 // get all beacons
 beaconQueries.getAllBeacons = () => {
   return Beacon.findAll({
