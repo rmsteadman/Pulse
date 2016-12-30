@@ -1,4 +1,4 @@
-const Beacon = require('../models').Account;
+const Beacon = require('../models').Beacon;
 const Category = require('../models').Category;
 const Rating = require('../models').Rating;
 const Status = require('../models').Status;
@@ -8,16 +8,31 @@ const beaconQueries = {};
 
 // create a beacon
 beaconQueries.createBeacon = (data) => {
-  return Beacon.create({
-    status: 1,
-    title: data.title,
-    details: data.details,
-    tags: data.tags,
-    private: false,
-    icon: data.icon || 'http://airnativeextensions.com/images/extensions/icons/ane-beacon-icon.png',
-    position: '{"lat":33.976224,"lng":-118.390848}',
-    start: Date.now(),
-    end: Date.now() + 86400000
+  return Beacon.create(data)
+    .then(data => {
+      return data;
+    })
+    .catch(err => {
+      console.log('Error in Beacon Query file');
+      return err;
+    });
+// return Beacon.create({
+//   status: 1,
+//   title: data.title,
+//   details: data.details,
+//   tags: data.tags,
+//   private: false,
+//   icon: data.icon || 'http://airnativeextensions.com/images/extensions/icons/ane-beacon-icon.png',
+//   position: '{"lat":33.976224,"lng":-118.390848}',
+//   start: Date.now(),
+//   end: Date.now() + 86400000
+// })
+};
+
+// get all beacons
+beaconQueries.getAllBeacons = () => {
+  return Beacon.findAll({
+    include: [{ all: true }]
   });
 };
 // update a beacon
