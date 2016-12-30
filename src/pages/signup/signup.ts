@@ -25,12 +25,12 @@ export class SignupPage {
 
   onTestGet() {
     console.log('You clicked me')
-    this.httpService.getCurrentTime()
+    this.httpService.tester()
     // need to subscribe to returned observable
     //see testing app at first component
-      // .subscribe(data => {
-      //   console.log('A Data: ', data)
-      // })
+      .subscribe(data => {
+        console.log('A Data: ', data)
+      })
   }
 
 

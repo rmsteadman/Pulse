@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 export class SignupService {
     constructor(public http: Http) {}
 
-    getCurrentTime(): Observable<any> {
+    tester(): Observable<any> {
         return this.http.get('https://jsonplaceholder.typicode.com/users')  
             .map(data => {
                 console.log( data.json() )
