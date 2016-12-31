@@ -8,14 +8,10 @@ import 'rxjs/add/operator/map';
 export class SignupService {
     constructor(public http: Http) {}
 
-    tester(): Observable<any> {
-        return this.http.get('https://jsonplaceholder.typicode.com/users')  
+    signupPost(name): Observable<any> {
+        return this.http.post('/api/users', name)  
             .map(data => {
                 console.log( data.json() )
             })
     };
-
-    postJSON() {
-
-    }
 }

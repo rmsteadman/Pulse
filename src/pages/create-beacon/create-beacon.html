@@ -15,6 +15,44 @@
 
 <ion-content padding>
 
+
   <h1>TEST</h1>
+  <ion-list>
+    
+    <ion-item>
+      <ion-label floating>Event Name</ion-label>
+      <ion-input type="text" #eventName></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Date</ion-label>
+      <ion-input type="text" #date></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label floating>End</ion-label>
+      <ion-input type="text" #expires></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Address</ion-label>
+      <ion-input type="text" #location></ion-input>
+      <a>Use your current location</a>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Description</ion-label>
+      <ion-input type="text" #eventDescription></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating></ion-label>
+      <ion-input type="text" #location></ion-input>
+    </ion-item>
+    
+  </ion-list>
+
+  <button ion-button color="primary" outline (click)="createBeacon()">Create Event</button>
+
 
 </ion-content>
