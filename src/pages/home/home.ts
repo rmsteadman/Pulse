@@ -25,10 +25,10 @@ export class HomePage {
  
     Geolocation.getCurrentPosition().then((position) => {
  
-      let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+      let center = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
  
       let mapOptions = {
-        center: latLng,
+        center: center,
         zoom: 15,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       }
@@ -43,26 +43,26 @@ export class HomePage {
 
   addBeacon(){
  
-  let marker = new google.maps.Marker({
+  let beacon = new google.maps.Marker({
     map: this.map,
     animation: google.maps.Animation.DROP,
     position: this.map.getCenter()
   });
  
-  let content = "<h4>PLACEHOLDER!!</h4>";          
+  let content = "TEST";          
  
-  this.addInfoWindow(marker, content);
+  this.addInfoWindow(beacon, content);
  
   }
 
-  addInfoWindow(marker, content){
+  addInfoWindow(beacon, content){
  
   let infoWindow = new google.maps.InfoWindow({
     content: content
   });
  
-  google.maps.event.addListener(marker, 'click', () => {
-    infoWindow.open(this.map, marker);
+  google.maps.event.addListener(beacon, 'click', () => {
+    infoWindow.open(this.map, beacon);
   });
  
   }
