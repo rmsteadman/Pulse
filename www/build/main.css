@@ -22108,3 +22108,12 @@ sub {
     padding-top: calc(16px + 20px);
   }
 }
+
+.ios home-page .scroll-content, .md home-page .scroll-content {
+  height: 100%;
+}
+
+.ios home-page #map, .md home-page #map {
+  width: 100%;
+  height: 100%;
+}
