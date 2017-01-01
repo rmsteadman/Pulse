@@ -3,7 +3,7 @@ const User = require('../models').User;
 const userQueries = {};
 
 // create a user (sign in)
-userQueries.signUp = (user) => {
+userQueries.create = (user) => {
   return User.findOrCreate({
     where: {
       email: user.email
