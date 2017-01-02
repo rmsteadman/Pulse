@@ -2,6 +2,9 @@ const userQuery = require('../queries').userQuery;
 
 const userController = {};
 
-// logic
+userController.signUp = (req, res) => {
+  let user = req.body.user;
+  userQuery.create(user);
+};
 
 module.exports = userController;
