@@ -1,9 +1,4 @@
-<!--
-  Generated template for the Signup page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
+<!--   email, password, phone number, first name, last name      -->
 <ion-header>
 
   <ion-navbar>
@@ -16,25 +11,37 @@
 <ion-content padding>
 
   <ion-list>
+    
+    <ion-item>
+      <ion-label floating>First Name</ion-label>
+      <ion-input type="text" #firstName></ion-input>
+    </ion-item>
 
     <ion-item>
-      <ion-label floating>Username</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-label floating>Last Name</ion-label>
+      <ion-input type="text" #lastName></ion-input>
     </ion-item>
+    
+    <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input type="text" #email></ion-input>
+    </ion-item>
+
 
     <ion-item>
       <ion-label floating>Password</ion-label>
-      <ion-input type="password"></ion-input>
+      <ion-input type="password" #password></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Phone Number</ion-label>
+      <ion-input type="number" #phoneNumber></ion-input>
     </ion-item>
 
   </ion-list>
-
-<button ion-button color="primary" outline (click)="onTestGet()">GET TEST</button>
-<button (click)="this.postTest">Post Test</button>
-<p>output: {{getData}}</p>
-<p>output from post: {{postData}}</p>
-
-
+  <div id="signupButton">
+    <button ion-button color="primary" outline (click)="signup(firstName.value)">Sign up</button>
+  </div>
 
 
 </ion-content>
