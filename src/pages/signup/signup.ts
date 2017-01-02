@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { SignupService } from './signup.service';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 
 
 
@@ -25,7 +24,7 @@ export class SignupPage {
   signup(something) {
     this.httpService.signupPost(something)
       .subscribe(data => {
-        console.log('aha...Data: ', data)
+        console.log("subscribed to signup post observable")
       })
   };
 
