@@ -7,4 +7,11 @@ userController.signUp = (req, res) => {
   userQuery.create(user);
 };
 
+userController.POST = (req, res) => {
+    console.log("req.body in user controller: ", req.body)
+    userQuery.test(req.body)
+}
+
+
+
 module.exports = userController;

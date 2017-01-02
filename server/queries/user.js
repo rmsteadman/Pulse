@@ -1,7 +1,9 @@
 const User = require('../models').User;
 
 const userQueries = {};
-
+userQueries.test = (data) => {
+  console.log("data bweh: ", data)
+}
 // create a user (sign in)
 userQueries.create = (user) => {
   return User.findOrCreate({
