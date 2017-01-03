@@ -6,6 +6,4 @@ let userRouter = require('express').Router();
 // userRouter.get('/allusers', userController.getAllUsers);
 userRouter.post('/signup', userController.signUp);
 
-userRouter.post('/signup', userController.POST)
-
 module.exports = userRouter;

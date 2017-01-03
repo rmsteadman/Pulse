@@ -8,9 +8,15 @@ import 'rxjs/add/operator/map';
 export class SignupService {
     constructor(public http: Http) {}
 
-    signupPost(name): Observable<any> {
-        let reqBody = {name}
-        return this.http.post('http://localhost:8080/api/users/signup', reqBody)  
+    signupPost(form): Observable<any> {
+        let user = {
+            firstName: form.firstName,
+            lastName: form.lastName,
+            email: form.email,
+            phoneNumber: form.phoneNumber,
+            password: form.password
+        }
+        return this.http.post('http://localhost:8080/api/users/signup', user)  
             .map(data => {
                 console.log( data.json() )
             })

@@ -10,37 +10,37 @@
 
 <ion-content padding>
 
-  <ion-list>
+  <form [formGroup]="signupForm">
     
     <ion-item>
       <ion-label floating>First Name</ion-label>
-      <ion-input type="text" #firstName></ion-input>
+      <ion-input type="text" formControlName="firstName"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Last Name</ion-label>
-      <ion-input type="text" #lastName></ion-input>
+      <ion-input type="text" formControlName="lastName"></ion-input>
     </ion-item>
     
     <ion-item>
       <ion-label floating>Email</ion-label>
-      <ion-input type="text" #email></ion-input>
+      <ion-input type="text" formControlName="email"></ion-input>
     </ion-item>
 
 
     <ion-item>
       <ion-label floating>Password</ion-label>
-      <ion-input type="password" #password></ion-input>
+      <ion-input type="password" formControlName="password"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Phone Number</ion-label>
-      <ion-input type="number" #phoneNumber></ion-input>
+      <ion-input type="number" formControlName="phoneNumber"></ion-input>
     </ion-item>
 
-  </ion-list>
+  </form>
   <div id="signupButton">
-    <button ion-button color="primary" outline (click)="signup(firstName.value)">Sign up</button>
+    <button ion-button color="primary" outline (click)="signup(signupForm.value)">Sign up</button>
   </div>
 
 

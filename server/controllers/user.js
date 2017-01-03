@@ -3,7 +3,8 @@ const userQuery = require('../queries').userQuery;
 const userController = {};
 
 userController.signUp = (req, res) => {
-  let user = req.body.user;
+  let user = req.body;
+  console.log("this is the user: ", user)
   userQuery.create(user);
 };
 
