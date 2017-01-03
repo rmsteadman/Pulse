@@ -23,10 +23,10 @@ export class SignupPage {
 
   ionViewDidLoad() {}
 
-  signup(something) {
-    this.httpService.signupPost(something)
+  signup(userInfo) {
+    this.httpService.signupPost(userInfo)
       .subscribe(data => {
-        console.log("subscribed to signup post observable")
+        console.log("Oooh....I'm afraid..the signupform..will be..quite operational...when your friends arrive")
       })
   };
 

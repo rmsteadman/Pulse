@@ -13,7 +13,7 @@ export class SignupService {
             firstName: form.firstName,
             lastName: form.lastName,
             email: form.email,
-            phone: form.phone,
+            phoneNumber: form.phoneNumber,
             password: form.password
         }
         return this.http.post('http://localhost:8080/api/users/signup', user)  
