@@ -8,7 +8,8 @@ declare var google;
 
 @Component({
   selector: 'page-create-beacon',
-  templateUrl: 'create-beacon.html'
+  templateUrl: 'create-beacon.html',
+  providers: [BeaconService]
 })
 export class CreateBeaconPage {
 
@@ -28,8 +29,11 @@ export class CreateBeaconPage {
   }
 
   createBeacon(userInfo){
-
-    
-    this.navCtrl.pop();
+  this.navCtrl.pop(); //switch this to load the page everytime if async happens
+  
+  this.httpService.beaconPost(userInfo)
+      .subscribe(data => {
+        console.log("Oooh....I'm afraid..the BACONS..will be..quite operational...when your friends arrive")
+      })
   }
 }

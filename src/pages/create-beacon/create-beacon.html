@@ -11,63 +11,29 @@
 
 
   <h1>CONJURE YOUR BEACON</h1>
-  <ion-list>
+
+  <form [formGroup]="beaconForm">
       <ion-item>
         <ion-label floating>Event Name</ion-label>
-        <ion-input type="text" #eventName></ion-input>
+        <ion-input type="text" #eventName formControlName="title"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>Details</ion-label>
-        <ion-input type="text" #details></ion-input>
+        <ion-input type="text" #details formControlName="details"></ion-input>
       </ion-item>
-      <ion-item>
-        <ion-label> Private </ion-label>
-        <ion-checkbox [(ngModel)]="private"></ion-checkbox>
-      </ion-item>
-  </ion-list>
+  </form>
+    <ion-item>
+      <ion-label> Private </ion-label>
+      <ion-checkbox [(ngModel)]="private"></ion-checkbox>
+    </ion-item>
 
   <div id="beaconButton">
-    <button ion-button color="primary" outline (click)="createBeacon()">Create Beacon</button>
+    <button ion-button color="primary" outline (click)="createBeacon(beaconForm.value)">Create Beacon</button>
   </div>
 
 
 </ion-content>
 
 
-<!--<ion-content padding>
-
-  <form [formGroup]="signupForm">
-    
-    <ion-item>
-      <ion-label floating>First Name</ion-label>
-      <ion-input type="text" formControlName="firstName"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label floating>Last Name</ion-label>
-      <ion-input type="text" formControlName="lastName"></ion-input>
-    </ion-item>
-    
-    <ion-item>
-      <ion-label floating>Email</ion-label>
-      <ion-input type="text" formControlName="email"></ion-input>
-    </ion-item>
 
 
-    <ion-item>
-      <ion-label floating>Password</ion-label>
-      <ion-input type="password" formControlName="password"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label floating>Phone Number</ion-label>
-      <ion-input type="number" formControlName="phoneNumber"></ion-input>
-    </ion-item>
-
-  </form>
-  <div id="signupButton">
-    <button ion-button color="primary" outline (click)="signup(signupForm.value)">Sign up</button>
-  </div>
-
-
-</ion-content>-->

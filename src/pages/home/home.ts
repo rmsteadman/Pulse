@@ -47,7 +47,9 @@ export class HomePage {
 
 
   addBeacon(){
-    this.navCtrl.push(CreateBeaconPage);
+    this.navCtrl.push(CreateBeaconPage, {
+      position: this.map.getCenter()
+    });
 
     let beacon = new google.maps.Marker({
       map: this.map,

@@ -12,6 +12,7 @@ beaconController.createBeacon = (req, res) => {
       console.log('Error creating beacon:', err);
       return err;
     });
+  console.log("poooooop")
 };
 
 beaconController.getAllBeacons = (req, res) => {

@@ -29,6 +29,4 @@ export class SignupPage {
         console.log("Oooh....I'm afraid..the signupform..will be..quite operational...when your friends arrive")
       })
   };
-
-
 }
