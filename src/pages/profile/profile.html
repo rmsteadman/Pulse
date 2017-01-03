@@ -9,7 +9,7 @@
   <ion-list>
     <ion-item>
       <ion-label floating>What are you interested in?</ion-label>
-      <ion-input type="text" #preference> </ion-input>
+      <ion-input type="text" #preference id="preferenceInput"></ion-input>
     </ion-item>
   </ion-list>
 
@@ -19,13 +19,13 @@
 
   <ion-list id="preferenceList">
     <ion-item *ngFor='let pref of categories'>
-      <ion-label>{{ pref }}</ion-label>
-      <ion-checkbox color="dark" checked="true"></ion-checkbox>
+      <ion-label>{{ pref.preference }}</ion-label>
+      <ion-checkbox color="dark" checked="{{pref.checked}}" (click)=toggleCheck(pref)></ion-checkbox>
     </ion-item>
   </ion-list>
 
   <div id="saveProfileButton">
-    <button ion-button color="success" outline (click)="savePreferences(userPreferences)">Save</button>
+    <button ion-button color="success" outline (click)="savePreferences()">Save</button>
   </div>
 
 
