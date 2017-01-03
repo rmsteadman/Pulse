@@ -2,55 +2,38 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Geolocation } from 'ionic-native';
 import { CreateBeaconPage } from '../create-beacon/create-beacon'
-<<<<<<< HEAD
+import { AuthHttp } from 'angular2-jwt';
+import { AuthService } from '../../services/auth/auth.service';
+import 'rxjs/add/operator/map';
 import { BeaconService } from '../create-beacon/create-beacon.service';
 
 declare var google;
 
 let beaconData;
 
-
 @Component({
   selector: 'home-page',
   templateUrl: 'home.html',
-  providers: [BeaconService]
-=======
-import { Http } from '@angular/http';
-import { AuthHttp } from 'angular2-jwt';
-import { AuthService } from '../../services/auth/auth.service';
-import 'rxjs/add/operator/map';
-
-declare var google;
-
-@Component({
-  selector: 'home-page',
-  templateUrl: 'home.html',
-  providers: [AuthService]
->>>>>>> feat/auth
+  providers: [AuthService, BeaconService]
 })
 export class HomePage {
 
   createBeacon: any = CreateBeaconPage;
   @ViewChild('map') mapElement: ElementRef;
   map: any;
-<<<<<<< HEAD
-  
-  constructor(public navCtrl: NavController, public navParams: NavParams, public httpService: BeaconService) {}
- 
-=======
+
 
   constructor(
     public navCtrl: NavController,
+    public navParams: NavParams,
+    public httpService: BeaconService,
     public auth: AuthService
   ) {}
 
->>>>>>> feat/auth
   ionViewDidLoad(){
-    // Auth Lock
     this.auth.login();
     this.loadMap();
     this.loadBeacon();
-    
   }
 
   loadMap(){
@@ -80,25 +63,20 @@ export class HomePage {
 
 
   addBeacon(){
-<<<<<<< HEAD
     this.navCtrl.push(CreateBeaconPage, {
       position: this.map.getCenter()
     });
-=======
->>>>>>> feat/auth
 
     let beacon = new google.maps.Marker({
       map: this.map,
       animation: google.maps.Animation.DROP,
       position: this.map.getCenter()
     });
-<<<<<<< HEAD
-    let content = '';          
-=======
-    localStorage.setItem('currentLocation', beacon.position)
-    let content = "TEST";
 
->>>>>>> feat/auth
+    let content = '';
+
+    localStorage.setItem('currentLocation', beacon.position)
+
     this.addInfoWindow(beacon, content);
 
   }
