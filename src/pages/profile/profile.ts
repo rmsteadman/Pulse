@@ -8,24 +8,31 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class ProfilePage {
 
-  public categories = ['Hiking', 'Video Games', 'Marijuana', 'Gym', 'Surfing', 'Programming', 'Gambling', 'Food', 'Exploring', 'Extreme', 'Sailing', 'Party'];
+  public categories = [];
   
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
+    //make get request for preference list
   }
 
   addPreference(things) {
-    this.categories.push(things)
+    this.categories.push({
+      preference: things,
+      checked: true
+    })
   }
 
   savePreferences() {
-    this.categories.forEach((pref) => {
-      // if (pref.checked){
-        console.log(pref)
-      // }
-    })
+    
+    this.categories.forEach(preference => {console.log(preference)})
+    
+  }
+
+  toggleCheck(preferenceEntry) {
+    preferenceEntry.checked = !preferenceEntry.checked;
+    console.log(preferenceEntry.checked)
   }
 
 
