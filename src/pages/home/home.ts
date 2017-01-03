@@ -27,33 +27,7 @@ export class HomePage {
 
   ionViewDidLoad(){
     // Auth Lock
-      this.auth.lock.show(function(err, profile, token) {
-        if (err) {
-          // Error callback
-          console.error("Something went wrong: ", err);
-        } else {
-          // Success callback
-          console.log("Access granted.");
-          // Save the JWT token.
-          localStorage.setItem('userToken', token);
-          // Save the profile
-          localStorage.setItem('userProfile', JSON.stringify(profile));
-          console.log(localStorage.getItem);
-        }
-      });
-      this.auth.lock.on("authenticated", function(authResult) {
-        // Use the token in authResult to getProfile() and save it to localStorage
-        this.auth.lock.getProfile(authResult.idToken, function(error, profile) {
-          if (error) {
-            // Handle error
-            return;
-          }
-
-          localStorage.setItem('idToken', authResult.idToken);
-          localStorage.setItem('profile', JSON.stringify(profile));
-        });
-      });
-
+    this.auth.login();
     this.loadMap();
   }
 
