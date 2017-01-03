@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-require('../.env')
+require('../.env');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const models = require('./models');
@@ -31,4 +31,4 @@ app.use('/api', mainRouter);
 //   res.sendFile(path.resolve(__dirname, '../src', 'index.html'))
 // })
 
-app.listen(app.get('port'), () => console.log(`Server is listening on port ${app.get('port')}`) );
+app.listen(app.get('port'), () => console.log(`Server is listening on port ${app.get('port')}`));
