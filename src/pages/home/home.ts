@@ -2,12 +2,17 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Geolocation } from 'ionic-native';
 import { CreateBeaconPage } from '../create-beacon/create-beacon'
-import {AuthService} from '../../services/auth/auth.service';
+import { Http } from '@angular/http';
+import { AuthHttp } from 'angular2-jwt';
+import { AuthService } from '../../services/auth/auth.service';
+import 'rxjs/add/operator/map';
+
 declare var google;
 
 @Component({
   selector: 'home-page',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
+  providers: [AuthService]
 })
 export class HomePage {
 
@@ -21,6 +26,34 @@ export class HomePage {
   ) {}
 
   ionViewDidLoad(){
+    // Auth Lock
+      this.auth.lock.show(function(err, profile, token) {
+        if (err) {
+          // Error callback
+          console.error("Something went wrong: ", err);
+        } else {
+          // Success callback
+          console.log("Access granted.");
+          // Save the JWT token.
+          localStorage.setItem('userToken', token);
+          // Save the profile
+          localStorage.setItem('userProfile', JSON.stringify(profile));
+          console.log(localStorage.getItem);
+        }
+      });
+      this.auth.lock.on("authenticated", function(authResult) {
+        // Use the token in authResult to getProfile() and save it to localStorage
+        this.auth.lock.getProfile(authResult.idToken, function(error, profile) {
+          if (error) {
+            // Handle error
+            return;
+          }
+
+          localStorage.setItem('idToken', authResult.idToken);
+          localStorage.setItem('profile', JSON.stringify(profile));
+        });
+      });
+
     this.loadMap();
   }
 
