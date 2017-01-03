@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>create-beacon</ion-title>
+    <ion-title>Conjure Beacon</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -10,11 +10,30 @@
 <ion-content padding>
 
 
-  <h1>TEST</h1>
-  <ion-list>
-    
+  <h1>CONJURE YOUR BEACON</h1>
+
+  <form [formGroup]="beaconForm">
+      <ion-item>
+        <ion-label floating>Event Name</ion-label>
+        <ion-input type="text" #eventName formControlName="title"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Details</ion-label>
+        <ion-input type="text" #details formControlName="details"></ion-input>
+      </ion-item>
+  </form>
     <ion-item>
-      <ion-label floating>Event Name</ion-label>
-      <ion-input type="text" #eventName></ion-input>
+      <ion-label> Private </ion-label>
+      <ion-checkbox [(ngModel)]="private"></ion-checkbox>
     </ion-item>
+
+  <div id="beaconButton">
+    <button ion-button color="primary" outline (click)="createBeacon(beaconForm.value)">Create Beacon</button>
+  </div>
+
+
+</ion-content>
+
+
+
 

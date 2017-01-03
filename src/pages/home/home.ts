@@ -1,12 +1,18 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { Geolocation } from 'ionic-native';
 import { CreateBeaconPage } from '../create-beacon/create-beacon'
+import { BeaconService } from '../create-beacon/create-beacon.service';
+
 declare var google;
- 
+
+let beaconData;
+
+
 @Component({
   selector: 'home-page',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
+  providers: [BeaconService]
 })
 export class HomePage {
 
@@ -14,10 +20,12 @@ export class HomePage {
   @ViewChild('map') mapElement: ElementRef;
   map: any;
   
-  constructor(public navCtrl: NavController) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, public httpService: BeaconService) {}
  
   ionViewDidLoad(){
     this.loadMap();
+    this.loadBeacon();
+    
   }
  
   loadMap(){
@@ -26,7 +34,7 @@ export class HomePage {
       .then((position) => {
  
         let center = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-  
+
         let mapOptions = {
           center: center,
           zoom: 15,
@@ -41,19 +49,26 @@ export class HomePage {
  
   }
 
+  loadBeacon() {
+      this.httpService.getBeaconsAll()
+  }
+
+
   addBeacon(){
- 
+    this.navCtrl.push(CreateBeaconPage, {
+      position: this.map.getCenter()
+    });
+
     let beacon = new google.maps.Marker({
       map: this.map,
       animation: google.maps.Animation.DROP,
       position: this.map.getCenter()
     });
-    localStorage.setItem('currentLocation', beacon.position)
-    let content = "TEST";          
-  
+    let content = '';          
     this.addInfoWindow(beacon, content);
- 
+
   }
+
 
   addInfoWindow(beacon, content){
  
