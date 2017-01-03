@@ -19,8 +19,40 @@ export class AuthService {
       params: {
         scope: 'openid offline_access',
       }
-    }
+    },
+    additionalSignUpFields: [
+      {
+        name: "firstName",
+        placeholder: "your first name"
+      },
+      {
+        name: "lastName",
+        placeholder: "your last name"
+      },
+      {
+        name: "phoneNumber",
+        placeholder: "your phone number",
+        // The following properties are optional
+        validator: function(number) {
+          return {
+             valid: number.length === 10,
+             hint: "https://example.com/assests/address_icon.png" // optional
+          };
+        }
+      },
+    ],
+    theme: {
+      logo: 'https://cdn4.iconfinder.com/data/icons/logos-3/400/ibeacon-logo-128.png',
+      primaryColor: '#42B3F4',
+
+    },
+    languageDictionary: {
+      title: "Pulse"
+    },
+    socialButtonStyle: 'small',
+    closable: false
   });
+
   storage: Storage = new Storage();
   refreshSubscription: any;
   user: Object;
