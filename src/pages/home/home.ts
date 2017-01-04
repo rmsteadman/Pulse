@@ -66,7 +66,7 @@ export class HomePage {
       this.httpService.getBeaconsAll()
         .subscribe(data => {
           this.myData = data;
-          console.log("THIS IS THE DATA IN HOME", this.myData)
+          //console.log("THIS IS THE DATA IN HOME", this.myData)
           this.myData.forEach(beaconData =>{
             let beacon = new google.maps.Marker({
             map: that.map,
@@ -74,7 +74,7 @@ export class HomePage {
             position: JSON.parse(beaconData.position)
           })
           let content = beaconData.title + "\n" + "Details: " + beaconData.details;   
-          console.log("beacon position", beacon.position)       
+          //console.log("beacon position", beacon.position)       
           that.addInfoWindow(beacon, content);            
           })
 

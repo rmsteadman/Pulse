@@ -22,10 +22,16 @@
         <ion-input type="text" #details formControlName="details"></ion-input>
       </ion-item>
   </form>
-    <ion-item>
-      <ion-label> Private </ion-label>
-      <ion-checkbox [(ngModel)]="private"></ion-checkbox>
-    </ion-item>
+  
+  <ion-grid>
+    <ion-row>
+      <ion-col width-20 *ngFor="let category of categories" id="categoryRow">
+        <ion-checkbox id="{{ category.checked }}"></ion-checkbox>
+        <ion-label> {{ category.category }} </ion-label>
+        <ion-icon name="{{ category.icon }}"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
   <div id="beaconButton">
     <button ion-button color="primary" outline (click)="createBeacon(beaconForm.value)">Create Beacon</button>
