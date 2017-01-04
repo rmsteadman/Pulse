@@ -19,13 +19,11 @@ export class HomePage {
   createBeacon: any = CreateBeaconPage;
   @ViewChild('map') mapElement: ElementRef;
   map: any;
-  
+  myData: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public httpService: BeaconService) {}
  
   ionViewDidLoad(){
     this.loadMap();
-    this.loadBeacon();
-    
   }
  
   loadMap(){
@@ -34,6 +32,7 @@ export class HomePage {
       .then((position) => {
  
         let center = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        console.log("LOADMAP GOOGLE", center)
 
         let mapOptions = {
           center: center,
@@ -42,6 +41,7 @@ export class HomePage {
         }
   
         this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+        this.loadBeacon();
   
       }, (err) => {
         console.log(err);
@@ -50,7 +50,24 @@ export class HomePage {
   }
 
   loadBeacon() {
+    let that = this
+    console.log("JB IS A SWEET GUY")
       this.httpService.getBeaconsAll()
+        .subscribe(data => {
+          this.myData = data;
+          console.log("THIS IS THE DATA IN HOME", this.myData)
+          this.myData.forEach(beaconData =>{
+            let beacon = new google.maps.Marker({
+            map: that.map,
+            animation: google.maps.Animation.DROP,
+            position: JSON.parse(beaconData.position)
+          })
+          let content = beaconData.title + "\n" + "Details: " + beaconData.details;   
+          console.log("beacon position", beacon.position)       
+          that.addInfoWindow(beacon, content);            
+          })
+
+        })
   }
 
 
@@ -58,14 +75,13 @@ export class HomePage {
     this.navCtrl.push(CreateBeaconPage, {
       position: this.map.getCenter()
     });
-
-    let beacon = new google.maps.Marker({
-      map: this.map,
-      animation: google.maps.Animation.DROP,
-      position: this.map.getCenter()
-    });
-    let content = '';          
-    this.addInfoWindow(beacon, content);
+          // let beacon = new google.maps.Marker({
+          // map: this.map,
+          // animation: google.maps.Animation.DROP,
+          // position: this.map.getCenter()
+          // });
+          // let content = '';          
+          // this.addInfoWindow(beacon, content);
 
   }
 

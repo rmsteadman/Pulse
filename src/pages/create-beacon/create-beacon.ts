@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Geolocation } from 'ionic-native';
+import { HomePage } from '../home/home';
 import { BeaconService } from './create-beacon.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -29,11 +30,13 @@ export class CreateBeaconPage {
   }
 
   createBeacon(userInfo){
-  this.navCtrl.pop(); //switch this to load the page everytime if async happens
   
   this.httpService.beaconPost(userInfo)
       .subscribe(data => {
         console.log("Oooh....I'm afraid..the BACONS..will be..quite operational...when your friends arrive")
       })
+
+  this.navCtrl.setRoot(HomePage); //switch this to load the page everytime if async happens
+  
   }
 }
