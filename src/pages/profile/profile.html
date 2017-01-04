@@ -6,6 +6,8 @@
 
 <ion-content padding>
 
+
+  <!--
   <ion-list>
     <ion-item>
       <ion-label floating>What are you interested in?</ion-label>
@@ -13,14 +15,25 @@
     </ion-item>
   </ion-list>
 
+  
+  
   <div id="saveProfileButton">
     <button ion-button color="primary" outline (click)="addPreference(preference.value)">Add Preference</button>
   </div>
+  
+  -->
+
+  <h1>Choose Your Preferences</h1>
 
   <ion-list id="preferenceList">
-    <ion-item *ngFor='let pref of categories'>
-      <ion-label>{{ pref.preference }}</ion-label>
+    <ion-item id="preferenceEntry" *ngFor='let pref of preferences'>
+      <ion-label>
+        {{ pref.preference }} 
+        <ion-icon id="preferenceIcon" name="{{pref.icon}}"></ion-icon>
+      </ion-label>
+
       <ion-checkbox color="dark" checked="{{pref.checked}}" (click)=toggleCheck(pref)></ion-checkbox>
+      
     </ion-item>
   </ion-list>
 
