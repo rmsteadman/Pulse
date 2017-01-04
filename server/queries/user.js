@@ -1,9 +1,12 @@
 const User = require('../models').User;
 
 const userQueries = {};
+
+// dev test
 userQueries.test = (data) => {
-  console.log("data bweh: ", data)
-}
+  console.log('data bweh: ', data);
+};
+
 // create a user (sign in)
 userQueries.create = (user) => {
   return User.findOrCreate({
@@ -15,6 +18,7 @@ userQueries.create = (user) => {
       lastName: user.lastName,
       password: user.password,
       phoneNumber: user.phoneNumber
+
     }
   })
     .spread((newUser, created) => {
@@ -32,9 +36,28 @@ userQueries.create = (user) => {
     });
 };
 
+// get all users
+userQueries.getAllUsers = () => {
+  return User.findAll({
+    include: [{ all: true }]
+  });
+};
+
 // sign in
 // update a user
 // remove a user
 // verify user (two-way auth)
+
+// add/update prefs
+userQueries.savePrefs = (prefs) => {
+  User.update({
+    prefs: prefs
+  },
+    {
+      where: {
+        email: user.email
+      }
+    });
+};
 
 module.exports = userQueries;

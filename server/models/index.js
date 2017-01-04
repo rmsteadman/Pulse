@@ -22,7 +22,7 @@ Beacon.belongsTo(Category);
 Beacon.belongsTo(Chatroom);
 History.belongsTo(Beacon);
 Preferences.belongsTo(User);
-Preferences.belongsTo(Category);
+// Preferences.belongsTo(Category)
 Rating.belongsTo(User);
 Rating.belongsTo(Beacon);
 Request.belongsTo(User);

@@ -4,8 +4,9 @@ import { Geolocation } from 'ionic-native';
 import { CreateBeaconPage } from '../create-beacon/create-beacon'
 import { AuthHttp } from 'angular2-jwt';
 import { AuthService } from '../../services/auth/auth.service';
-import 'rxjs/add/operator/map';
 import { BeaconService } from '../create-beacon/create-beacon.service';
+import { SignUpService } from '../../pages/signup/signup.service';
+import 'rxjs/add/operator/map';
 
 declare var google;
 
@@ -14,7 +15,7 @@ let beaconData;
 @Component({
   selector: 'home-page',
   templateUrl: 'home.html',
-  providers: [AuthService, BeaconService]
+  providers: [AuthService, BeaconService, SignUpService]
 })
 export class HomePage {
 
