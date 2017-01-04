@@ -18,14 +18,15 @@ export class BeaconService {
         }
         return this.http.post('http://localhost:8080/api/beacons/create', beacon)  
             .map(data => {
-                console.log( data.json() )
+                console.log( "This is data", data.json() )
             })
     };
 
-    getBeaconsAll(): Observable<any> {
+    getBeaconsAll() : Observable<any> {
+        console.log('your best friend')
         return this.http.get('http://localhost:8080/api/beacons/allbeacons')
             .map(data => {
-                console.log( data.json() )
+                return data.json();
             })
     }
 }

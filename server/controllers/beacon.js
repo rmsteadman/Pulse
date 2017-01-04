@@ -18,6 +18,7 @@ beaconController.createBeacon = (req, res) => {
 beaconController.getAllBeacons = (req, res) => {
   beaconQuery.getAllBeacons()
     .then(beacons => {
+      console.log("GETTING ALL THE DAMN BACONS IN THE SHOP!", beacons)
       res.send(beacons);
     })
     .catch(err => {
