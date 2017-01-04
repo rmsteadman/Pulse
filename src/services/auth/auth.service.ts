@@ -3,6 +3,7 @@ import { AuthHttp, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { Injectable, NgZone } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { Auth0Vars } from '../../auth0-variables';
+// import { SignUpService } from '../../pages/signup/signup.service';
 
 // Avoid name not found warnings
 declare var Auth0: any;
@@ -86,7 +87,10 @@ export class AuthService {
 
         profile.user_metadata = profile.user_metadata || {};
         this.storage.set('profile', JSON.stringify(profile));
+        profile.idToken = this.idToken;
         this.user = profile;
+        // user signup service here
+        // signup.signupPost(this.user);
       });
 
       this.lock.hide();
@@ -193,4 +197,20 @@ export class AuthService {
     });
 
   }
+
+  // Store log in credentials
+  public checkUserCreds() {
+    // Get a new JWT from Auth0 using the refresh token saved in local storage
+    if ( this.authenticated() ) {
+      console.log('Authenticated!');
+    } else {
+      this.storage.get('profile').then(profile => {
+        profile.token = this.storage.get('id_token');
+        return profile;
+      }).catch(error => {
+        console.log(error);
+      });
+    }
+  }
+
 }

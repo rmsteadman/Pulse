@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { SignupService } from './signup.service';
+import { SignUpService } from './signup.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Http } from '@angular/http';
 import { AuthHttp } from 'angular2-jwt';
@@ -10,7 +10,7 @@ import 'rxjs/add/operator/map';
 @Component({
   selector: 'page-signup',
   templateUrl: 'signup.html',
-  providers: [SignupService, AuthService]
+  providers: [SignUpService, AuthService]
 })
 export class SignupPage {
   message: string;
@@ -18,7 +18,7 @@ export class SignupPage {
 
   public signupForm: FormGroup;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public httpService: SignupService, public formBuilder: FormBuilder, private http: Http, private authHttp: AuthHttp, public auth: AuthService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public httpService: SignUpService, public formBuilder: FormBuilder, private http: Http, private authHttp: AuthHttp, public auth: AuthService) {
     this.signupForm = formBuilder.group({
       firstName: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
       lastName: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
