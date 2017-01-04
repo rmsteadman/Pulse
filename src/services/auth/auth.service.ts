@@ -3,7 +3,7 @@ import { AuthHttp, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { Injectable, NgZone } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { Auth0Vars } from '../../auth0-variables';
-// import { SignUpService } from '../../pages/signup/signup.service';
+import { Http } from '@angular/http';
 
 // Avoid name not found warnings
 declare var Auth0: any;
@@ -60,7 +60,7 @@ export class AuthService {
   zoneImpl: NgZone;
   idToken: string;
 
-  constructor(private authHttp: AuthHttp, zone: NgZone) {
+  constructor(private authHttp: AuthHttp, public http: Http, zone: NgZone) {
     this.zoneImpl = zone;
     // Check if there is a profile saved in local storage
     this.storage.get('profile').then(profile => {
@@ -89,8 +89,6 @@ export class AuthService {
         this.storage.set('profile', JSON.stringify(profile));
         profile.idToken = this.idToken;
         this.user = profile;
-        // user signup service here
-        // signup.signupPost(this.user);
       });
 
       this.lock.hide();
@@ -212,5 +210,23 @@ export class AuthService {
       });
     }
   }
+
+  // Custom
+  signupPost(user): Observable<any> {
+    let User = {
+      accountId: user.accountId || 1,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      phoneNumber: user.phoneNumber,
+      password: user.password,
+      authCred: user.user_id,
+      authToken: user.idToken
+    }
+    return this.http.post('http://localhost:8080/api/users/signup', User)
+      .map(data => {
+        console.log( data.json() )
+      })
+    };
 
 }
