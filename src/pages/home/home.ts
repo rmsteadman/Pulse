@@ -36,6 +36,8 @@ export class HomePage {
     this.loadMap();
   }
 
+
+
   loadMap(){
 
     Geolocation.getCurrentPosition()
