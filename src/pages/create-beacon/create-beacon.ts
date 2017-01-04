@@ -17,6 +17,7 @@ export class CreateBeaconPage {
   @ViewChild('map') mapElement: ElementRef;
   map: any;
   public beaconForm: FormGroup;
+  public beaconCategory = "";
   
   public categories = [
     {
@@ -77,11 +78,14 @@ export class CreateBeaconPage {
     console.log('ionViewDidLoad CreateBeaconPage');
   }
 
+  toggleCheck(categoryEntry) {
+    categoryEntry.checked = !categoryEntry.checked;
+    console.log(categoryEntry.checked)
+  }
+
   createBeacon(beaconInfo){
     
-
-
-    console.log(beaconInfo)
+    this.categories.forEach(category => console.log(category))
     this.httpService.beaconPost(beaconInfo)
         .subscribe(data => {
           console.log("Oooh....I'm afraid..the BACONS..will be..quite operational...when your friends arrive")

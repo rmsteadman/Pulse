@@ -24,9 +24,9 @@
   </form>
   
   <ion-grid>
-    <ion-row>
-      <ion-col width-20 *ngFor="let category of categories" id="categoryRow">
-        <ion-checkbox id="{{ category.checked }}"></ion-checkbox>
+    <ion-row *ngFor="let category of categories">
+      <ion-col width-20 id="categoryRow">
+        <ion-checkbox id="{{ category.checked }}" (click)="toggleCheck(category)"></ion-checkbox>
         <ion-label> {{ category.category }} </ion-label>
         <ion-icon name="{{ category.icon }}"></ion-icon>
       </ion-col>
