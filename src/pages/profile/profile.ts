@@ -9,26 +9,72 @@ import { PreferenceService } from './profile.service';
 })
 export class ProfilePage {
 
-  public categories = [];
+  public preferences = [
+    {
+      preference: 'Active',
+      icon: 'walk',
+      checked: true
+    },
+    {
+      preference: 'Learn',
+      icon: 'school',
+      checked: true
+    },
+    {
+      preference: 'Community',
+      icon: 'people',
+      checked: true
+    },
+    {
+      preference: 'Eat/Drink',
+      icon: 'pizza',
+      checked: true
+    },
+    {
+      preference: 'Music',
+      icon: 'musical-notes',
+      checked: true
+    },
+    {
+      preference: 'Travel',
+      icon: 'globe',
+      checked: true
+    },
+    {
+      preference: 'Art',
+      icon: 'image',
+      checked: true
+    },
+    {
+      preference: 'Games',
+      icon: 'game-controller-a',
+      checked: true
+    },
+    {
+      preference: 'Featured',
+      icon: 'star',
+      checked: true
+    }
+  ];
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public httpService: PreferenceService) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
-    //make get request for preference list
+    // ----->   make get request for preference list here    <--------
   }
 
-  addPreference(things) {
-    this.categories.push({
-      preference: things,
-      checked: true
-    })
-  }
+  // addPreference(things) {
+  //   this.preferences.push({
+  //     preference: things,
+  //     checked: true
+  //   })
+  // }
 
   savePreferences() {
     
     // this.categories.forEach(preference => {console.log(preference)})
-    this.httpService.savePreferences(this.categories)
+    this.httpService.savePreferences(this.preferences)
   }
 
   toggleCheck(preferenceEntry) {
