@@ -61,7 +61,10 @@ export class ProfilePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
-    // ----->   make get request for preference list here    <--------
+    // this.httpService.getPreferences()
+    //   .subscribe(data => {
+    //     console.log('subscribe to get observable')
+    //   })
   }
 
   // addPreference(things) {

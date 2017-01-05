@@ -22,10 +22,27 @@
         <ion-input type="text" #details formControlName="details"></ion-input>
       </ion-item>
   </form>
-    <ion-item>
-      <ion-label> Private </ion-label>
-      <ion-checkbox [(ngModel)]="private"></ion-checkbox>
-    </ion-item>
+
+
+<ion-list>
+  <ion-item>
+    <ion-label>Category</ion-label>
+    <ion-select [(ngModel)]="categoryChoice">
+      <ion-option value="active">Active</ion-option>
+      <ion-option value="learn">Learn</ion-option>
+      <ion-option value="community">Community</ion-option>
+      <ion-option value="eat/drink">Eat/Drink</ion-option>
+      <ion-option value="travel">Travel</ion-option>
+      <ion-option value="art">Art</ion-option>
+      <ion-option value="games">Games</ion-option>
+      <ion-option value="featured">Featured</ion-option>
+    </ion-select>
+  </ion-item>
+</ion-list>
+
+
+
+
 
   <div id="beaconButton">
     <button ion-button color="primary" outline (click)="createBeacon(beaconForm.value)">Create Beacon</button>

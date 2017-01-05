@@ -17,11 +17,12 @@ export class CreateBeaconPage {
   @ViewChild('map') mapElement: ElementRef;
   map: any;
   public beaconForm: FormGroup;
+  public categoryChoice;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public httpService: BeaconService, public formBuilder: FormBuilder) {
       this.beaconForm = formBuilder.group({
-      title: ['', Validators.compose([Validators.maxLength(50), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      details: ['', Validators.compose([Validators.maxLength(255), Validators.pattern('[a-zA-Z ]*'), Validators.required])]
+      title: ['', Validators.compose([Validators.maxLength(50), Validators.required])],
+      details: ['', Validators.compose([Validators.maxLength(255), Validators.required])]
     })
   }
 
@@ -29,14 +30,18 @@ export class CreateBeaconPage {
     console.log('ionViewDidLoad CreateBeaconPage');
   }
 
-  createBeacon(userInfo){
-  
-  this.httpService.beaconPost(userInfo)
-      .subscribe(data => {
-        console.log("Oooh....I'm afraid..the BACONS..will be..quite operational...when your friends arrive")
-      })
 
-  this.navCtrl.setRoot(HomePage); //switch this to load the page everytime if async happens
-  
-  }
+  createBeacon(beaconInfo){
+
+    console.log(this.categoryChoice)
+    beaconInfo.category = this.categoryChoice;
+    console.log(beaconInfo);
+    this.httpService.beaconPost(beaconInfo)
+        .subscribe(data => {
+          console.log("Beacons have categories now")
+        })
+
+    this.navCtrl.setRoot(HomePage); //switch this to load the page everytime if async happens
+    
+    }
 }
