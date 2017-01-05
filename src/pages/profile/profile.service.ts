@@ -8,6 +8,14 @@ import 'rxjs/add/operator/map';
 export class PreferenceService {
     constructor(public http: Http) {}
 
+    // getPreferences(): Observable<any> {
+    //     return this.http.get('http://localhost:8080/api/preferences')
+    //         .map(data => {
+    //             console.log(data)
+    //         })
+    // }
+
+
     savePreferences(preferenceList): Observable<any> {
         let updatedList = JSON.stringify(preferenceList);
         console.log("This is the preference list: ", updatedList);

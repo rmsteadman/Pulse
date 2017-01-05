@@ -72,11 +72,9 @@ export class HomePage {
 
   loadBeacon() {
     let that = this
-    console.log("JB IS A SWEET GUY")
       this.httpService.getBeaconsAll()
         .subscribe(data => {
           this.myData = data;
-          console.log("THIS IS THE DATA IN HOME", this.myData)
           this.myData.forEach(beaconData =>{
             let beacon = new google.maps.Marker({
             map: that.map,
