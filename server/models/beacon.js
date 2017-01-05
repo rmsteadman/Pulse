@@ -29,9 +29,6 @@ module.exports = (Models) => {
     },
     end: {
       type: Sequelize.DATE
-    },
-    category: {
-      type: Sequelize.STRING
     }
   });
 

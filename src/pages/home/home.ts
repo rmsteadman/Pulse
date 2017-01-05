@@ -35,7 +35,7 @@ export class HomePage {
 
   ionViewDidLoad(){
     this.loadMap();
-    this.auth.login();
+    // this.auth.login();
   }
 
   
