@@ -19,6 +19,7 @@ userQueries.create = (user) => {
       lastName: user.lastName,
       password: user.password,
       phoneNumber: user.phoneNumber,
+      verified: false,
       prefs: `[1, 1, 1, 1, 1, 1, 1, 1, 1]`
     // `[
     //   { "preference": "Active", "icon": "walk", "checked": true },
