@@ -31,7 +31,7 @@ module.exports = (Models) => {
       type: Sequelize.DATE
     },
     category: {
-      type: Sequelize.STRING
+      type: Sequelize.INTEGER
     }
   });
 

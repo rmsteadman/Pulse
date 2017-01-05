@@ -61,22 +61,23 @@ export class ProfilePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
-    // this.httpService.getPreferences()
-    //   .subscribe(data => {
-    //     console.log('subscribe to get observable')
-    //   })
+    this.httpService.getPreferences()
+      .subscribe(data => {
+        console.log('subscribe to get observable')
+      })
   }
 
-  // addPreference(things) {
-  //   this.preferences.push({
-  //     preference: things,
-  //     checked: true
-  //   })
-  // }
-
   savePreferences() {
-    
-    // this.categories.forEach(preference => {console.log(preference)})
+    let updatedPreferences = [null]
+    this.preferences.forEach(preference => {
+      if (preference.checked === true){
+        updatedPreferences.push(1)
+      } else {
+        updatedPreferences.push(0)
+      }
+
+    })
+    console.log(JSON.stringify(updatedPreferences))
     this.httpService.savePreferences(this.preferences)
   }
 
