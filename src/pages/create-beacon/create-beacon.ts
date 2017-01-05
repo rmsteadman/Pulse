@@ -17,60 +17,12 @@ export class CreateBeaconPage {
   @ViewChild('map') mapElement: ElementRef;
   map: any;
   public beaconForm: FormGroup;
-  public beaconCategory = "";
-  
-  public categories = [
-    {
-      category: 'Active',
-      icon: 'walk',
-      checked: false
-    },
-    {
-      category: 'Learn',
-      icon: 'school',
-      checked: false
-    },
-    {
-      category: 'Community',
-      icon: 'people',
-      checked: false
-    },
-    {
-      category: 'Eat/Drink',
-      icon: 'pizza',
-      checked: false
-    },
-    {
-      category: 'Music',
-      icon: 'musical-notes',
-      checked: false
-    },
-    {
-      category: 'Travel',
-      icon: 'globe',
-      checked: false
-    },
-    {
-      category: 'Art',
-      icon: 'image',
-      checked: false
-    },
-    {
-      category: 'Games',
-      icon: 'game-controller-a',
-      checked: false
-    },
-    {
-      category: 'Featured',
-      icon: 'star',
-      checked: false
-    }
-  ];
+  public categoryChoice;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public httpService: BeaconService, public formBuilder: FormBuilder) {
       this.beaconForm = formBuilder.group({
-      title: ['', Validators.compose([Validators.maxLength(50), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      details: ['', Validators.compose([Validators.maxLength(255), Validators.pattern('[a-zA-Z ]*'), Validators.required])]
+      title: ['', Validators.compose([Validators.maxLength(50), Validators.required])],
+      details: ['', Validators.compose([Validators.maxLength(255), Validators.required])]
     })
   }
 
@@ -78,17 +30,15 @@ export class CreateBeaconPage {
     console.log('ionViewDidLoad CreateBeaconPage');
   }
 
-  toggleCheck(categoryEntry) {
-    categoryEntry.checked = !categoryEntry.checked;
-    console.log(categoryEntry.checked)
-  }
 
   createBeacon(beaconInfo){
-    
-    this.categories.forEach(category => console.log(category))
+
+    console.log(this.categoryChoice)
+    beaconInfo.category = this.categoryChoice;
+    console.log(beaconInfo);
     this.httpService.beaconPost(beaconInfo)
         .subscribe(data => {
-          console.log("Oooh....I'm afraid..the BACONS..will be..quite operational...when your friends arrive")
+          console.log("Beacons have categories now")
         })
 
     this.navCtrl.setRoot(HomePage); //switch this to load the page everytime if async happens

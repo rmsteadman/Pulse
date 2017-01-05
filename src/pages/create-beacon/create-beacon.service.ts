@@ -23,10 +23,12 @@ export class BeaconService {
     };
 
     getBeaconsAll() : Observable<any> {
-        console.log('your best friend')
         return this.http.get('http://localhost:8080/api/beacons/allbeacons')
             .map(data => {
                 return data.json();
             })
     }
+
+    
+
 }
