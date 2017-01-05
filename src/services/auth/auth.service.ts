@@ -4,6 +4,7 @@ import { Injectable, NgZone } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { Auth0Vars } from '../../auth0-variables';
 import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 // Avoid name not found warnings
 declare var Auth0: any;
@@ -93,10 +94,15 @@ export class AuthService {
 
       this.lock.hide();
 
+      // save in PulseDB
+      // console.log('This is user', this.user);
+      // this.signupPost(this.user);
+
       this.storage.set('refresh_token', authResult.refreshToken);
       this.zoneImpl.run(() => this.user = authResult.profile);
       // Schedule a token refresh
       this.scheduleRefresh();
+
     });
   }
 
@@ -211,21 +217,32 @@ export class AuthService {
     }
   }
 
+  // get log in creds
+  public getUserCreds() {
+    this.storage.get('profile')
+      .then(profile => {
+        console.log('Step 1 OK');
+        return(profile);
+      })
+  }
+
   // Custom
-  signupPost(user): Observable<any> {
+  public signupPost(user): Observable<any> {
+    console.log('Step 2 OK');
     let User = {
-      accountId: user.accountId || 1,
-      firstName: user.firstName,
-      lastName: user.lastName,
+      accountId: 1,
+      firstName: user.user_metadata.firstName,
+      lastName: user.user_metadata.lastName,
       email: user.email,
-      phoneNumber: user.phoneNumber,
-      password: user.password,
+      phoneNumber: user.user_metadata.phoneNumber,
       authCred: user.user_id,
       authToken: user.idToken
     }
-    return this.http.post('http://localhost:8080/api/users/signup', User)
+    console.log('Step 3 OK', User);
+    return this.http.post('http://localhost:8080/api/users/signup', JSON.stringify(User))
       .map(data => {
-        console.log( data.json() )
+        console.log("This is data in signup", data.json());
+        return data.json();
       })
     };
 

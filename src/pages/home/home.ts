@@ -34,9 +34,13 @@ export class HomePage {
   ionViewDidLoad(){
     this.auth.login();
     this.loadMap();
+    setTimeout(this.addUser(), 3000);
   }
 
-
+  addUser() {
+    let prof = this.auth.getUserCreds();
+    this.auth.signupPost(prof);
+  }
 
   loadMap(){
 
@@ -62,20 +66,20 @@ export class HomePage {
 
   loadBeacon() {
     let that = this
-    console.log("JB IS A SWEET GUY")
+    // console.log("JB IS A SWEET GUY")
       this.httpService.getBeaconsAll()
         .subscribe(data => {
           this.myData = data;
-          console.log("THIS IS THE DATA IN HOME", this.myData)
+          // console.log("THIS IS THE DATA IN HOME", this.myData)
           this.myData.forEach(beaconData =>{
             let beacon = new google.maps.Marker({
             map: that.map,
             animation: google.maps.Animation.DROP,
             position: JSON.parse(beaconData.position)
           })
-          let content = beaconData.title + "\n" + "Details: " + beaconData.details;   
-          console.log("beacon position", beacon.position)       
-          that.addInfoWindow(beacon, content);            
+          let content = beaconData.title + "\n" + "Details: " + beaconData.details;
+          // console.log("beacon position", beacon.position)
+          that.addInfoWindow(beacon, content);
           })
 
         })
