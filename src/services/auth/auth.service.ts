@@ -95,8 +95,8 @@ export class AuthService {
       this.lock.hide();
 
       // save in PulseDB
-      // console.log('This is user', this.user);
-      // this.signupPost(this.user);
+      console.log('This is user', this.user);
+      this.signupPost(this.user);
 
       this.storage.set('refresh_token', authResult.refreshToken);
       this.zoneImpl.run(() => this.user = authResult.profile);
