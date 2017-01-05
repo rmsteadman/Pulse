@@ -28,17 +28,16 @@ export class HomePage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public modalCtrl: ModalController, 
+    public modalCtrl: ModalController,
     public httpService: BeaconService,
     public auth: AuthService
   ) {}
 
   ionViewDidLoad(){
     this.loadMap();
-    // this.auth.login();
+    setTimeout(this.addUser(), 3000);
   }
 
-  
   openModal(info) {
     let modal = this.modalCtrl.create(BeaconInfo, {
       beacon: info
@@ -47,7 +46,10 @@ export class HomePage {
     modal.present();
   }
 
-
+  addUser() {
+    let prof = this.auth.getUserCreds();
+    this.auth.signupPost(prof);
+  }
 
   loadMap(){
 
@@ -86,8 +88,8 @@ export class HomePage {
             details: beaconData.details,
             tags: beaconData.tags,
             private: beaconData.private
-          }       
-          that.addInfoWindow(beacon, content);            
+          }
+          that.addInfoWindow(beacon, content);
           })
         })
   }
