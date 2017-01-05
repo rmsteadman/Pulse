@@ -29,9 +29,6 @@ module.exports = (Models) => {
     },
     end: {
       type: Sequelize.DATE
-    },
-    categoryId: {
-      type: Sequelize.INTEGER
     }
   });
 
