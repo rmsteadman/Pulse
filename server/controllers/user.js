@@ -4,8 +4,26 @@ const userController = {};
 
 // sign up
 userController.signUp = (req, res) => {
-  let user = req.body.user;
-  userQuery.create(user);
+  console.log('uCon req', req.body);
+  let user = req.body;
+  userQuery.create(user)
+    .then((user) => {
+      res.json(user);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+};
+
+// find a user
+userController.login = (req, res) => {
+  userQuery.findUser()
+    .then(user => {
+      (user) ? res.json(user) : res.json({});
+    })
+    .catch((err) => {
+      res.json(err);
+    });
 };
 
 // post
