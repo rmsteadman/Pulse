@@ -34,14 +34,14 @@ export class CreateBeaconPage {
   createBeacon(beaconInfo){
 
     let categoryOptions = {
-      active: 1, 
-      learn: 2, 
-      community: 3, 
-      music: 4, 
-      "eat/drink":5, 
-      travel: 6, 
-      art: 7, 
-      games: 8, 
+      active: 1,
+      learn: 2,
+      community: 3,
+      music: 4,
+      "eat/drink":5,
+      travel: 6,
+      art: 7,
+      games: 8,
       featured: 9
     }
     
@@ -49,7 +49,7 @@ export class CreateBeaconPage {
 
 
     console.log(this.categoryChoice)
-    beaconInfo.categoryId = categoryOptions[this.categoryChoice];
+    beaconInfo.CategoryId = categoryOptions[this.categoryChoice];
     console.log(beaconInfo);
     this.httpService.beaconPost(beaconInfo)
         .subscribe(data => {
@@ -57,6 +57,6 @@ export class CreateBeaconPage {
         })
 
     this.navCtrl.setRoot(HomePage); //switch this to load the page everytime if async happens
-    
+
     }
 }
