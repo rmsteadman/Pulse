@@ -14,32 +14,40 @@ userQueries.create = (user) => {
       email: user.email
     },
     defaults: {
+      accountId: 1,
       firstName: user.firstName,
       lastName: user.lastName,
       password: user.password,
-      phoneNumber: user.phoneNumber
-
+      phoneNumber: user.phoneNumber,
+      prefs: `[1, 1, 1, 1, 1, 1, 1, 1, 1]`
+    // `[
+    //   { "preference": "Active", "icon": "walk", "checked": true },
+    //   { "preference": "Learn", "icon": "school", "checked": true },
+    //   { "preference": "Community", "icon": "people", "checked": true },
+    //   { "preference": "Eat/Drink", "icon": "pizza", "checked": true },
+    //   { "preference": "Music", "icon": "musical-notes", "checked": true },
+    //   { "preference": "Travel", "icon": "globe", "checked": true },
+    //   { "preference": "Art", "icon": "image", "checked": true },
+    //   { "preference": "Games", "icon": "game-controller-a", "checked": true },
+    //   { "preference": "Featured", "icon": "star", "checked": true }
+    // ]`
     }
-  })
-    .spread((newUser, created) => {
-      if (created) {
-        return {
-          'success': true,
-          'message': 'User successfully created!',
-          'userId': newUser.id
-        };
-      }
-      return {
-        'success': false,
-        'message': 'User already exists.'
-      };
-    });
+  });
 };
 
 // get all users
 userQueries.getAllUsers = () => {
   return User.findAll({
     include: [{ all: true }]
+  });
+};
+
+// find a user
+userQueries.findUser = () => {
+  models.User.find({
+    where: {
+      authCred: req.body.auth
+    }
   });
 };
 
