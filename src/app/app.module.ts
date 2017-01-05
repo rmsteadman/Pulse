@@ -7,10 +7,10 @@ import { Http } from '@angular/http';
 import { Storage } from '@ionic/storage';
 import { AboutPage } from '../pages/about/about';
 import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
 import { SignupPage } from '../pages/signup/signup';
 import { CreateBeaconPage } from '../pages/create-beacon/create-beacon';
-import { ProfilePage } from '../pages/profile/profile'
+import { ProfilePage } from '../pages/profile/profile';
+import { BeaconInfo } from '../modals/beacon-info/beacon-info';
 
 let storage: Storage = new Storage();
 
@@ -27,9 +27,9 @@ export function getAuthHttp(http) {
     AboutPage,
     ProfilePage,
     HomePage,
-    TabsPage,
     SignupPage,
-    CreateBeaconPage
+    CreateBeaconPage,
+    BeaconInfo
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -40,9 +40,9 @@ export function getAuthHttp(http) {
     AboutPage,
     ProfilePage,
     HomePage,
-    TabsPage,
     SignupPage,
-    CreateBeaconPage
+    CreateBeaconPage,
+    BeaconInfo
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
