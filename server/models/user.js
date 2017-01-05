@@ -35,6 +35,9 @@ module.exports = (Models) => {
     },
     verified: {
       type: Sequelize.BOOLEAN
+    },
+    prefs: {
+      type: Sequelize.TEXT
     }
   });
 
