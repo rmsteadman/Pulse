@@ -1,11 +1,12 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { Geolocation } from 'ionic-native';
 import { CreateBeaconPage } from '../create-beacon/create-beacon'
 import { AuthHttp } from 'angular2-jwt';
 import { AuthService } from '../../services/auth/auth.service';
 import { BeaconService } from '../create-beacon/create-beacon.service';
 import { SignUpService } from '../../pages/signup/signup.service';
+import { BeaconInfo } from '../../modals/beacon-info/beacon-info';
 import 'rxjs/add/operator/map';
 
 declare var google;
@@ -27,13 +28,23 @@ export class HomePage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    public modalCtrl: ModalController, 
     public httpService: BeaconService,
     public auth: AuthService
   ) {}
 
   ionViewDidLoad(){
-    this.auth.login();
     this.loadMap();
+    this.auth.login();
+  }
+
+  
+  openModal(info) {
+    let modal = this.modalCtrl.create(BeaconInfo, {
+      beacon: info
+    });
+    console.log(info);
+    modal.present();
   }
 
 
@@ -44,7 +55,6 @@ export class HomePage {
       .then((position) => {
 
         let center = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-        console.log("LOADMAP GOOGLE", center)
 
         let mapOptions = {
           center: center,
@@ -73,11 +83,14 @@ export class HomePage {
             animation: google.maps.Animation.DROP,
             position: JSON.parse(beaconData.position)
           })
-          let content = beaconData.title + "\n" + "Details: " + beaconData.details;   
-          console.log("beacon position", beacon.position)       
+          let content = {
+            title: beaconData.title,
+            details: beaconData.details,
+            tags: beaconData.tags,
+            private: beaconData.private
+          }       
           that.addInfoWindow(beacon, content);            
           })
-
         })
   }
 
@@ -90,14 +103,18 @@ export class HomePage {
 
 
   addInfoWindow(beacon, content){
-
-    let infoWindow = new google.maps.InfoWindow({
-      content: content
-    });
-
+    let that = this;
     google.maps.event.addListener(beacon, 'click', () => {
-      infoWindow.open(this.map, beacon);
-    });
+      that.openModal(content)
+    })
+    // // let infoWindow = new google.maps.InfoWindow({
+    // //   content: content
+    // // });
 
-    }
+    // google.maps.event.addListener(beacon, 'click', () => {
+    //   // infoWindow.open(this.map, beacon);
+    // });
+    // }
+  }
+
 }
