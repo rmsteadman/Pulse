@@ -35,7 +35,8 @@ export class HomePage {
 
   ionViewDidLoad(){
     this.loadMap();
-    setTimeout(this.addUser(), 3000);
+    this.auth.login();
+    // setTimeout(this.addUser(), 3000);
   }
 
   openModal(info) {
