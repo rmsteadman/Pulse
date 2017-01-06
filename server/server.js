@@ -20,7 +20,7 @@ let io = sockets.listen(server);
 
 
 io.on('connection', socket => console.log('User connected'))
-// server.listen(PORT, () => console.log('Socket server listening on port: ', PORT))
+
 
 
 
@@ -47,5 +47,4 @@ app.use('/api', mainRouter);
 // app.get('*', function (req, res) {
 //   res.sendFile(path.resolve(__dirname, '../src', 'index.html'))
 // })
-
-server.listen(app.get('port'), () => console.log(`Server is listening on port ${app.get('port')}`));
+server.listen(app.get('port'), () => console.log(`Server and sockets listening on port ${app.get('port')}`));
