@@ -9,20 +9,10 @@ const mainRouter = require('./routes');
 const path = require('path');
 const PORT = process.env.PORT || 8080;
 
-
 const server = require('http').createServer(app);
 const io = require('socket.io').listen(server);
 
-
-
-
-
-io.on('connection', socket => console.log('User connected'))
-
-
-
-
-
+io.on('connection', socket => console.log('User connected'));
 
 app.set('port', PORT);
 app.set('json spaces', 2);
@@ -47,16 +37,15 @@ app.use('/api', mainRouter);
 // })
 server.listen(app.get('port'), () => console.log(`Server and sockets listening on port ${app.get('port')}`));
 
-////
+// //
 io.sockets.on('connection', (socket) => {
-  console.log('User Connected')
+  console.log('User Connected');
 
   socket.on('disconnect', (data) => {
-    console.log("User disconnected");
+    console.log('User disconnected');
   });
 
   socket.on('send message', (data) => {
-    io.sockets.emit('get message', data)
-  })
-})
-
+    io.sockets.emit('get message', data);
+  });
+});
