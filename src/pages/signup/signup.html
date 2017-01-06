@@ -1,47 +1,31 @@
-<!--   email, password, phone number, first name, last name      -->
+<!-- src/pages/profile/profile.html -->
+
 <ion-header>
-
   <ion-navbar>
-    <ion-title>signup</ion-title>
+    <ion-title>Profile</ion-title>
   </ion-navbar>
-
 </ion-header>
 
+<ion-content padding *ngIf="!auth.authenticated()">
 
-<ion-content padding>
+  <button ion-button block (click)="auth.login()">Login</button>
 
-  <form [formGroup]="signupForm">
-    
-    <ion-item>
-      <ion-label floating>First Name</ion-label>
-      <ion-input type="text" formControlName="firstName"></ion-input>
+</ion-content>
+
+<ion-content padding *ngIf="auth.authenticated()">
+
+  <ion-card>
+
+    <ion-item *ngIf="auth.user">
+      <ion-avatar item-left>
+        <img src="{{ auth.user.picture }}">
+      </ion-avatar>
+      <h2>{{ auth.user.nickname }}</h2>
+      <p>{{ auth.user.email }}</p>
     </ion-item>
 
-    <ion-item>
-      <ion-label floating>Last Name</ion-label>
-      <ion-input type="text" formControlName="lastName"></ion-input>
-    </ion-item>
-    
-    <ion-item>
-      <ion-label floating>Email</ion-label>
-      <ion-input type="text" formControlName="email"></ion-input>
-    </ion-item>
+  </ion-card>
 
-
-    <ion-item>
-      <ion-label floating>Password</ion-label>
-      <ion-input type="password" formControlName="password"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label floating>Phone Number</ion-label>
-      <ion-input type="number" formControlName="phoneNumber"></ion-input>
-    </ion-item>
-
-  </form>
-  <div id="signupButton">
-    <button ion-button color="primary" outline (click)="signup(signupForm.value)">Sign up</button>
-  </div>
-
+  <button ion-button block (click)="auth.logout()">Logout</button>
 
 </ion-content>
