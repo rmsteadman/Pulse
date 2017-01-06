@@ -5,7 +5,7 @@ const chatroomQueries = {};
 // create a chatroom
 chatroomQueries.createChatroom = (data) => {
   return Chatroom.create({
-    name: data.name,
+    name: data,
     chat: '[]'
   });
 };
