@@ -56,7 +56,7 @@ userQueries.getAllUsers = () => {
 
 // find a user
 userQueries.findUser = () => {
-  models.User.find({
+  return User.find({
     where: {
       authCred: req.body.auth
     }
