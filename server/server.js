@@ -10,14 +10,8 @@ const path = require('path');
 const PORT = process.env.PORT || 8080;
 
 
-<<<<<<< HEAD
 const server = require('http').createServer(app);
 const io = require('socket.io').listen(server);
-=======
-let sockets = require('socket.io');
-let http = require('http');
-let server = http.createServer(app);
-let io = sockets.listen(server);
 
 
 
@@ -29,7 +23,6 @@ io.on('connection', socket => console.log('User connected'))
 
 
 
->>>>>>> dev
 
 app.set('port', PORT);
 app.set('json spaces', 2);
@@ -53,7 +46,6 @@ app.use('/api', mainRouter);
 //   res.sendFile(path.resolve(__dirname, '../src', 'index.html'))
 // })
 server.listen(app.get('port'), () => console.log(`Server and sockets listening on port ${app.get('port')}`));
-<<<<<<< HEAD
 
 ////
 io.sockets.on('connection', (socket) => {
@@ -68,5 +60,3 @@ io.sockets.on('connection', (socket) => {
   })
 })
 
-=======
->>>>>>> dev
