@@ -11,6 +11,7 @@ import { SignupPage } from '../pages/signup/signup';
 import { CreateBeaconPage } from '../pages/create-beacon/create-beacon';
 import { ProfilePage } from '../pages/profile/profile';
 import { BeaconInfo } from '../modals/beacon-info/beacon-info';
+import { SignUpService } from '../pages/signup/signup.service';
 
 let storage: Storage = new Storage();
 
@@ -51,7 +52,8 @@ export function getAuthHttp(http) {
       provide: AuthHttp,
       useFactory: getAuthHttp,
       deps: [Http]
-    }
+    },
+    SignUpService
   ]
 })
 

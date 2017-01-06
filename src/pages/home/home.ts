@@ -24,21 +24,47 @@ export class HomePage {
   @ViewChild('map') mapElement: ElementRef;
   map: any;
   myData: any;
+  token: any;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public modalCtrl: ModalController,
     public httpService: BeaconService,
-    public auth: AuthService
+    public auth: AuthService,
+    public TEST: SignUpService
   ) {}
 
   ionViewDidLoad(){
     this.loadMap();
-    // this.auth.login();
-    // setTimeout(this.addUser(), 3000);
+    // this.userInit();
   }
 
+  // get user token
+  // acquireToken () {
+  //   this.auth.getUserToken()
+  //     .subscribe(data => {
+  //       this.token = data;
+  //       console.log('This is the user token', this.token);
+  //     })
+  // }
+
+  // initialize user authentication
+  userInit() {
+    // get user login token (in local storage)
+    // this.auth.getUserToken()
+    let test = this.auth.getUserCreds();
+    console.log('this is chkusrcrds', test);
+    // console.log(localStorage)
+    // if user is logged in, skip lock screen
+    // if(true) {
+      //return;
+    //} else {
+      // this.auth.login();
+    //}
+    // if not logged in, show lock
+
+  }
   openModal(info) {
     let modal = this.modalCtrl.create(BeaconInfo, {
       beacon: info
@@ -47,10 +73,6 @@ export class HomePage {
     modal.present();
   }
 
-  addUser() {
-    let prof = this.auth.getUserCreds();
-    this.auth.signupPost(prof);
-  }
 
   loadMap(){
 
