@@ -34,16 +34,16 @@ export class CreateBeaconPage {
   createBeacon(beaconInfo){
 
     let categoryOptions = {
-      active: 1,
-      learn: 2,
-      community: 3,
-      music: 4,
-      "eat/drink": 5,
-      travel: 6,
-      art: 7,
-      games: 8,
-      featured: 9,
-      other: 10
+      Active: 1,
+      Learn: 2,
+      Community: 3,
+      Music: 4,
+      Eat: 5,
+      Travel: 6,
+      Art: 7,
+      Games: 8,
+      Featured: 9,
+      Other: 10
     }
 
 
