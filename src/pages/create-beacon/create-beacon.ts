@@ -38,7 +38,7 @@ export class CreateBeaconPage {
       learn: 2,
       community: 3,
       music: 4,
-      "eat/drink":5,
+      "eat/drink": 5,
       travel: 6,
       art: 7,
       games: 8,
