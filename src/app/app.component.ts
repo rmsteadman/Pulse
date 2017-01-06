@@ -5,6 +5,7 @@ import { AuthService } from '../services/auth/auth.service';
 import { HomePage } from '../pages/home/home';
 import { AboutPage } from '../pages/about/about';
 import { ProfilePage } from '../pages/profile/profile';
+import { SignupPage } from '../pages/signup/signup';
 
 @Component({
   templateUrl: 'app.html'
@@ -20,8 +21,9 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'Profile', component: ProfilePage },
-      { title: 'About', component: AboutPage }
-      
+      { title: 'About', component: AboutPage },
+      { title: 'Login', component: SignupPage }
+
     ];
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
