@@ -3,7 +3,7 @@ const Chatroom = require('../models').Chatroom;
 const chatroomQueries = {};
 
 // create a chatroom
-chatroomQueries.create = (data) => {
+chatroomQueries.createChatroom = (data) => {
   return Chatroom.create({
     name: data.name,
     chat: '[]'
