@@ -45,14 +45,15 @@ export class CreateBeaconPage {
       featured: 9,
       other: 10
     }
-    
+
 
 
     console.log(this.categoryChoice)
     if (!this.categoryChoice) {
       this.categoryChoice = 'other'
     }
-    beaconInfo.CategoryId = categoryOptions[this.categoryChoice];
+    // beaconInfo.CategoryId = categoryOptions[this.categoryChoice];
+    beaconInfo.CategoryType = this.categoryChoice;
     console.log(beaconInfo);
     this.httpService.beaconPost(beaconInfo)
         .subscribe(data => {
