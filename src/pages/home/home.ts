@@ -46,12 +46,10 @@ export class HomePage {
       this.auth.login();
     }
   }
-
   openModal(info) {
     let modal = this.modalCtrl.create(BeaconInfo, {
       beacon: info
     });
-    console.log(info);
     modal.present();
   }
 
@@ -77,6 +75,46 @@ export class HomePage {
 
   loadBeacon() {
     let that = this
+
+    
+    let icons = {
+      active: {
+        icon: 'http://i.imgur.com/WGBgLt7.png'
+      },
+      art: {
+        icon: 'http://i.imgur.com/WyH8zuQ.png'
+      },
+      community: {
+        icon: 'http://i.imgur.com/cKsSFbG.png'
+      },
+      eat: {
+        icon: 'http://i.imgur.com/kzEV39B.png'
+      },
+      featured: {
+        icon: 'http://i.imgur.com/VVbHJjv.png'
+      },
+      games: {
+        icon: 'http://i.imgur.com/bpZdExD.png'
+      },
+      learn: {
+        icon: 'http://i.imgur.com/4nKLb0R.png'
+      },
+      music: {
+        icon: 'http://i.imgur.com/dyk9hBV.png'
+      },
+      travel: {
+        icon: 'http://i.imgur.com/69FWA0V.png'
+      },
+      other: {
+        icon: 'http://i.imgur.com/RgsgSZI.png'
+      },
+      JB : {
+        icon: 'http://i.imgur.com/twiMx0R.png'
+      }
+    }
+
+            // icon: icons[beaconData].icon
+
       this.httpService.getBeaconsAll()
         .subscribe(data => {
           this.myData = data;
@@ -84,7 +122,8 @@ export class HomePage {
             let beacon = new google.maps.Marker({
             map: that.map,
             animation: google.maps.Animation.DROP,
-            position: JSON.parse(beaconData.position)
+            position: JSON.parse(beaconData.position),
+            icon: 'http://i.imgur.com/twiMx0R.png'
           })
           let content = {
             title: beaconData.title,
@@ -110,14 +149,8 @@ export class HomePage {
     google.maps.event.addListener(beacon, 'click', () => {
       that.openModal(content)
     })
-    // // let infoWindow = new google.maps.InfoWindow({
-    // //   content: content
-    // // });
-
-    // google.maps.event.addListener(beacon, 'click', () => {
-    //   // infoWindow.open(this.map, beacon);
-    // });
-    // }
   }
+
+
 
 }
