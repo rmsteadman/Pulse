@@ -37,33 +37,14 @@ export class HomePage {
 
   ionViewDidLoad(){
     this.loadMap();
-    // this.userInit();
+    this.userInit();
   }
-
-  // get user token
-  // acquireToken () {
-  //   this.auth.getUserToken()
-  //     .subscribe(data => {
-  //       this.token = data;
-  //       console.log('This is the user token', this.token);
-  //     })
-  // }
 
   // initialize user authentication
   userInit() {
-    // get user login token (in local storage)
-    // this.auth.getUserToken()
-    let test = this.auth.getUserCreds();
-    console.log('this is chkusrcrds', test);
-    // console.log(localStorage)
-    // if user is logged in, skip lock screen
-    // if(true) {
-      //return;
-    //} else {
-      // this.auth.login();
-    //}
-    // if not logged in, show lock
-
+    if(localStorage.getItem('userId') === "null") {
+      this.auth.login();
+    }
   }
   openModal(info) {
     let modal = this.modalCtrl.create(BeaconInfo, {
@@ -72,9 +53,7 @@ export class HomePage {
     modal.present();
   }
 
-
   loadMap(){
-
     Geolocation.getCurrentPosition()
       .then((position) => {
 

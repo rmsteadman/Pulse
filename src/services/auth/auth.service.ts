@@ -87,6 +87,13 @@ export class AuthService {
           return;
         }
 
+        // Add credentials to localStorage
+        console.log('Auth-side profile: ', profile);
+        localStorage.setItem("idToken", authResult.idToken);
+        localStorage.setItem("userId", profile.user_id);
+        localStorage.setItem("profile", JSON.stringify(profile));
+        this.signUpPost(profile);
+
         profile.user_metadata = profile.user_metadata || {};
         this.storage.set('profile', JSON.stringify(profile));
         profile.idToken = this.idToken;
@@ -96,8 +103,8 @@ export class AuthService {
       this.lock.hide();
 
       // save in PulseDB
-      console.log('This is user', this.user);
-      this.signUpPost(this.user);
+      // console.log('After hide lock, user:', this.user);
+      // this.signUpPost(this.user);
 
       this.storage.set('refresh_token', authResult.refreshToken);
       this.zoneImpl.run(() => this.user = authResult.profile);
@@ -118,7 +125,10 @@ export class AuthService {
 
   public logout() {
     this.storage.remove('profile');
+    localStorage.setItem("profile", null);
     this.storage.remove('id_token');
+    localStorage.setItem("idToken", null);
+    localStorage.setItem("userId", null);
     this.idToken = null;
     this.storage.remove('refresh_token');
     this.zoneImpl.run(() => this.user = null);
@@ -222,8 +232,7 @@ export class AuthService {
   public getUserCreds() {
     this.storage.get('profile')
       .then(profile => {
-        localStorage.setItem('profile', JSON.parse(profile));
-        return(profile);
+        return JSON.parse(profile);
       })
   }
 
@@ -243,7 +252,7 @@ export class AuthService {
     console.log('Step 3 OK', User);
     this.signUp.signupPost(User)
       .subscribe(data => {
-        console.log('HI');
+        console.log('Sent to server');
       })
   };
 

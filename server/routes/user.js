@@ -8,5 +8,6 @@ userRouter.post('/login', userController.login);
 userRouter.post('/signup', userController.signUp);
 userRouter.put('/prefs', userController.savePrefs);
 userRouter.get('/gettoken', userController.getToken);
+userRouter.get('/finduser', userController.findUser);
 
 module.exports = userRouter;

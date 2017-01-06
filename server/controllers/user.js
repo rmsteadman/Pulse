@@ -15,6 +15,18 @@ userController.signUp = (req, res) => {
     });
 };
 
+// find user
+userController.findUser = (req, res) => {
+  let token = req.body;
+  userQuery.findUser(token)
+    .then(user => {
+      (user) ? res.json(user) : res.json({});
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+};
+
 // get token
 userController.getToken = (req, res) => {
   console.log('getToken reqbody', req.body);
