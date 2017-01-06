@@ -8,8 +8,17 @@ import { NavController } from 'ionic-angular';
 })
 export class Chatroom {
 
+  public messages = [];
+
   constructor(public navCtrl: NavController) {
 
+  }
+
+  sendMessage(message) {
+    console.log(this.messages)
+    console.log(message)
+    this.messages.push(message);
+    
   }
 
 }

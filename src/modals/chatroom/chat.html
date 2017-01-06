@@ -1,4 +1,22 @@
 
 <div padding>
-  Chatroom goes in here!!!!!!
+
+  <ion-card *ngFor="let message of messages">
+
+    <ion-card-header>
+      {{ message.body }}
+    </ion-card-header>
+
+    <ion-card-content>
+     {{ message.author }}
+    </ion-card-content>
+
+  </ion-card>
+
+
+  <div id="messageBuild">
+    <ion-input [(ngModel)]="chatInput" placeholder="What's the word?'"></ion-input>
+    <button (click)="sendMessage(chatInput)">Send</button>
+  </div>
+
 </div>

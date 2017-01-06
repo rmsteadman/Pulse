@@ -42,13 +42,16 @@ export class CreateBeaconPage {
       travel: 6,
       art: 7,
       games: 8,
-      featured: 9
+      featured: 9,
+      other: 10
     }
     
 
 
-
     console.log(this.categoryChoice)
+    if (!this.categoryChoice) {
+      this.categoryChoice = 'other'
+    }
     beaconInfo.CategoryId = categoryOptions[this.categoryChoice];
     console.log(beaconInfo);
     this.httpService.beaconPost(beaconInfo)
