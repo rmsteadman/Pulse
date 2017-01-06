@@ -35,12 +35,8 @@ export class HomePage {
 
   ionViewDidLoad(){
     this.loadMap();
-<<<<<<< HEAD
-    this.auth.login();
+    // this.auth.login();
     // setTimeout(this.addUser(), 3000);
-=======
-    sgi
->>>>>>> [pull] rebasing
   }
 
   openModal(info) {
