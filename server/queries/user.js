@@ -15,10 +15,12 @@ userQueries.create = (user) => {
     },
     defaults: {
       accountId: 1,
+      authCred: user.authCred,
+      authToken: user.authToken,
       firstName: user.firstName,
       lastName: user.lastName,
-      password: user.password,
       phoneNumber: user.phoneNumber,
+      photo: user.photo || 'http://www.ebl-law.com/wp-content/uploads/2016/05/default-profile.png',
       verified: false,
       prefs: `[1, 1, 1, 1, 1, 1, 1, 1, 1]`
     // `[
@@ -32,6 +34,15 @@ userQueries.create = (user) => {
     //   { "preference": "Games", "icon": "game-controller-a", "checked": true },
     //   { "preference": "Featured", "icon": "star", "checked": true }
     // ]`
+    }
+  });
+};
+
+// fetch user token
+userQueries.getToken = () => {
+  models.User.find({
+    where: {
+      authCred: req.body.auth
     }
   });
 };
