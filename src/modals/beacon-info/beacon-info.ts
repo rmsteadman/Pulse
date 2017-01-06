@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController, Platform, NavParams, ViewController } from 'ionic-angular';
+import { ModalController, Platform, NavParams, ViewController, NavController } from 'ionic-angular';
 import { Chatroom } from '../chatroom/chat'
 
 
@@ -12,13 +12,11 @@ export class BeaconInfo {
   constructor(
     public platform: Platform,
     public params: NavParams,
-    public viewCtrl: ViewController
+    public viewCtrl: ViewController,
+    public NavController: NavController
   ) {}
 
   beacon:any = this.params.get('beacon')
-
-  
-  
 
   dismiss() {
     this.viewCtrl.dismiss();
