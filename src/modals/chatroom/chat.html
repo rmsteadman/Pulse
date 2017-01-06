@@ -1,6 +1,7 @@
 
 <div padding>
 
+
   <ion-card *ngFor="let message of messages">
 
     <ion-card-header>
@@ -18,5 +19,6 @@
     <ion-input [(ngModel)]="chatInput" placeholder="What's the word?'"></ion-input>
     <button (click)="sendMessage(chatInput)">Send</button>
   </div>
+
 
 </div>

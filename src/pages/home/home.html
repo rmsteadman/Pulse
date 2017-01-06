@@ -1,9 +1,7 @@
 
 <ion-content>
-  <div #map id="map"></div>  
-  <ion-fab right bottom id="addBeanconButton">
+  <div #map id="map"></div>
+  <ion-fab right bottom id="addBeanconButton" *ngIf="auth.authenticated()">
     <button ion-fab color="purple" (click)="addBeacon()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
 </ion-content>
-
-
