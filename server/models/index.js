@@ -41,6 +41,39 @@ const Sync = function (keyword) {
   if (keyword) {
     Models.sync({ force: true }).then(() => {
       console.log('Successfully dropped tables.');
+      Category.create({
+        name: 'Active'
+      });
+      Category.create({
+        name: 'Learn'
+      });
+      Category.create({
+        name: 'Community'
+      });
+      Category.create({
+        name: 'Music'
+      });
+      Category.create({
+        name: 'Eat'
+      });
+      Category.create({
+        name: 'Travel'
+      });
+      Category.create({
+        name: 'Art'
+      });
+      Category.create({
+        name: 'Games'
+      });
+      Category.create({
+        name: 'Featured'
+      });
+      Category.create({
+        name: 'Other'
+      });
+      Category.create({
+        name: 'JB'
+      });
     });
   } else {
     Models.sync().then(() => {
