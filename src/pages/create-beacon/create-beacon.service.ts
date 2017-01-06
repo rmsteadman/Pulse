@@ -9,13 +9,15 @@ import 'rxjs/add/operator/map';
 export class BeaconService {
   constructor(public http: Http, public navParams: NavParams) {}
 
-  beaconPost(form): Observable<any> {
+  beaconPost(info): Observable<any> {
     let beacon = {
-      title: form.title,
-      details: form.details,
+      categoryType: info.categoryType,
+      title: info.title,
+      details: info.details,
       position: JSON.stringify(this.navParams.get('position')),
       start: Date.now()
     }
+    console.log('This is pre-post Beacon:', beacon);
     return this.http.post('http://localhost:8080/api/beacons/create', beacon)
       .map(data => {
         console.log( "This is data", data.json() )
