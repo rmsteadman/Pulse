@@ -11,7 +11,11 @@ import { SignupPage } from '../pages/signup/signup';
 import { CreateBeaconPage } from '../pages/create-beacon/create-beacon';
 import { ProfilePage } from '../pages/profile/profile';
 import { BeaconInfo } from '../modals/beacon-info/beacon-info';
+<<<<<<< HEAD
 import { SignUpService } from '../pages/signup/signup.service';
+=======
+import { Chatroom } from '../modals/chatroom/chat';
+>>>>>>> [add] add socket io server wrapped
 
 let storage: Storage = new Storage();
 
@@ -30,7 +34,8 @@ export function getAuthHttp(http) {
     HomePage,
     SignupPage,
     CreateBeaconPage,
-    BeaconInfo
+    BeaconInfo,
+    Chatroom
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -43,7 +48,8 @@ export function getAuthHttp(http) {
     HomePage,
     SignupPage,
     CreateBeaconPage,
-    BeaconInfo
+    BeaconInfo,
+    Chatroom
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
