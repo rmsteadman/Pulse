@@ -2,6 +2,7 @@ import { Storage } from '@ionic/storage';
 import { AuthHttp, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { Injectable, NgZone } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
+import { SignUpService } from '../../pages/signup/signup.service';
 import { Auth0Vars } from '../../auth0-variables';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
@@ -61,7 +62,7 @@ export class AuthService {
   zoneImpl: NgZone;
   idToken: string;
 
-  constructor(private authHttp: AuthHttp, public http: Http, zone: NgZone) {
+  constructor(private authHttp: AuthHttp, public http: Http, zone: NgZone, public signUp: SignUpService) {
     this.zoneImpl = zone;
     // Check if there is a profile saved in local storage
     this.storage.get('profile').then(profile => {
@@ -96,7 +97,7 @@ export class AuthService {
 
       // save in PulseDB
       console.log('This is user', this.user);
-      this.signupPost(this.user);
+      this.signUpPost(this.user);
 
       this.storage.set('refresh_token', authResult.refreshToken);
       this.zoneImpl.run(() => this.user = authResult.profile);
@@ -221,29 +222,29 @@ export class AuthService {
   public getUserCreds() {
     this.storage.get('profile')
       .then(profile => {
-        console.log('Step 1 OK');
+        localStorage.setItem('profile', JSON.parse(profile));
         return(profile);
       })
   }
 
   // Custom
-  public signupPost(user): Observable<any> {
-    console.log('Step 2 OK');
+  public signUpPost(user) {
+    console.log('Step 2 OK, user:', user);
     let User = {
       accountId: 1,
-      firstName: user.user_metadata.firstName,
-      lastName: user.user_metadata.lastName,
+      firstName: user.user_metadata.firstName || user.given_name,
+      lastName: user.user_metadata.lastName || user.family_name,
       email: user.email,
-      phoneNumber: user.user_metadata.phoneNumber,
+      // ask for phoneNumber if one is not provided (via google log-in)
+      phoneNumber: user.user_metadata.phoneNumber || null,
       authCred: user.user_id,
-      authToken: user.idToken
+      authToken: user.clientID
     }
     console.log('Step 3 OK', User);
-    return this.http.post('http://localhost:8080/api/users/signup', JSON.stringify(User))
-      .map(data => {
-        console.log("This is data in signup", data.json());
-        return data.json();
+    this.signUp.signupPost(User)
+      .subscribe(data => {
+        console.log('HI');
       })
-    };
+  };
 
 }

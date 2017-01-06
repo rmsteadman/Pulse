@@ -4,11 +4,24 @@ const userController = {};
 
 // sign up
 userController.signUp = (req, res) => {
-  console.log('uCon req', req.body);
+  console.log('uCon reqbody', req.body);
   let user = req.body;
   userQuery.create(user)
     .then((user) => {
       res.json(user);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+};
+
+// get token
+userController.getToken = (req, res) => {
+  console.log('getToken reqbody', req.body);
+  let token = req.body;
+  userQuery.getToken()
+    .then(token => {
+      (token) ? res.json(token) : res.json({});
     })
     .catch((err) => {
       res.json(err);
