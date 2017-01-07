@@ -19,10 +19,11 @@
     <ion-card *ngFor="let chat of chats">
 
       <ion-card-header>
-        {{ chat }}
+        {{ chat.message }}
       </ion-card-header>
 
       <ion-card-content>
+        {{chat.date}}
       </ion-card-content>
 
     </ion-card>
@@ -30,7 +31,7 @@
 
     <div id="messageBuild">
       <ion-input (keyup.enter)="sendMessage(chatInput)" [(ngModel)]="chatInput" placeholder="What's the word?'"></ion-input>
-      <button (click)="sendMessage(chatInput)">Send</button>
+      <button ion-button (click)="sendMessage(chatInput)">Send</button>
     </div>
 
 
