@@ -35,8 +35,9 @@ export class BeaconInfo {
   }
 
   sendMessage() {
-    console.log(this.chatInput)
-    this.socket.emit('message', this.chatInput)    
+    if (this.chatInput !== ''){
+      this.socket.emit('message', this.chatInput)
+    }
     // this.httpService.sendMessage(message)
     
   }
