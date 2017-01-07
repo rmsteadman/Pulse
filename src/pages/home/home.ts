@@ -76,7 +76,7 @@ export class HomePage {
   loadBeacon() {
     let that = this
 
-    
+
     let icons = {
       active: {
         icon: 'http://i.imgur.com/WGBgLt7.png'
@@ -123,7 +123,7 @@ export class HomePage {
             map: that.map,
             animation: google.maps.Animation.DROP,
             position: JSON.parse(beaconData.position),
-            icon: 'http://i.imgur.com/twiMx0R.png'
+            icon: beaconData.icon
           })
           let content = {
             title: beaconData.title,

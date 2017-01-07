@@ -21,6 +21,9 @@ module.exports = (Models) => {
         isUrl: true
       }
     },
+    address: {
+      type: Sequelize.TEXT
+    },
     position: {
       type: Sequelize.TEXT
     },

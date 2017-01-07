@@ -55,10 +55,10 @@ userQueries.getAllUsers = () => {
 };
 
 // find a user
-userQueries.findUser = () => {
+userQueries.findUser = (data) => {
   return User.find({
     where: {
-      authCred: req.body.auth
+      authCred: data
     }
   });
 };
