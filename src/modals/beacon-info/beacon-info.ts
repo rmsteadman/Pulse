@@ -1,28 +1,45 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { ModalController, Platform, NavParams, ViewController, NavController } from 'ionic-angular';
-import { Chatroom } from '../chatroom/chat'
-
+import { MessageService } from './message.service';
+import * as io from 'socket.io-client';
 
 @Component({
-  templateUrl: 'beacon-info.html'
+  templateUrl: 'beacon-info.html',
+  providers: [MessageService]
 })
 export class BeaconInfo {
 
+  public socket = io('http://localhost:8080');
+  private chats = [];
+  // public zone = NgZone;
+  public chatInput = '';
+  
   constructor(
+    public zone: NgZone,
     public platform: Platform,
     public params: NavParams,
     public viewCtrl: ViewController,
-    public NavController: NavController
-  ) {}
+    public NavController: NavController,
+    public httpService: MessageService
+  ) {
+    this.socket.on('message', message => {
+      this.zone.run(() => {
+        this.chats.push(message)
+      })
+    })
+  }
 
   beacon:any = this.params.get('beacon')
-
   dismiss() {
     this.viewCtrl.dismiss();
   }
 
-  sendMessage(message) {
-    console.log(message)
+  sendMessage() {
+    if (this.chatInput !== ''){
+      this.socket.emit('message', this.chatInput);
+      this.httpService.sendMessage(this.chatInput);
+    }
+    this.chatInput = '';
   }
 
 }

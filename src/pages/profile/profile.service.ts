@@ -19,7 +19,7 @@ export class PreferenceService {
     savePreferences(preferenceList): Observable<any> {
         let updatedList = JSON.stringify(preferenceList);
         console.log("This is the preference list: ", updatedList);
-        return this.http.post('http://localhost:8080/api/preferences', updatedList)
+        return this.http.post('/api/preferences', updatedList)
             .map(data => {
                 console.log('things are ok')
             })

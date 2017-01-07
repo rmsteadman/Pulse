@@ -16,7 +16,7 @@
     
     <p>{{beacon.details}}</p>
     
-    <ion-card *ngFor="let chat of beacon.chats">
+    <ion-card *ngFor="let chat of chats">
 
       <ion-card-header>
         {{ chat }}
@@ -29,7 +29,7 @@
 
 
     <div id="messageBuild">
-      <ion-input [(ngModel)]="chatInput" placeholder="What's the word?'"></ion-input>
+      <ion-input (keyup.enter)="sendMessage(chatInput)" [(ngModel)]="chatInput" placeholder="What's the word?'"></ion-input>
       <button (click)="sendMessage(chatInput)">Send</button>
     </div>
 
