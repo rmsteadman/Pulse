@@ -160,7 +160,14 @@ export class HomePage {
 
   addInfoWindow(beacon, content){
     let that = this;
+    let infoWindow = new google.maps.InfoWindow({
+      content: `<h2>${content.title}</h2>
+                <p>${content.details}</p>
+    <button type="button" onclick="${modalfunction()}">More Info</button>`
+    });
+
     google.maps.event.addListener(beacon, 'click', () => {
+      // infoWindow.open(content, beacon);
       that.openModal(content)
     })
   }
@@ -169,6 +176,4 @@ export class HomePage {
   populateMessages() {
 
   }
-
-
 }
