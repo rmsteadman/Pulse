@@ -10,7 +10,7 @@ import * as io from 'socket.io-client';
 export class BeaconInfo {
 
   public socket = io('http://localhost:8080');
-  public chats = [];
+  private chats = [];
   // public zone = NgZone;
   public chatInput = '';
   
@@ -36,10 +36,10 @@ export class BeaconInfo {
 
   sendMessage() {
     if (this.chatInput !== ''){
-      this.socket.emit('message', this.chatInput)
+      this.socket.emit('message', this.chatInput);
+      this.httpService.sendMessage(this.chatInput);
     }
-    // this.httpService.sendMessage(message)
-    
+    this.chatInput = '';
   }
 
 }
