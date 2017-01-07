@@ -8,7 +8,6 @@ import { Chatroom } from '../chatroom/chat'
 })
 export class BeaconInfo {
 
-
   constructor(
     public platform: Platform,
     public params: NavParams,
@@ -21,4 +20,9 @@ export class BeaconInfo {
   dismiss() {
     this.viewCtrl.dismiss();
   }
+
+  sendMessage(message) {
+    console.log(message)
+  }
+
 }

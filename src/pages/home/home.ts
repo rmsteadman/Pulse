@@ -7,6 +7,7 @@ import { AuthService } from '../../services/auth/auth.service';
 import { BeaconService } from '../create-beacon/create-beacon.service';
 import { SignUpService } from '../../pages/signup/signup.service';
 import { BeaconInfo } from '../../modals/beacon-info/beacon-info';
+import * as io from 'socket.io-client';
 import 'rxjs/add/operator/map';
 
 declare var google;
@@ -32,12 +33,14 @@ export class HomePage {
     public modalCtrl: ModalController,
     public httpService: BeaconService,
     public auth: AuthService,
-    public TEST: SignUpService
+    public TEST: SignUpService,
+   
   ) {}
 
   ionViewDidLoad(){
     this.loadMap();
     this.userInit();
+    io.connect('http://localhost:8080')
   }
 
   // initialize user authentication
@@ -129,7 +132,8 @@ export class HomePage {
             title: beaconData.title,
             details: beaconData.details,
             tags: beaconData.tags,
-            private: beaconData.private
+            private: beaconData.private,
+            chats: ['pooo', 'pooo', 'pooo', 'pooo', 'pooo']
           }
           that.addInfoWindow(beacon, content);
           })
@@ -150,7 +154,6 @@ export class HomePage {
       that.openModal(content)
     })
   }
-
 
 
 }
