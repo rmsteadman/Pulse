@@ -56,19 +56,30 @@ export class ProfilePage {
       checked: true
     }
   ];
-  
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public httpService: PreferenceService) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
     this.httpService.getPreferences()
       .subscribe(data => {
-        console.log('subscribe to get observable')
+        let prefsArray = data;
+        let count = 0;
+        console.log('this is profile data:', prefsArray);
+        prefsArray.forEach(pref => {
+          // stop at featured: last preference;
+          if(count === 9) {
+            return;
+          }
+          (!!prefsArray[count]) ? this.preferences[count].checked = true : this.preferences[count].checked = false;
+          count++;
+        })
+        console.log('this is loaded profile view:', this.preferences);
       })
   }
 
   savePreferences() {
-    let updatedPreferences = [null]
+    let updatedPreferences = [];
     this.preferences.forEach(preference => {
       if (preference.checked === true){
         updatedPreferences.push(1)
@@ -78,7 +89,10 @@ export class ProfilePage {
 
     })
     console.log(JSON.stringify(updatedPreferences))
-    this.httpService.savePreferences(this.preferences)
+    this.httpService.savePreferences(updatedPreferences)
+      .subscribe(data => {
+        console.log("Preferences SUCCESS?")
+      })
   }
 
   toggleCheck(preferenceEntry) {
