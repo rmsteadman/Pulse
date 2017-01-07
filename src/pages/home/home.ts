@@ -20,7 +20,7 @@ let beaconData;
   providers: [AuthService, BeaconService, SignUpService]
 })
 export class HomePage {
-
+  public chatInput;
   createBeacon: any = CreateBeaconPage;
   @ViewChild('map') mapElement: ElementRef;
   map: any;
@@ -40,7 +40,6 @@ export class HomePage {
   ionViewDidLoad(){
     this.loadMap();
     this.userInit();
-    io.connect('http://localhost:8080')
   }
 
   // initialize user authentication
@@ -50,9 +49,14 @@ export class HomePage {
     }
   }
   openModal(info) {
+    
+    let socket = io.connect('http://localhost:8080')    
     let modal = this.modalCtrl.create(BeaconInfo, {
-      beacon: info
+      beacon: info,
+      socket: socket,
+      chat: this.chatInput
     });
+    
     modal.present();
   }
 
@@ -133,7 +137,7 @@ export class HomePage {
             details: beaconData.details,
             tags: beaconData.tags,
             private: beaconData.private,
-            chats: ['pooo', 'pooo', 'pooo', 'pooo', 'pooo']
+            chatroom: beaconData.chatroomId
           }
           that.addInfoWindow(beacon, content);
           })

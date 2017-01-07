@@ -4,4 +4,8 @@ const chatroomController = {};
 
 // logic
 
+chatroomController.addMessage = (req, res) => {
+    console.log('req THAT body: ', req.body)
+}
+
 module.exports = chatroomController;

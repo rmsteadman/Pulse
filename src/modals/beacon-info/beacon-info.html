@@ -29,7 +29,7 @@
 
 
     <div id="messageBuild">
-      <ion-input [(ngModel)]="chatInput" placeholder="What's the word?'"></ion-input>
+      <ion-input (keyup.enter)="sendMessage(chatInput)" [(ngModel)]="chatInput" placeholder="What's the word?'"></ion-input>
       <button (click)="sendMessage(chatInput)">Send</button>
     </div>
 
