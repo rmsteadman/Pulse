@@ -32,7 +32,9 @@ userQueries.create = (user) => {
     //   { "preference": "Travel", "icon": "globe", "checked": true },
     //   { "preference": "Art", "icon": "image", "checked": true },
     //   { "preference": "Games", "icon": "game-controller-a", "checked": true },
-    //   { "preference": "Featured", "icon": "star", "checked": true }
+    //   { "preference": "Featured", "icon": "star", "checked": true },
+    //   { "preference": "Other", "icon": "dinosaur", "checked": true }
+    //   { "preference": "JB", "icon": "weed", "checked": true }
     // ]`
     }
   });
@@ -68,16 +70,22 @@ userQueries.findUser = (data) => {
 // remove a user
 // verify user (two-way auth)
 
+// get prefs
+userQueries.getPrefs = (data) => {
+  return User.find({
+    where: {
+      authCred: data
+    }
+  });
+};
+
 // add/update prefs
-userQueries.savePrefs = (prefs) => {
-  User.update({
-    prefs: prefs
-  },
-    {
-      where: {
-        email: user.email
-      }
-    });
+userQueries.savePrefs = (data) => {
+  return User.find({
+    where: {
+      authCred: data.authCred
+    }
+  });
 };
 
 module.exports = userQueries;
