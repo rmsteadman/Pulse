@@ -6,22 +6,29 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class PreferenceService {
-    constructor(public http: Http) {}
 
-    getPreferences(): Observable<any> {
-        return this.http.get('http://localhost:8080/api/preferences')
-            .map(data => {
-                console.log(data)
-            })
-    }
+  constructor(public http: Http) {}
 
+  getPreferences(): Observable<any> {
+    let userId = localStorage.getItem('userId');
+    return this.http.get(`http://localhost:8080/api/users/getprefs/${userId}`)
+      .map(data => {
+        return data.json();
+      })
+  }
 
-    savePreferences(preferenceList): Observable<any> {
-        let updatedList = JSON.stringify(preferenceList);
-        console.log("This is the preference list: ", updatedList);
-        return this.http.post('/api/preferences', updatedList)
-            .map(data => {
-                console.log('things are ok')
-            })
+  savePreferences(preferenceList): Observable<any> {
+    let prefs = {
+      updatedList: null,
+      authCred: null,
     };
+    prefs.updatedList = JSON.stringify(preferenceList);
+    prefs.authCred = localStorage.getItem('userId');
+    console.log("This is prefs: ", prefs);
+    return this.http.put('http://localhost:8080/api/users/saveprefs', prefs)
+      .map(data => {
+        data.json();
+      })
+  };
+
 }
