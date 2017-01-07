@@ -6,7 +6,7 @@ const chatroomController = {};
 
 chatroomController.addMessage = (req, res) => {
     console.log('req THAT body: ', req.body)
-    chatroomQuery
+    chatroomQuery.addMessages(req.body)
 }
 
 module.exports = chatroomController;

@@ -137,7 +137,7 @@ export class HomePage {
             details: beaconData.details,
             tags: beaconData.tags,
             private: beaconData.private,
-            chatroom: beaconData.chatroomId
+            chatroom: beaconData.ChatroomId
           }
           that.addInfoWindow(beacon, content);
           })
