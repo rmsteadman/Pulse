@@ -50,7 +50,7 @@ export class CreateBeaconPage {
 
     console.log(this.categoryChoice)
     if (!this.categoryChoice) {
-      this.categoryChoice = 'other'
+      this.categoryChoice = 'Other'
     }
     // beaconInfo.CategoryId = categoryOptions[this.categoryChoice];
     beaconInfo.categoryType = this.categoryChoice;
