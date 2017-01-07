@@ -6,22 +6,23 @@ import * as io from 'socket.io-client';
 
 
 @Injectable()
-export class MessageService {
+export class BeaconInfoService {
 
     constructor(public http: Http) {}
 
-    getMessages() /* Observable<any> */ {
-        // return this.http.get('http://localhost:8080/api/chatroom')
+    getMessages(chatroomId) /*: Observable<any>*/ {
+        console.log('in the get: ', chatroomId)
+        // return this.http.get('http://localhost:8080/api/chatrooms/getmessages')
         //     .map(data => {
         //         console.log(data)
         //     })
     }
 
 
-    sendMessage(message) /*: Observable<any>*/ {
-        console.log(message);
+    sendMessage(message): Observable<any> {
+        console.log("THIS IS THE MESSAGE: ", message);
         
-        return this.http.post('http://localhost:8080/api/chatrooms/addmessage', message)
+        return this.http.put('http://localhost:8080/api/chatrooms/addmessage', message)
             .map(data => {
                 console.log('things are ok')
             })
