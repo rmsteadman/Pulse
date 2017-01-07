@@ -6,7 +6,8 @@ let userRouter = require('express').Router();
 // userRouter.get('/allusers', userController.getAllUsers)
 userRouter.post('/login', userController.login);
 userRouter.post('/signup', userController.signUp);
-userRouter.put('/prefs', userController.savePrefs);
+userRouter.get('/getprefs/:userId', userController.getPrefs);
+userRouter.put('/saveprefs', userController.savePrefs);
 userRouter.get('/gettoken', userController.getToken);
 userRouter.get('/finduser', userController.findUser);
 
