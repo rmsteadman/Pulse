@@ -22,7 +22,7 @@ userQueries.create = (user) => {
       phoneNumber: user.phoneNumber,
       photo: user.photo || 'http://www.ebl-law.com/wp-content/uploads/2016/05/default-profile.png',
       verified: false,
-      prefs: `[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]`
+      prefs: `[1, 1, 1, 1, 1, 1, 1, 1, 1]`
     // `[
     //   { "preference": "Active", "icon": "walk", "checked": true },
     //   { "preference": "Learn", "icon": "school", "checked": true },
@@ -70,16 +70,22 @@ userQueries.findUser = (data) => {
 // remove a user
 // verify user (two-way auth)
 
+// get prefs
+userQueries.getPrefs = (data) => {
+  return User.find({
+    where: {
+      authCred: data
+    }
+  });
+};
+
 // add/update prefs
-userQueries.savePrefs = (prefs) => {
-  User.update({
-    prefs: prefs
-  },
-    {
-      where: {
-        email: user.email
-      }
-    });
+userQueries.savePrefs = (data) => {
+  return User.find({
+    where: {
+      authCred: data.authCred
+    }
+  });
 };
 
 module.exports = userQueries;
