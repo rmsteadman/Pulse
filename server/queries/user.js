@@ -22,7 +22,7 @@ userQueries.create = (user) => {
       phoneNumber: user.phoneNumber,
       photo: user.photo || 'http://www.ebl-law.com/wp-content/uploads/2016/05/default-profile.png',
       verified: false,
-      prefs: `[1, 1, 1, 1, 1, 1, 1, 1, 1]`
+      prefs: `[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]`
     // `[
     //   { "preference": "Active", "icon": "walk", "checked": true },
     //   { "preference": "Learn", "icon": "school", "checked": true },
@@ -32,7 +32,9 @@ userQueries.create = (user) => {
     //   { "preference": "Travel", "icon": "globe", "checked": true },
     //   { "preference": "Art", "icon": "image", "checked": true },
     //   { "preference": "Games", "icon": "game-controller-a", "checked": true },
-    //   { "preference": "Featured", "icon": "star", "checked": true }
+    //   { "preference": "Featured", "icon": "star", "checked": true },
+    //   { "preference": "Other", "icon": "dinosaur", "checked": true }
+    //   { "preference": "JB", "icon": "weed", "checked": true }
     // ]`
     }
   });
