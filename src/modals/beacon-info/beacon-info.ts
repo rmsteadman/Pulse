@@ -1,5 +1,6 @@
 import { Component, NgZone } from '@angular/core';
 import { ModalController, Platform, NavParams, ViewController, NavController } from 'ionic-angular';
+import { Rsvp } from '../rsvp/rsvp'
 import { BeaconInfoService } from './beacon-info.service';
 import * as io from 'socket.io-client';
 
@@ -15,13 +16,16 @@ export class BeaconInfo {
   public chatInput = '';
   beacon: any = this.params.get('beacon');
   chats: any = this.params.get('chat')
+  rsvpPage: any = Rsvp;
+
   constructor(
     public zone: NgZone,
     public platform: Platform,
     public params: NavParams,
     public viewCtrl: ViewController,
     public NavController: NavController,
-    public httpService: BeaconInfoService
+    public httpService: BeaconInfoService,
+    public modalCtrl : ModalController
   ) {
     this.socket.on('message', message => {
       this.zone.run(() => {
@@ -62,4 +66,19 @@ export class BeaconInfo {
       })
   }
 
+  // rsvpLoader(){
+  //   let modal = this.modalCtrl.create(BeaconInfo, {
+  //         beacon: info,
+  //         socket: socket,
+  //         chat: chat
+  //       });
+  // }
+
+  rsvpLoader(info) {
+        let modal = this.modalCtrl.create(Rsvp, {
+          info: info
+        });
+        console.log(info)
+        modal.present();
+      }
 }
