@@ -24,6 +24,8 @@
 		F20E8F6DA02C4CB28C590B9F /* CDVLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E33FCF56D040AD8194C623 /* CDVLocation.m */; };
 		277F5BEAF5B14361892F6F6C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AACC65181124F9DAEDD89E3 /* CoreLocation.framework */; };
 		8E19A63662F0408083E60F16 /* CDVInAppBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8279BF44CE054C9BA5885740 /* CDVInAppBrowser.m */; };
+		9F5F1F34615F4A929EBE2E3C /* SQLitePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = C2DE60C8D72F4D3488BF8123 /* SQLitePlugin.m */; };
+		36E8920B0ECA41F5A770B691 /* sqlite3.c in Resources */ = {isa = PBXBuildFile; fileRef = 40931863F4A845B8A09CC8E4 /* sqlite3.c */; settings = {COMPILER_FLAGS = "-DSQLITE_TEMP_STORE=2 -DSQLITE_THREADSAFE=1 -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS4 -DSQLITE_ENABLE_RTREE  -DSQLITE_OMIT_BUILTIN_TEST -DSQLITE_OMIT_LOAD_EXTENSION -DSQLITE_DEFAULT_PAGE_SIZE=1024 -DSQLITE_DEFAULT_CACHE_SIZE=2000"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +82,10 @@
 		7AACC65181124F9DAEDD89E3 /* CoreLocation.framework */ = {isa = PBXFileReference; name = "CoreLocation.framework"; path = "System/Library/Frameworks/CoreLocation.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 		8279BF44CE054C9BA5885740 /* CDVInAppBrowser.m */ = {isa = PBXFileReference; name = "CDVInAppBrowser.m"; path = "cordova-plugin-inappbrowser/CDVInAppBrowser.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
 		7E0BEB8876234CD69DED26CD /* CDVInAppBrowser.h */ = {isa = PBXFileReference; name = "CDVInAppBrowser.h"; path = "cordova-plugin-inappbrowser/CDVInAppBrowser.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		C2DE60C8D72F4D3488BF8123 /* SQLitePlugin.m */ = {isa = PBXFileReference; name = "SQLitePlugin.m"; path = "cordova-sqlite-storage/SQLitePlugin.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		40931863F4A845B8A09CC8E4 /* sqlite3.c */ = {isa = PBXFileReference; name = "sqlite3.c"; path = "cordova-sqlite-storage/sqlite3.c"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		DA346010CDE94B7C8E4BBE27 /* SQLitePlugin.h */ = {isa = PBXFileReference; name = "SQLitePlugin.h"; path = "cordova-sqlite-storage/SQLitePlugin.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		CACB9E64E262497DABF6B964 /* sqlite3.h */ = {isa = PBXFileReference; name = "sqlite3.h"; path = "cordova-sqlite-storage/sqlite3.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +206,10 @@
 				31443DACECE34C88ADB57C00 /* CDVLocation.h */,
 				8279BF44CE054C9BA5885740 /* CDVInAppBrowser.m */,
 				7E0BEB8876234CD69DED26CD /* CDVInAppBrowser.h */,
+				C2DE60C8D72F4D3488BF8123 /* SQLitePlugin.m */,
+				40931863F4A845B8A09CC8E4 /* sqlite3.c */,
+				DA346010CDE94B7C8E4BBE27 /* SQLitePlugin.h */,
+				CACB9E64E262497DABF6B964 /* sqlite3.h */,
 			);
 			name = Plugins;
 			path = "Pulse/Plugins";
@@ -322,6 +332,8 @@
 				5AD756DE4C9D461ABCBA23B3 /* IonicKeyboard.m in Sources */,
 				F20E8F6DA02C4CB28C590B9F /* CDVLocation.m in Sources */,
 				8E19A63662F0408083E60F16 /* CDVInAppBrowser.m in Sources */,
+				9F5F1F34615F4A929EBE2E3C /* SQLitePlugin.m in Sources */,
+				36E8920B0ECA41F5A770B691 /* sqlite3.c in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
