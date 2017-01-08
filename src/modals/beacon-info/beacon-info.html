@@ -15,6 +15,10 @@
 <ion-content>
     
     <p>{{beacon.details}}</p>
+
+
+    
+    <button ion-button round (click)="rsvpLoader(beacon)">RSVP</button>
     
     <ion-card *ngFor="let chat of chats">
 

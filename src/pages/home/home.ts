@@ -157,18 +157,43 @@ export class HomePage {
     });
   }
 
+  
 
   addInfoWindow(beacon, content){
     let that = this;
+    let mousedUp = true;
+
+    let infoWindow = new google.maps.InfoWindow({
+      content: `<h2>${content.title}</h2>
+                <p>${content.details}</p>`
+    });
+
     google.maps.event.addListener(beacon, 'click', () => {
-      that.openModal(content)
+      infoWindow.open(content, beacon);
     })
+
+    google.maps.event.addListener(beacon, 'mousedown', () => {
+      mousedUp = false;
+      setTimeout(() => {
+        if(mousedUp === false) {
+          that.openModal(content);
+        }
+      }, 1000)
+    })
+
+    google.maps.event.addListener(beacon, 'mouseup', () => {
+      mousedUp = true
+    })
+
+    google.maps.event.addListener(beacon, 'dragstart', () => {
+      mousedUp = true;
+    })
+
+
   }
 
   // optional chat message rendering function
   populateMessages() {
 
   }
-
-
 }
