@@ -10,11 +10,11 @@ import * as io from 'socket.io-client';
 export class BeaconInfo {
 
   public socket = io('http://localhost:8080');
-  private chats = [];
+  // private chats = [];
   // public zone = NgZone;
   public chatInput = '';
   beacon: any = this.params.get('beacon');
-
+  chats: any = this.params.get('chat')
   constructor(
     public zone: NgZone,
     public platform: Platform,
