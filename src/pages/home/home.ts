@@ -5,6 +5,7 @@ import { CreateBeaconPage } from '../create-beacon/create-beacon'
 import { AuthHttp } from 'angular2-jwt';
 import { AuthService } from '../../services/auth/auth.service';
 import { BeaconService } from '../create-beacon/create-beacon.service';
+import { BeaconInfoService } from '../../modals/beacon-info/beacon-info.service';
 import { SignUpService } from '../../pages/signup/signup.service';
 import { BeaconInfo } from '../../modals/beacon-info/beacon-info';
 import * as io from 'socket.io-client';
@@ -17,7 +18,7 @@ let beaconData;
 @Component({
   selector: 'home-page',
   templateUrl: 'home.html',
-  providers: [AuthService, BeaconService, SignUpService]
+  providers: [AuthService, BeaconService, BeaconInfoService, SignUpService]
 })
 export class HomePage {
   public chatInput;
@@ -34,7 +35,7 @@ export class HomePage {
     public httpService: BeaconService,
     public auth: AuthService,
     public TEST: SignUpService,
-   
+    public info: BeaconInfoService
   ) {}
 
   ionViewDidLoad(){
@@ -49,15 +50,20 @@ export class HomePage {
     }
   }
   openModal(info) {
-    
-    let socket = io.connect('http://localhost:8080')    
-    let modal = this.modalCtrl.create(BeaconInfo, {
-      beacon: info,
-      socket: socket,
-      chat: this.chatInput
-    });
-    
-    modal.present();
+    console.log('got in to openModal', info);
+    this.info.getMessages(info.chatroom)
+      .subscribe(data => {
+        let chat = data;
+        console.log('this is chat in modal:', chat);
+        let socket = io.connect('http://localhost:8080')
+        let modal = this.modalCtrl.create(BeaconInfo, {
+          beacon: info,
+          socket: socket,
+          chat: chat
+        });
+        console.log('modal data:', modal.data);
+        modal.present();
+      })
   }
 
   loadMap(){
@@ -157,6 +163,11 @@ export class HomePage {
     google.maps.event.addListener(beacon, 'click', () => {
       that.openModal(content)
     })
+  }
+
+  // optional chat message rendering function
+  populateMessages() {
+
   }
 
 
