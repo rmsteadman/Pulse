@@ -38,9 +38,12 @@
     <feature name="Geolocation">
         <param name="ios-package" value="CDVLocation" />
     </feature>
-    <name>Pulse</name>
     <feature name="InAppBrowser">
         <param name="ios-package" value="CDVInAppBrowser" />
+    </feature>
+    <name>Pulse</name>
+    <feature name="SQLitePlugin">
+        <param name="ios-package" value="SQLitePlugin" />
     </feature>
     <name>Pulse</name>
     <description>An awesome Ionic/Cordova app.</description>

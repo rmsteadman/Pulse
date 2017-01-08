@@ -89,6 +89,14 @@ module.exports = [
             "cordova.InAppBrowser.open",
             "window.open"
         ]
+    },
+    {
+        "file": "plugins/cordova-sqlite-storage/www/SQLitePlugin.js",
+        "id": "cordova-sqlite-storage.SQLitePlugin",
+        "pluginId": "cordova-sqlite-storage",
+        "clobbers": [
+            "SQLitePlugin"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -102,7 +110,8 @@ module.exports.metadata =
     "ionic-plugin-keyboard": "2.2.1",
     "cordova-plugin-compat": "1.1.0",
     "cordova-plugin-geolocation": "2.4.1",
-    "cordova-plugin-inappbrowser": "1.6.1"
+    "cordova-plugin-inappbrowser": "1.6.1",
+    "cordova-sqlite-storage": "2.0.1"
 }
 // BOTTOM OF METADATA
 });

@@ -31,9 +31,9 @@ export class BeaconInfo {
   }
 
   ngOnInit() {
-    this.httpService.getMessages(this.beacon.chatroom);
+    // this.httpService.getMessages(this.beacon.chatroom);
   }
-  
+
   dismiss() {
     this.viewCtrl.dismiss();
   }
@@ -53,6 +53,13 @@ export class BeaconInfo {
         })
     }
     this.chatInput = '';
+  }
+
+  getMessages(chatroom) {
+    this.httpService.getMessages(chatroom)
+      .subscribe(data => {
+        console.log('data: ', data)
+      })
   }
 
 }
