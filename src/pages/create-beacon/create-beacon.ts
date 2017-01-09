@@ -37,8 +37,8 @@ export class CreateBeaconPage {
     if (this.currentLocation === false){
       this.addressType = "Input Address"
     } else {
-      this.addressType = "Using Current Location"
-    }
+      this.addressType = "Using Current Location";
+    };
   }
 
 

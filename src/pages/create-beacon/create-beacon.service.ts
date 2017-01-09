@@ -23,13 +23,28 @@ export class BeaconService {
       Other: { icon: 'http://i.imgur.com/RgsgSZI.png' },
       JB : { icon: 'http://i.imgur.com/twiMx0R.png' }
     }
+    let currentPosition = '';
+    localStorage.getItem('currentLocation').split('').forEach(char => {
+      if (char === '('){
+        char = '{"lat":'
+      }
+      if (char === ','){
+        char = ', "lng":'
+      }
+      if (char === ')'){
+        char = '}'
+      }
+      currentPosition += char
+    })
+    console.log(currentPosition)
+
     let beacon = {
       authCred: authCred,
       categoryType: info.categoryType,
       icon: icons[info.categoryType].icon,
       title: info.title,
       details: info.details,
-      position: JSON.stringify(this.navParams.get('position')),
+      position: currentPosition,
       start: Date.now(),
       address: info.address
     }
