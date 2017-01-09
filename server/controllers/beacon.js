@@ -27,7 +27,7 @@ beaconController.createBeacon = (req, res) => {
         console.log(`There has been a grave error: ${error}`)
       }
       let coordinates = JSON.parse(body)
-      console.log("This is the poopy: ", coordinates.results[0].geometry.location)
+      let latLong = coordinates.results[0].geometry.location;
     })
   }
 
@@ -51,7 +51,7 @@ beaconController.createBeacon = (req, res) => {
       // console.log('Chatroom after findCat: ', chatroom.dataValues);
       // console.log('chatroom.dataValues.id:', chatroom.dataValues.id);
       config.ChatroomId = chatroom.dataValues.id;
-      // console.log('Config after chat query:', config);
+      console.log('Config after chat query:', config);
 
       
       // create Beacon with updated config
