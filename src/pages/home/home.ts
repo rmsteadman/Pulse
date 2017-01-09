@@ -6,6 +6,7 @@ import { AuthHttp } from 'angular2-jwt';
 import { AuthService } from '../../services/auth/auth.service';
 import { BeaconService } from '../create-beacon/create-beacon.service';
 import { BeaconInfoService } from '../../modals/beacon-info/beacon-info.service';
+import { PreferenceService } from '../../pages/profile/profile.service';
 import { SignUpService } from '../../pages/signup/signup.service';
 import { BeaconInfo } from '../../modals/beacon-info/beacon-info';
 import * as io from 'socket.io-client';
@@ -18,7 +19,7 @@ let beaconData;
 @Component({
   selector: 'home-page',
   templateUrl: 'home.html',
-  providers: [AuthService, BeaconService, BeaconInfoService, SignUpService]
+  providers: [AuthService, BeaconService, BeaconInfoService, PreferenceService, SignUpService]
 })
 export class HomePage {
   public chatInput;
@@ -35,7 +36,8 @@ export class HomePage {
     public httpService: BeaconService,
     public auth: AuthService,
     public TEST: SignUpService,
-    public info: BeaconInfoService
+    public info: BeaconInfoService,
+    public pref: PreferenceService
   ) {}
 
   ionViewDidLoad(){
@@ -127,27 +129,35 @@ export class HomePage {
     }
 
             // icon: icons[beaconData].icon
+    // get user preferences
+    this.pref.getPreferences()
+      .subscribe(preferences => {
+        let prefs = preferences;
 
-      this.httpService.getBeaconsAll()
-        .subscribe(data => {
-          this.myData = data;
-          this.myData.forEach(beaconData =>{
-            let beacon = new google.maps.Marker({
-            map: that.map,
-            animation: google.maps.Animation.DROP,
-            position: JSON.parse(beaconData.position),
-            icon: beaconData.icon
+        this.httpService.getBeaconsAll()
+          .subscribe(data => {
+            this.myData = data;
+            console.log('ThisMyData before forEach: ', this.myData)
+            this.myData.forEach(beaconData => {
+              if(prefs[beaconData.CategoryId - 1] === 1) {
+                let beacon = new google.maps.Marker({
+                  map: that.map,
+                  animation: google.maps.Animation.DROP,
+                  position: JSON.parse(beaconData.position),
+                  icon: beaconData.icon
+                })
+                let content = {
+                  title: beaconData.title,
+                  details: beaconData.details,
+                  tags: beaconData.tags,
+                  private: beaconData.private,
+                  chatroom: beaconData.ChatroomId
+                }
+                that.addInfoWindow(beacon, content);
+              }
+            })
           })
-          let content = {
-            title: beaconData.title,
-            details: beaconData.details,
-            tags: beaconData.tags,
-            private: beaconData.private,
-            chatroom: beaconData.ChatroomId
-          }
-          that.addInfoWindow(beacon, content);
-          })
-        })
+      })
   }
 
 
@@ -157,7 +167,7 @@ export class HomePage {
     });
   }
 
-  
+
 
   addInfoWindow(beacon, content){
     let that = this;
