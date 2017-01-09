@@ -16,8 +16,8 @@ export class ProfilePage {
       checked: true
     },
     {
-      preference: 'Learn',
-      icon: 'school',
+      preference: 'Art',
+      icon: 'image',
       checked: true
     },
     {
@@ -31,6 +31,16 @@ export class ProfilePage {
       checked: true
     },
     {
+      preference: 'Games',
+      icon: 'game-controller-a',
+      checked: true
+    },
+    {
+      preference: 'Learn',
+      icon: 'school',
+      checked: true
+    },
+    {
       preference: 'Music',
       icon: 'musical-notes',
       checked: true
@@ -38,16 +48,6 @@ export class ProfilePage {
     {
       preference: 'Travel',
       icon: 'globe',
-      checked: true
-    },
-    {
-      preference: 'Art',
-      icon: 'image',
-      checked: true
-    },
-    {
-      preference: 'Games',
-      icon: 'game-controller-a',
       checked: true
     },
     {

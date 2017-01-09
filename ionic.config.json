@@ -1,6 +1,6 @@
 {
   "name": "Pulse",
-  "app_id": "",
+  "app_id": "585f6f65",
   "v2": true,
   "typescript": true,
   "proxies": [
@@ -8,7 +8,6 @@
       "path": "/api",
       "proxyUrl": "http://localhost:8080",
       "rejectUnauthorized": false
-
     }
   ]
 }
