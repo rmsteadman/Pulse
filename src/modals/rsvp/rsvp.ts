@@ -19,6 +19,10 @@ export class Rsvp {
 
   }
 
+  setRsvp() {
+    
+  }
+
   dismiss() {
     this.viewCtrl.dismiss();
   }
