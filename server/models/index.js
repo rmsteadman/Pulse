@@ -45,25 +45,25 @@ const Sync = function (keyword) {
         name: 'Active'
       });
       Category.create({
-        name: 'Learn'
+        name: 'Art'
       });
       Category.create({
         name: 'Community'
       });
       Category.create({
-        name: 'Music'
-      });
-      Category.create({
         name: 'Eat'
       });
       Category.create({
-        name: 'Travel'
-      });
-      Category.create({
-        name: 'Art'
-      });
-      Category.create({
         name: 'Games'
+      });
+      Category.create({
+        name: 'Learn'
+      });
+      Category.create({
+        name: 'Music'
+      });
+      Category.create({
+        name: 'Travel'
       });
       Category.create({
         name: 'Featured'
