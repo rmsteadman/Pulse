@@ -19,7 +19,7 @@ export class CreateBeaconPage {
   public beaconForm: FormGroup;
   public categoryChoice;
   public currentLocation = false;
-
+  public addressType = "Input Address";
   constructor(public navCtrl: NavController, public navParams: NavParams, public httpService: BeaconService, public formBuilder: FormBuilder) {
       this.beaconForm = formBuilder.group({
       title: ['', Validators.compose([Validators.maxLength(50), Validators.required])],
@@ -34,7 +34,11 @@ export class CreateBeaconPage {
 
   toggleLocationType() {
     this.currentLocation = !this.currentLocation;
-    console.log(this.currentLocation)
+    if (this.currentLocation === false){
+      this.addressType = "Input Address"
+    } else {
+      this.addressType = "Using Current Location"
+    }
   }
 
 
