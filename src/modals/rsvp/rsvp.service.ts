@@ -21,12 +21,12 @@ export class rsvpService {
 
     
 
-    // getBeaconsAll() : Observable<any> {
-    // return this.http.get('http://localhost:8080/api/rsvps/getAll')
-    //   .map(data => {
-    //     return data.json();
-    //   })
-    // }
+    getRsvpAll() : Observable<any> {
+    return this.http.get('http://localhost:8080/api/rsvps/getAll')
+      .map(data => {
+        return data.json();
+      })
+    }
 
 
 }

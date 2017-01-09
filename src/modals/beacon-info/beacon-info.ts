@@ -18,6 +18,7 @@ export class BeaconInfo {
   beacon: any = this.params.get('beacon');
   chats: any = this.params.get('chat')
   // rsvpPage: any = Rsvp;
+  payload: any = {}
 
   constructor(
     public zone: NgZone,
@@ -76,7 +77,7 @@ export class BeaconInfo {
     message: "RSVP for this event! Add any details you want to.",
     inputs: [
       {
-        name: 'Details',
+        name: 'details',
         placeholder: 'Details'
       },
     ],
@@ -90,8 +91,12 @@ export class BeaconInfo {
       {
         text: 'Save',
         handler: data => {
-          console.log('Saved clicked', data);
-          this.rsvpService.rsvpPost(data)
+          this.payload.id = this.beacon.id;
+          this.payload.details = data.details;
+          this.payload.token = localStorage.getItem('userId');
+          console.log('Saved clicked', this.payload);
+          console.log("SAAAVEEE", this.beacon);
+          this.rsvpService.rsvpPost(this.payload)
           .subscribe(result => {
           console.log("Beacons have categories now")
           })
