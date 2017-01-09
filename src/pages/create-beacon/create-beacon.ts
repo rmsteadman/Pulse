@@ -18,16 +18,23 @@ export class CreateBeaconPage {
   map: any;
   public beaconForm: FormGroup;
   public categoryChoice;
+  public currentLocation = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public httpService: BeaconService, public formBuilder: FormBuilder) {
       this.beaconForm = formBuilder.group({
       title: ['', Validators.compose([Validators.maxLength(50), Validators.required])],
-      details: ['', Validators.compose([Validators.maxLength(255), Validators.required])]
+      details: ['', Validators.compose([Validators.maxLength(255), Validators.required])],
+      address: ['', Validators.compose([Validators.maxLength(50), Validators.required])]
     })
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CreateBeaconPage');
+  }
+
+  toggleLocationType() {
+    this.currentLocation = !this.currentLocation;
+    console.log(this.currentLocation)
   }
 
 

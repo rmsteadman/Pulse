@@ -10,7 +10,7 @@
 <ion-content padding>
 
 
-  <h1>CONJURE YOUR BEACON</h1>
+  <h1>Host Your Happening</h1>
 
   <form [formGroup]="beaconForm">
       <ion-item>
@@ -20,6 +20,14 @@
       <ion-item>
         <ion-label floating>Details</ion-label>
         <ion-input type="text" #details formControlName="details"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Use Current Location</ion-label>
+        <ion-toggle color="success" checked="false" (click)="toggleLocationType()"></ion-toggle>
+      </ion-item>
+      <ion-item *ngIf="!this.currentLocation">
+        <ion-label floating>Address</ion-label>
+        <ion-input type="text" #address formControlName="address"></ion-input>
       </ion-item>
   </form>
 

@@ -3,4 +3,6 @@ let rsvpRouter = require('express').Router();
 
 // routes
 
+rsvpRouter.put('/')
+
 module.exports = rsvpRouter;

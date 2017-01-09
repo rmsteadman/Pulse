@@ -24,6 +24,10 @@ export class BeaconService {
       Other: { icon: 'http://i.imgur.com/RgsgSZI.png' },
       JB : { icon: 'http://i.imgur.com/twiMx0R.png' }
     }
+    if (info.address){
+      let location = info.address;
+      this.http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + location + '&key=' + API_KEY,)
+    }
     let beacon = {
       authCred: authCred,
       categoryType: info.categoryType,
