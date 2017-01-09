@@ -4,7 +4,6 @@ import { Observable } from 'rxjs/Observable';
 import { NavController, NavParams } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 
-
 @Injectable()
 export class BeaconService {
   constructor(public http: Http, public navParams: NavParams) {}
@@ -24,10 +23,6 @@ export class BeaconService {
       Other: { icon: 'http://i.imgur.com/RgsgSZI.png' },
       JB : { icon: 'http://i.imgur.com/twiMx0R.png' }
     }
-    if (info.address){
-      let location = info.address;
-      this.http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + location + '&key=' + API_KEY,)
-    }
     let beacon = {
       authCred: authCred,
       categoryType: info.categoryType,
@@ -35,7 +30,8 @@ export class BeaconService {
       title: info.title,
       details: info.details,
       position: JSON.stringify(this.navParams.get('position')),
-      start: Date.now()
+      start: Date.now(),
+      address: info.address
     }
     console.log('This is pre-post Beacon:', beacon);
     return this.http.post('http://localhost:8080/api/beacons/create', beacon)
