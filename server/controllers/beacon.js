@@ -2,7 +2,7 @@ const beaconQuery = require('../queries').beaconQuery;
 const categoryQuery = require('../queries').categoryQuery;
 const chatroomQuery = require('../queries').chatroomQuery;
 const userQuery = require('../queries').userQuery;
-
+const request = require('request');
 const beaconController = {};
 
 beaconController.createBeacon = (req, res) => {
@@ -18,6 +18,20 @@ beaconController.createBeacon = (req, res) => {
   config.CategoryId = null;
   config.ChatroomId = null;
   // console.log('This is config', config)
+
+  if (config.address){
+    let location = config.address;
+    request.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + location + '&key=AIzaSyCLyU4KWsPF_hzaJeEADv3zrtGdsQDYAvc',(error, response, body) => {
+      if (error) {
+        console.log(`There has been a grave error: ${error}`)
+      }
+      let coordinates = JSON.parse(body)
+      let latLong = coordinates.results[0].geometry.location;
+      console.log("CONFIG BABY!!! ", JSON.stringify(config.address));
+      config.position = JSON.stringify(latLong);
+      
+    })
+  }
 
   // find User FOR UserId
   userQuery.findUser(authCred)
@@ -36,10 +50,12 @@ beaconController.createBeacon = (req, res) => {
       return chatroomQuery.createChatroom(chatRoomName);
     })
     .then(chatroom => {
-      console.log('Chatroom after findCat: ', chatroom.dataValues);
-      console.log('chatroom.dataValues.id:', chatroom.dataValues.id);
+      // console.log('Chatroom after findCat: ', chatroom.dataValues);
+      // console.log('chatroom.dataValues.id:', chatroom.dataValues.id);
       config.ChatroomId = chatroom.dataValues.id;
       console.log('Config after chat query:', config);
+
+      
       // create Beacon with updated config
       return beaconQuery.createBeacon(config);
     })
