@@ -91,7 +91,7 @@ export class BeaconInfo {
         text: 'Save',
         handler: data => {
           console.log('Saved clicked', data);
-          this.rsvpService.beaconPost(data)
+          this.rsvpService.rsvpPost(data)
           .subscribe(result => {
           console.log("Beacons have categories now")
           })
