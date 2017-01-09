@@ -21,13 +21,15 @@ beaconController.createBeacon = (req, res) => {
 
   if (config.address){
     let location = config.address;
-    console.log("I AM IN HERE")
     request.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + location + '&key=AIzaSyCLyU4KWsPF_hzaJeEADv3zrtGdsQDYAvc',(error, response, body) => {
       if (error) {
         console.log(`There has been a grave error: ${error}`)
       }
       let coordinates = JSON.parse(body)
       let latLong = coordinates.results[0].geometry.location;
+      console.log("CONFIG BABY!!! ", JSON.stringify(config.address));
+      config.position = JSON.stringify(latLong);
+      
     })
   }
 
@@ -55,7 +57,7 @@ beaconController.createBeacon = (req, res) => {
 
       
       // create Beacon with updated config
-      // return beaconQuery.createBeacon(config);
+      return beaconQuery.createBeacon(config);
     })
     .then(beacon => {
       console.log('Beacon created :', beacon.dataValues);
