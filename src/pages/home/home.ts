@@ -51,15 +51,15 @@ export class HomePage {
       this.auth.login();
     }
   }
-  openModal(info) {
-    console.log('got in to openModal', info);
-    this.info.getMessages(info.chatroom)
+  openModal(content) {
+    console.log('got in to openModal', content);
+    this.info.getMessages(content.chatroom)
       .subscribe(data => {
         let chat = data;
         console.log('this is chat in modal:', chat);
         let socket = io.connect('http://localhost:8080')
         let modal = this.modalCtrl.create(BeaconInfo, {
-          beacon: info,
+          beacon: content,
           socket: socket,
           chat: chat
         });
@@ -92,41 +92,6 @@ export class HomePage {
     let that = this
 
 
-    let icons = {
-      active: {
-        icon: 'http://i.imgur.com/WGBgLt7.png'
-      },
-      art: {
-        icon: 'http://i.imgur.com/WyH8zuQ.png'
-      },
-      community: {
-        icon: 'http://i.imgur.com/cKsSFbG.png'
-      },
-      eat: {
-        icon: 'http://i.imgur.com/kzEV39B.png'
-      },
-      featured: {
-        icon: 'http://i.imgur.com/VVbHJjv.png'
-      },
-      games: {
-        icon: 'http://i.imgur.com/bpZdExD.png'
-      },
-      learn: {
-        icon: 'http://i.imgur.com/4nKLb0R.png'
-      },
-      music: {
-        icon: 'http://i.imgur.com/dyk9hBV.png'
-      },
-      travel: {
-        icon: 'http://i.imgur.com/69FWA0V.png'
-      },
-      other: {
-        icon: 'http://i.imgur.com/RgsgSZI.png'
-      },
-      JB : {
-        icon: 'http://i.imgur.com/twiMx0R.png'
-      }
-    }
 
             // icon: icons[beaconData].icon
     // get user preferences
@@ -147,6 +112,7 @@ export class HomePage {
                   icon: beaconData.icon
                 })
                 let content = {
+                  id: beaconData.id,
                   title: beaconData.title,
                   details: beaconData.details,
                   tags: beaconData.tags,

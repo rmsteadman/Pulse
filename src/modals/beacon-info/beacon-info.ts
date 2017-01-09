@@ -1,12 +1,13 @@
 import { Component, NgZone } from '@angular/core';
 import { ModalController, Platform, NavParams, ViewController, NavController } from 'ionic-angular';
-import { Rsvp } from '../rsvp/rsvp'
+import { rsvpService } from '../rsvp/rsvp.service'
 import { BeaconInfoService } from './beacon-info.service';
 import * as io from 'socket.io-client';
+import { AlertController } from 'ionic-angular';
 
 @Component({
   templateUrl: 'beacon-info.html',
-  providers: [BeaconInfoService]
+  providers: [BeaconInfoService, rsvpService]
 })
 export class BeaconInfo {
 
@@ -16,7 +17,8 @@ export class BeaconInfo {
   public chatInput = '';
   beacon: any = this.params.get('beacon');
   chats: any = this.params.get('chat')
-  rsvpPage: any = Rsvp;
+  // rsvpPage: any = Rsvp;
+  payload: any = {}
 
   constructor(
     public zone: NgZone,
@@ -25,7 +27,9 @@ export class BeaconInfo {
     public viewCtrl: ViewController,
     public NavController: NavController,
     public httpService: BeaconInfoService,
-    public modalCtrl : ModalController
+    public rsvpService: rsvpService,
+    public modalCtrl : ModalController,
+    public alertCtrl: AlertController
   ) {
     this.socket.on('message', message => {
       this.zone.run(() => {
@@ -66,19 +70,48 @@ export class BeaconInfo {
       })
   }
 
-  // rsvpLoader(){
-  //   let modal = this.modalCtrl.create(BeaconInfo, {
-  //         beacon: info,
-  //         socket: socket,
-  //         chat: chat
-  //       });
-  // }
 
   rsvpLoader(info) {
-        let modal = this.modalCtrl.create(Rsvp, {
-          info: info
-        });
-        console.log(info)
-        modal.present();
+    let prompt = this.alertCtrl.create({
+    title: 'RSVP',
+    message: "RSVP for this event! Add any details you want to.",
+    inputs: [
+      {
+        name: 'details',
+        placeholder: 'Details'
+      },
+    ],
+    buttons: [
+      {
+        text: 'Cancel',
+        handler: data => {
+          console.log('Cancel clicked');
+        }
+      },
+      {
+        text: 'Save',
+        handler: data => {
+          this.payload.id = this.beacon.id;
+          this.payload.details = data.details;
+          this.payload.token = localStorage.getItem('userId');
+          console.log('Saved clicked', this.payload);
+          console.log("SAAAVEEE", this.beacon);
+          this.rsvpService.rsvpPost(this.payload)
+          .subscribe(result => {
+          console.log("Beacons have categories now")
+          })
+        }
       }
+    ]
+    });
+    prompt.present();
+  }
+  // rsvpLoader(info) {
+  //       let modal = this.modalCtrl.create(Rsvp, {
+  //         info: info
+  //       });
+  //       modal.present();
+  //     }
 }
+
+
