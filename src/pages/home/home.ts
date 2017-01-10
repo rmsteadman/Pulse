@@ -117,7 +117,7 @@ export class HomePage {
             this.myData = data;
             console.log('ThisMyData before forEach: ', this.myData)
             this.myData.forEach(beaconData => {
-              if(prefs[beaconData.CategoryId - 1] === 1) {
+              if(prefs[beaconData.CategoryId - 1] === 1 || beaconData.CategoryId === 10) {
                 let beacon = new google.maps.Marker({
                   map: that.map,
                   animation: google.maps.Animation.DROP,
