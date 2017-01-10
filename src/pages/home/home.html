@@ -4,4 +4,7 @@
   <ion-fab right bottom id="addBeanconButton" *ngIf="auth.authenticated()">
     <button ion-fab color="purple" (click)="addBeacon()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
+  <ion-fab left bottom id="centerMap" *ngIf="auth.authenticated()">
+    <button ion-fab color="orange" (click)="centerMap()"><ion-icon name="center"></ion-icon></button>
+  </ion-fab>
 </ion-content>

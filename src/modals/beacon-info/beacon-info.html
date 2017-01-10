@@ -28,11 +28,24 @@
 
 
 <div [ngSwitch]="beaconState">
-    <div *ngSwitchCase="rsvp">
+    <div *ngSwitchCase="'rsvp'">
+
+      <ion-card *ngFor="let rsvp of rsvps">
+
+        <ion-card-header>
+          {{ rsvp.details }}
+        </ion-card-header>
+
+        <ion-card-content>
+          {{ rsvp.User.firstName}} {{rsvp.User.lastName}}
+        </ion-card-content>
+
+      </ion-card>
+
     
     </div>
 
-    <div *ngSwitchCase="info" >    
+    <div *ngSwitchCase="'info'">    
       <ion-card>
           <ion-card-content>
             <ion-card-title>
@@ -49,7 +62,7 @@
     </div>
 
 
-    <div *ngSwitchCase="chat">
+    <div *ngSwitchCase="'chat'">
       <ion-card *ngFor="let chat of chats">
 
         <ion-card-header>
