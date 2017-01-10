@@ -32,6 +32,7 @@ export class CreateBeaconPage {
     console.log('ionViewDidLoad CreateBeaconPage');
     this.currentLocation = true;
     this.addressType = 'Using Current Location';
+    console.log("CURRENT LOCATION Value  IS: ", this.currentLocation)
   }
 
   toggleLocationType() {
