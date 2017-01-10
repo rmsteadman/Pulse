@@ -1,9 +1,14 @@
 #beaconNavbar{
     margin-top:73px;
+    color: cyan;
+    background-color: white;
+    top:0;
+    position:fixed;
 }
 .tabBody{
     margin-top:73px;
 }
+
 .segment-md .segment-button{
     background-color:white;
 }
@@ -12,5 +17,6 @@
 
 
 #rsvpList{
-    overflow:scroll;
+    margin-top:50px;
+    overflow:none;
 }

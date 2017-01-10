@@ -48,7 +48,12 @@ export class BeaconInfo {
     // this.httpService.getMessages(this.beacon.chatroom);
     this.getAllRsvp();
     console.log("THIS IS THE PAYLOADDD", this.payload)
+
   }
+
+  goToBottom() {
+    
+  };
 
   dismiss() {
     this.viewCtrl.dismiss();
@@ -92,6 +97,7 @@ export class BeaconInfo {
   getAllRsvp() {
     let that = this;
     // TESTING GET ALL RSVPs
+    // this.socket.emit('rsvp', this.beacon);
     this.rsvpService.getRsvpAll(this.beacon.id)
       .subscribe(results => {
         that.rsvps = results;

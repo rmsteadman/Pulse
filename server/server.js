@@ -28,6 +28,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('rsvp', (data) => {
+    console.log("THERES AN RSVP::: ", data)
     io.sockets.emit('rsvp', data);
   })
 

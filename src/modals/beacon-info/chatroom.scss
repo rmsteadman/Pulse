@@ -11,7 +11,7 @@
 
 #beaconNavbar{
     color: cyan;
-    // background-color: #333333;
+    background-color: white;
     top:0;
     position:fixed;
 }
@@ -24,5 +24,8 @@
     width:100%;
 }
 #messageList{
-    padding-bottom:70px;
+    padding-bottom:100px;
+}
+#messageDate{
+    position:right;
 }

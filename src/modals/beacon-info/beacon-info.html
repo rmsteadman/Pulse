@@ -27,20 +27,17 @@
     </ion-segment>
 
 <div [ngSwitch]="beaconState">
-    <div *ngSwitchCase="'rsvp'">
-
-      <ion-card *ngFor="let rsvp of rsvps" id="rsvpList" class="tabBody">
-
-        <ion-card-header>
-          {{ rsvp.details }}
-        </ion-card-header>
-
-        <ion-card-content>
-          {{ rsvp.User.firstName}} {{rsvp.User.lastName}}
-        </ion-card-content>
-
-      </ion-card>
-
+    <div *ngSwitchCase="'rsvp'" id="rsvpList" padding>
+      <ion-list>
+        <ion-item *ngFor="let rsvp of rsvps">
+          <h2>
+            {{ rsvp.User.firstName}} {{rsvp.User.lastName}}
+          </h2>
+          <p>
+            {{ rsvp.details }}
+          </p>
+        </ion-item>
+      </ion-list>
     
     </div>
 
@@ -61,17 +58,18 @@
       <button ion-button color="red" (click)="deleteBeacon(beacon)">Delete</button>  
     </div>
 
-    <div *ngSwitchCase="'chat'" id="messageList" class="tabBody">
-      <ion-card *ngFor="let chat of chats">
+    <div *ngSwitchCase="'chat'" id="messageList" class="tabBody" padding>
+      <ion-card *ngFor="let chat of chats" id="messages">
 
         <ion-card-header>
           {{ chat.message }}
         </ion-card-header>
-        <ion-card-header>
+        <!--<ion-card-header>
           {{ chat.author }}
-        </ion-card-header>
+        </ion-card-header>-->
         <ion-card-content>
-          {{chat.date}}
+          <div>{{ chat.author }}</div>
+          <small id="messageDate">{{chat.date}}</small>
         </ion-card-content>
 
       </ion-card>
