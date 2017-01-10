@@ -13,8 +13,10 @@ rsvpQueries.create = (rsvpData) => {
       return err;
     });
 };
+
 // delete an RSVP
 // update an RSVP details
+
 // find RSVPs by beacon
 rsvpQueries.findRSVPs = (data) => {
   // console.log('data in findRSVP:', data)
