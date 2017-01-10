@@ -26,6 +26,13 @@
       </ion-segment-button>
     </ion-segment>
 
+<<<<<<< HEAD
+=======
+    
+    <button ion-button round (click)="rsvpLoader(beacon)">RSVP</button>
+    
+    <ion-card *ngFor="let chat of chats" id="chatMessage">
+>>>>>>> [add] Add author to messages
 
 <div [ngSwitch]="beaconState">
     <div *ngSwitchCase="'rsvp'">
@@ -45,6 +52,7 @@
     
     </div>
 
+<<<<<<< HEAD
     <div *ngSwitchCase="'info'">    
       <ion-card>
           <ion-card-content>
@@ -60,6 +68,15 @@
         </ion-card>
       <button ion-button round (click)="rsvpLoader(beacon)">RSVP</button>  
     </div>
+=======
+      <ion-card-header>
+        {{ chat.author }}
+      </ion-card-header>
+
+      <ion-card-content>
+        {{chat.date}}
+      </ion-card-content>
+>>>>>>> [add] Add author to messages
 
 
     <div *ngSwitchCase="'chat'">

@@ -56,10 +56,15 @@ export class BeaconInfo {
   }
 
   sendMessage() {
+    let date = new Date().toString();
+    date = date.toLocaleString();
+    let author = `${JSON.parse(localStorage.getItem('profile'))['user_metadata'].firstName} ${JSON.parse(localStorage.getItem('profile'))['user_metadata'].lastName}`;
+    
+    console.log(author)
     let messageObject = {
-      author: null,
+      author: author,
       message: this.chatInput,
-      date: Date.now(),
+      date: date,
       chatroom: this.beacon.chatroom
     }
     if (this.chatInput !== ''){
