@@ -81,6 +81,14 @@ beaconController.getAllBeacons = (req, res) => {
     });
 };
 
+beaconController.deleteBeacon = (req, res) => {
+  console.log("REQ DAAA BODYYYYYYY")
+}
+
+
+
+
+
 // more logic
 
 module.exports = beaconController;

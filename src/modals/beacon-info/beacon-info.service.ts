@@ -11,17 +11,12 @@ export class BeaconInfoService {
     constructor(public http: Http) {}
 
     getMessages(chatroomId): Observable<any> {
-            console.log('in the get: ', chatroomId)
-            // let config = {
-            //   params: {
-            //     chatroomId: chatroomId
-            //   }
-            // }
-            return this.http.get(`http://localhost:8080/api/chatrooms/getmessages/${chatroomId}`)
-                .map(data => {
-                    console.log("This is data from getMessages", data)
-                    return data.json();
-                })
+        console.log('in the get: ', chatroomId)
+        return this.http.get(`http://localhost:8080/api/chatrooms/getmessages/${chatroomId}`)
+            .map(data => {
+                console.log("This is data from getMessages", data)
+                return data.json();
+            })
         }
 
 
@@ -33,4 +28,12 @@ export class BeaconInfoService {
                 console.log('things are ok')
             })
     };
+
+    deleteBeacon(beacon): Observable<any> {
+        console.log("Beacon from the service!!! ", beacon);
+        return this.http.delete('http://localhost:8080/api/beacons/deletebeacon', beacon)
+            .map(data => {
+                console.log('Here is some data bweh: ', data)
+            })
+    }
 }

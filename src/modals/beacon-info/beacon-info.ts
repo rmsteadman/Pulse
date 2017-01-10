@@ -37,13 +37,23 @@ export class BeaconInfo {
         this.chats.push(message)
       })
     })
+    this.socket.on('rsvp', rsvp => {
+      this.zone.run(() => {
+        this.rsvps.push(rsvp)
+      })
+    })
   }
 
   ngOnInit() {
     // this.httpService.getMessages(this.beacon.chatroom);
     this.getAllRsvp();
     console.log("THIS IS THE PAYLOADDD", this.payload)
+
   }
+
+  goToBottom() {
+    
+  };
 
   dismiss() {
     this.viewCtrl.dismiss();
@@ -56,10 +66,15 @@ export class BeaconInfo {
   }
 
   sendMessage() {
+    let date = new Date().toString();
+    date = date.toLocaleString();
+    let author = `${JSON.parse(localStorage.getItem('profile'))['user_metadata'].firstName} ${JSON.parse(localStorage.getItem('profile'))['user_metadata'].lastName}`;
+    
+    console.log(author)
     let messageObject = {
-      author: null,
+      author: author,
       message: this.chatInput,
-      date: Date.now(),
+      date: date,
       chatroom: this.beacon.chatroom
     }
     if (this.chatInput !== ''){
@@ -82,6 +97,7 @@ export class BeaconInfo {
   getAllRsvp() {
     let that = this;
     // TESTING GET ALL RSVPs
+    // this.socket.emit('rsvp', this.beacon);
     this.rsvpService.getRsvpAll(this.beacon.id)
       .subscribe(results => {
         that.rsvps = results;
@@ -115,6 +131,7 @@ export class BeaconInfo {
           this.payload.token = localStorage.getItem('userId');
           console.log('Saved clicked', this.payload);
           console.log("SAAAVEEE", this.beacon);
+          this.socket.emit('message', this.payload);
           this.rsvpService.rsvpPost(this.payload)
           .subscribe(result => {
           console.log("Beacons have categories now")
@@ -131,6 +148,16 @@ export class BeaconInfo {
   //       });
   //       modal.present();
   //     }
+
+
+  deleteBeacon(beacon) {
+    console.log("THIS IS THE BEACON", beacon)
+    this.httpService.deleteBeacon(beacon)
+  }
+
+
+
+
 }
 
 

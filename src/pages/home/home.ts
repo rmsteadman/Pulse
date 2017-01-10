@@ -82,8 +82,7 @@ export class HomePage {
         let center = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
         this.theCenter = center
-
-
+        localStorage.setItem('currentLocation', center)
         let mapOptions = {
           center: center,
           zoom: 15,

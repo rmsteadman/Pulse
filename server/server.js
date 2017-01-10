@@ -22,6 +22,16 @@ io.on('connection', (socket) => {
   socket.on('message', (data) => {
     io.sockets.emit('message', data);
   });
+
+  socket.on('beacon', (data) => {
+    io.sockets.emit('beacon', data);
+  });
+
+  socket.on('rsvp', (data) => {
+    console.log("THERES AN RSVP::: ", data)
+    io.sockets.emit('rsvp', data);
+  })
+
 });
 
 app.set('port', PORT);
