@@ -1,10 +1,10 @@
-<ion-header>
-    <ion-toolbar>
+<ion-header id="down">
+    <ion-toolbar id="beaconHeader">
     <ion-title>
        {{beacon.title}}
     </ion-title>
     <ion-buttons start>
-      <button ion-button (click)="this.navCtrl.pop()">
+      <button ion-button (click)="this.dismiss()">
         <span color="primary" showWhen="ios">Cancel</span>
         <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
       </button>
@@ -12,9 +12,9 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content id="down">
 
-    <ion-segment [(ngModel)]="beaconState">
+    <ion-segment [(ngModel)]="beaconState" id="beaconNavbar">
       <ion-segment-button  value="rsvp" (click)="this.letsDigest()">
         RSVP List
       </ion-segment-button>
@@ -57,10 +57,11 @@
           </ion-item>
         </ion-card-content>
       </ion-card>
-      <button ion-button round (click)="rsvpLoader(beacon)">RSVP</button>  
+      <button ion-button round (click)="rsvpLoader(beacon)">RSVP</button>
+      <button ion-button color="red" (click)="deleteBeacon(beacon)">Delete</button>  
     </div>
 
-    <div *ngSwitchCase="'chat'">
+    <div *ngSwitchCase="'chat'" id="messageList">
       <ion-card *ngFor="let chat of chats">
 
         <ion-card-header>
@@ -77,7 +78,7 @@
 
 
       <div id="messageBuild">
-        <ion-input (keyup.enter)="sendMessage(chatInput)" [(ngModel)]="chatInput" placeholder="What's the word?'"></ion-input>
+        <ion-input (keyup.enter)="sendMessage(chatInput)" [(ngModel)]="chatInput" placeholder="What's the word?"></ion-input>
         <button ion-button (click)="sendMessage(chatInput)">Send</button>
       </div>
           

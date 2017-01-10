@@ -1,3 +1,28 @@
 .card-md, #chatMessage {
     background-color:#e2e2e2;
 }
+#down{
+    top:20px;
+}
+#beaconHeader{
+    background-color:#333333;
+}
+
+
+#beaconNavbar{
+    color: cyan;
+    // background-color: #333333;
+    top:0;
+    position:fixed;
+}
+
+
+#messageBuild{
+    bottom: 0;
+    position:fixed;
+    background-color:white;
+    width:100%;
+}
+#messageList{
+    padding-bottom:50px;
+}

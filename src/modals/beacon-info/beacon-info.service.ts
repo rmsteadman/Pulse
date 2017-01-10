@@ -33,4 +33,12 @@ export class BeaconInfoService {
                 console.log('things are ok')
             })
     };
+
+    deleteBeacon(beacon) {
+        console.log("Beacon from the service!!! ", beacon);
+        return this.http.delete('http://localhost:8080/api/beacons/deletebeacon', beacon)
+            .map(data => {
+                console.log('Here is some data bweh: ', data)
+            })
+    }
 }

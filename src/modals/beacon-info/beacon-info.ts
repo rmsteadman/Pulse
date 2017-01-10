@@ -136,6 +136,16 @@ export class BeaconInfo {
   //       });
   //       modal.present();
   //     }
+
+
+  deleteBeacon(beacon) {
+    console.log("THIS IS THE BEACON", beacon)
+    this.httpService.deleteBeacon(beacon)
+  }
+
+
+
+
 }
 
 
