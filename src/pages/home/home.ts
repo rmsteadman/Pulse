@@ -62,7 +62,13 @@ export class HomePage {
           beacon: content,
           socket: socket,
           chat: chat
-        });
+        })
+        // this.navCtrl.push(BeaconInfo, {
+        //    beacon: content,
+        //   socket: socket,
+        //   chat: chat
+        // })
+
         console.log('modal data:', modal.data);
         modal.present();
       })

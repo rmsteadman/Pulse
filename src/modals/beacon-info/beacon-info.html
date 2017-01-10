@@ -1,10 +1,10 @@
 <ion-header>
-  <ion-toolbar>
+    <ion-toolbar>
     <ion-title>
        {{beacon.title}}
     </ion-title>
     <ion-buttons start>
-      <button ion-button (click)="dismiss()">
+      <button ion-button (click)="this.navCtrl.pop()">
         <span color="primary" showWhen="ios">Cancel</span>
         <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
       </button>
@@ -13,33 +13,61 @@
 </ion-header>
 
 <ion-content>
+
+    <ion-segment [(ngModel)]="beaconState">
+      <ion-segment-button  value="rsvp" (click)="this.letsDigest()">
+        RSVP List
+      </ion-segment-button>
+      <ion-segment-button  value="info" (click)="this.letsDigest()">
+        Information
+      </ion-segment-button>
+      <ion-segment-button  value="chat" (click)="this.letsDigest()">
+        Chat
+      </ion-segment-button>
+    </ion-segment>
+
+
+<div [ngSwitch]="beaconState">
+    <div *ngSwitchCase="'rsvp'">
     
-    <p>{{beacon.details}}</p>
+    </div>
 
-
-    
-    <button ion-button round (click)="rsvpLoader(beacon)">RSVP</button>
-    
-    <ion-card *ngFor="let chat of chats">
-
-      <ion-card-header>
-        {{ chat.message }}
-      </ion-card-header>
-
-      <ion-card-content>
-        {{chat.date}}
-      </ion-card-content>
-
-    </ion-card>
-
-
-    <div id="messageBuild">
-      <ion-input (keyup.enter)="sendMessage(chatInput)" [(ngModel)]="chatInput" placeholder="What's the word?'"></ion-input>
-      <button ion-button (click)="sendMessage(chatInput)">Send</button>
+    <div *ngSwitchCase="'info'">    
+      <ion-card>
+          <ion-card-content>
+            <ion-card-title>
+              {{beacon.title}}
+            </ion-card-title>
+          <ion-item>
+            <p>
+              Details: {{beacon.details}}
+            </p>
+          </ion-item>
+          </ion-card-content>
+        </ion-card>
+      <button ion-button round (click)="rsvpLoader(beacon)">RSVP</button>  
     </div>
 
 
+    <div *ngSwitchCase="'chat'">
+      <ion-card *ngFor="let chat of chats">
+
+        <ion-card-header>
+          {{ chat.message }}
+        </ion-card-header>
+
+        <ion-card-content>
+          {{chat.date}}
+        </ion-card-content>
+
+      </ion-card>
 
 
-    
+      <div id="messageBuild">
+        <ion-input (keyup.enter)="sendMessage(chatInput)" [(ngModel)]="chatInput" placeholder="What's the word?'"></ion-input>
+        <button ion-button (click)="sendMessage(chatInput)">Send</button>
+      </div>
+          
+    </div>    
+</div>    
 </ion-content>
