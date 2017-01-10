@@ -1,26 +1,32 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { BeaconListService } from './beacon-list.service';
 
-/*
-  Generated class for the BeaconList page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-beacon-list',
-  templateUrl: 'beacon-list.html'
+  templateUrl: 'beacon-list.html',
+  providers: [BeaconListService]
 })
 export class BeaconListPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, public httpService: BeaconListService) {}
+
+  public user;
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BeaconListPage');
+    this.getMyBeacons()
   }
 
-  getMyBeacons(user) {
+  getMyBeacons() {
+    this.httpService.getBeaconList();
 
+  }
+
+  deleteBeacon(beacon) {
+    console.log('you clicked me')
   }
 
 }
