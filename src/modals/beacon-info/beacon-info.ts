@@ -72,6 +72,13 @@ export class BeaconInfo {
 
 
   rsvpLoader(info) {
+    // TESTING GET ALL RSVPs
+    // let rsvps;
+    // this.rsvpService.getRsvpAll(this.beacon.id)
+    //   .subscribe(results => {
+    //     rsvps = results;
+    //   })
+    // console.log('these are the rsvps:', rsvps);
     let prompt = this.alertCtrl.create({
     title: 'RSVP',
     message: "RSVP for this event! Add any details you want to.",
@@ -113,5 +120,3 @@ export class BeaconInfo {
   //       modal.present();
   //     }
 }
-
-
