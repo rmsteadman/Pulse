@@ -6,7 +6,7 @@ import { HomePage } from '../pages/home/home';
 import { AboutPage } from '../pages/about/about';
 import { ProfilePage } from '../pages/profile/profile';
 import { SignupPage } from '../pages/signup/signup';
-
+import { BeaconListPage } from '../pages/beacon-list/beacon-list';
 @Component({
   templateUrl: 'app.html'
 })
@@ -22,7 +22,9 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'Profile', component: ProfilePage },
       { title: 'About', component: AboutPage },
+      { title: 'My Beacons', component: BeaconListPage },
       { title: 'Login', component: SignupPage }
+      
 
     ];
     platform.ready().then(() => {

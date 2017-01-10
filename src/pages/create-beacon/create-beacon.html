@@ -23,7 +23,7 @@
       </ion-item>
       <ion-item>
         <ion-label>{{this.addressType}}</ion-label>
-        <ion-toggle color="success" checked="false" (click)="toggleLocationType()"></ion-toggle>
+        <ion-checkbox color="success" checked="true" (click)="toggleLocationType()"></ion-checkbox>
       </ion-item>
       <ion-item *ngIf="!this.currentLocation">
         <ion-label floating>Address</ion-label>
