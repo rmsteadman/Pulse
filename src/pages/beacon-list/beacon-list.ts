@@ -19,4 +19,8 @@ export class BeaconListPage {
     console.log('ionViewDidLoad BeaconListPage');
   }
 
+  getMyBeacons(user) {
+
+  }
+
 }

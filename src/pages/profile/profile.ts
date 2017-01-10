@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { PreferenceService } from './profile.service';
-
+import { HomePage } from '../home/home';
 @Component({
   selector: 'page-profile',
   templateUrl: 'profile.html',
@@ -93,6 +93,7 @@ export class ProfilePage {
       .subscribe(data => {
         console.log("Preferences SUCCESS?")
       })
+    this.navCtrl.setRoot(HomePage);
   }
 
   toggleCheck(preferenceEntry) {
