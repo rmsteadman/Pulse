@@ -28,11 +28,11 @@
 
 
 <div [ngSwitch]="beaconState">
-    <div *ngSwitchCase="'rsvp'">
+    <div *ngSwitchCase="rsvp">
     
     </div>
 
-    <div *ngSwitchCase="'info'">    
+    <div *ngSwitchCase="info" >    
       <ion-card>
           <ion-card-content>
             <ion-card-title>
@@ -49,7 +49,7 @@
     </div>
 
 
-    <div *ngSwitchCase="'chat'">
+    <div *ngSwitchCase="chat">
       <ion-card *ngFor="let chat of chats">
 
         <ion-card-header>
