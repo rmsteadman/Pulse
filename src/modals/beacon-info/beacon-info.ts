@@ -16,6 +16,7 @@ export class BeaconInfo {
   beacon: any = this.params.get('beacon');
   chats: any = this.params.get('chat');
   payload: any = {};
+  rsvps: any;
 
   tabToShow : number = 1;
 
@@ -40,6 +41,8 @@ export class BeaconInfo {
 
   ngOnInit() {
     // this.httpService.getMessages(this.beacon.chatroom);
+    this.getAllRsvp();
+    console.log("THIS IS THE PAYLOADDD", this.payload)
   }
 
   dismiss() {
@@ -76,15 +79,18 @@ export class BeaconInfo {
       })
   }
 
+  getAllRsvp() {
+    let that = this;
+    // TESTING GET ALL RSVPs
+    this.rsvpService.getRsvpAll(this.beacon.id)
+      .subscribe(results => {
+        that.rsvps = results;
+      })
+    console.log('these are the rsvps:', that.rsvps);
+  }
+
 
   rsvpLoader(info) {
-    // TESTING GET ALL RSVPs
-    // let rsvps;
-    // this.rsvpService.getRsvpAll(this.beacon.id)
-    //   .subscribe(results => {
-    //     rsvps = results;
-    //   })
-    // console.log('these are the rsvps:', rsvps);
     let prompt = this.alertCtrl.create({
     title: 'RSVP',
     message: "RSVP for this event! Add any details you want to.",

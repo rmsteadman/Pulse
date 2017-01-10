@@ -28,6 +28,7 @@ export class HomePage {
   map: any;
   myData: any;
   token: any;
+  theCenter: any;
 
   constructor(
     public navCtrl: NavController,
@@ -80,6 +81,9 @@ export class HomePage {
 
         let center = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
+        this.theCenter = center
+
+
         let mapOptions = {
           center: center,
           zoom: 15,
@@ -92,6 +96,10 @@ export class HomePage {
         console.log(err);
       });
 
+  }
+
+  centerMap(){
+      this.map.panTo(this.theCenter);
   }
 
   loadBeacon() {
