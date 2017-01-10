@@ -41,39 +41,53 @@ const Sync = function (keyword) {
   if (keyword) {
     Models.sync({ force: true }).then(() => {
       console.log('Successfully dropped tables.');
-      Category.create({
-        name: 'Active'
-      });
-      Category.create({
-        name: 'Art'
-      });
-      Category.create({
-        name: 'Community'
-      });
-      Category.create({
-        name: 'Eat'
-      });
-      Category.create({
-        name: 'Games'
-      });
-      Category.create({
-        name: 'Learn'
-      });
-      Category.create({
-        name: 'Music'
-      });
-      Category.create({
-        name: 'Travel'
-      });
-      Category.create({
-        name: 'Featured'
-      });
-      Category.create({
-        name: 'Other'
-      });
-      Category.create({
-        name: 'JB'
-      });
+      Category.bulkCreate([
+        { name: 'Active'},
+        { name: 'Art'},
+        { name: 'Community'},
+        { name: 'Eat'},
+        { name: 'Games'},
+        { name: 'Learn'},
+        { name: 'Music'},
+        { name: 'Travel'},
+        { name: 'Featured'},
+        { name: 'Other'},
+        { name: 'JB'}
+      ]);
+      console.log('Populated Categories Table.');
+    // Category.create({
+    //   name: 'Active'
+    // })
+    // Category.create({
+    //   name: 'Art'
+    // })
+    // Category.create({
+    //   name: 'Community'
+    // })
+    // Category.create({
+    //   name: 'Eat'
+    // })
+    // Category.create({
+    //   name: 'Games'
+    // })
+    // Category.create({
+    //   name: 'Learn'
+    // })
+    // Category.create({
+    //   name: 'Music'
+    // })
+    // Category.create({
+    //   name: 'Travel'
+    // })
+    // Category.create({
+    //   name: 'Featured'
+    // })
+    // Category.create({
+    //   name: 'Other'
+    // })
+    // Category.create({
+    //   name: 'JB'
+    // })
     });
   } else {
     Models.sync().then(() => {

@@ -46,5 +46,3 @@ app.use('/api', mainRouter);
 //   res.sendFile(path.resolve(__dirname, '../src', 'index.html'))
 // })
 server.listen(app.get('port'), () => console.log(`Server and sockets listening on port ${app.get('port')}`));
-
-
