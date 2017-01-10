@@ -22,6 +22,11 @@ io.on('connection', (socket) => {
   socket.on('message', (data) => {
     io.sockets.emit('message', data);
   });
+
+  socket.on('beacon', (data) => {
+    io.sockets.emit('beacon', data);
+  });
+
 });
 
 app.set('port', PORT);
