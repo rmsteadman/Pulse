@@ -1,3 +1,4 @@
+import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
@@ -15,6 +16,12 @@ import { SignUpService } from '../pages/signup/signup.service';
 import { BeaconListPage } from '../pages/beacon-list/beacon-list';
 
 let storage: Storage = new Storage();
+
+const cloudSettings: CloudSettings = {
+  'core': {
+    'app_id': '585f6f65'
+  }
+};
 
 export function getAuthHttp(http) {
   return new AuthHttp(new AuthConfig({
@@ -35,7 +42,8 @@ export function getAuthHttp(http) {
     BeaconListPage
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    CloudModule.forRoot(cloudSettings)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
