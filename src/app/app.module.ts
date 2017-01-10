@@ -12,7 +12,6 @@ import { CreateBeaconPage } from '../pages/create-beacon/create-beacon';
 import { ProfilePage } from '../pages/profile/profile';
 import { BeaconInfo } from '../modals/beacon-info/beacon-info';
 import { SignUpService } from '../pages/signup/signup.service';
-import { Rsvp } from '../modals/rsvp/rsvp';
 
 let storage: Storage = new Storage();
 
@@ -31,8 +30,7 @@ export function getAuthHttp(http) {
     HomePage,
     SignupPage,
     CreateBeaconPage,
-    BeaconInfo,
-    Rsvp
+    BeaconInfo
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -45,8 +43,7 @@ export function getAuthHttp(http) {
     HomePage,
     SignupPage,
     CreateBeaconPage,
-    BeaconInfo,
-    Rsvp
+    BeaconInfo
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},

@@ -12,13 +12,13 @@ import { AlertController } from 'ionic-angular';
 export class BeaconInfo {
 
   public socket = io('http://localhost:8080');
-  // private chats = [];
-  // public zone = NgZone;
   public chatInput = '';
   beacon: any = this.params.get('beacon');
-  chats: any = this.params.get('chat')
-  // rsvpPage: any = Rsvp;
-  payload: any = {}
+  chats: any = this.params.get('chat');
+  payload: any = {};
+
+  tabToShow : number = 1;
+
 
   constructor(
     public zone: NgZone,
@@ -44,6 +44,12 @@ export class BeaconInfo {
 
   dismiss() {
     this.viewCtrl.dismiss();
+  }
+
+  letsDigest(){
+    this.zone.run( () => {
+      console.log("I am digesting")
+    })
   }
 
   sendMessage() {
@@ -120,3 +126,5 @@ export class BeaconInfo {
   //       modal.present();
   //     }
 }
+
+
