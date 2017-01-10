@@ -37,6 +37,11 @@ export class BeaconInfo {
         this.chats.push(message)
       })
     })
+    this.socket.on('rsvp', rsvp => {
+      this.zone.run(() => {
+        this.rsvps.push(rsvp)
+      })
+    })
   }
 
   ngOnInit() {
@@ -120,6 +125,7 @@ export class BeaconInfo {
           this.payload.token = localStorage.getItem('userId');
           console.log('Saved clicked', this.payload);
           console.log("SAAAVEEE", this.beacon);
+          this.socket.emit('message', this.payload);
           this.rsvpService.rsvpPost(this.payload)
           .subscribe(result => {
           console.log("Beacons have categories now")

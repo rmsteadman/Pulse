@@ -15,13 +15,13 @@
 <ion-content id="down">
 
     <ion-segment [(ngModel)]="beaconState" id="beaconNavbar">
-      <ion-segment-button  value="rsvp" (click)="this.letsDigest()">
+      <ion-segment-button  class="tabButton" value="rsvp" (click)="this.letsDigest()">
         RSVP List
       </ion-segment-button>
-      <ion-segment-button  value="info" (click)="this.letsDigest()">
+      <ion-segment-button class="tabButton" value="info" (click)="this.letsDigest()">
         Information
       </ion-segment-button>
-      <ion-segment-button  value="chat" (click)="this.letsDigest()">
+      <ion-segment-button class="tabButton" value="chat" (click)="this.letsDigest()">
         Chat
       </ion-segment-button>
     </ion-segment>
@@ -29,7 +29,7 @@
 <div [ngSwitch]="beaconState">
     <div *ngSwitchCase="'rsvp'">
 
-      <ion-card *ngFor="let rsvp of rsvps">
+      <ion-card *ngFor="let rsvp of rsvps" id="rsvpList" class="tabBody">
 
         <ion-card-header>
           {{ rsvp.details }}
@@ -44,7 +44,7 @@
     
     </div>
 
-    <div *ngSwitchCase="'info'">    
+    <div *ngSwitchCase="'info'" class="tabBody">    
       <ion-card>
           <ion-card-content>
             <ion-card-title>
@@ -61,7 +61,7 @@
       <button ion-button color="red" (click)="deleteBeacon(beacon)">Delete</button>  
     </div>
 
-    <div *ngSwitchCase="'chat'" id="messageList">
+    <div *ngSwitchCase="'chat'" id="messageList" class="tabBody">
       <ion-card *ngFor="let chat of chats">
 
         <ion-card-header>

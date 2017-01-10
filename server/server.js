@@ -27,6 +27,10 @@ io.on('connection', (socket) => {
     io.sockets.emit('beacon', data);
   });
 
+  socket.on('rsvp', (data) => {
+    io.sockets.emit('rsvp', data);
+  })
+
 });
 
 app.set('port', PORT);
