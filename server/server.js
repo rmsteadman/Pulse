@@ -29,7 +29,7 @@ io.on('connection', (socket) => {
 
   socket.on('newRsvp', (data) => {
     console.log("THERES AN RSVP::: ", data)
-    io.sockets.emit('newRrsvp', data);
+    io.sockets.emit('newRsvp', data);
   })
 
 });

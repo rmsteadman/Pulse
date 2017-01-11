@@ -49,7 +49,6 @@ export class BeaconInfo {
   ngOnInit() {
     // this.httpService.getMessages(this.beacon.chatroom);
     this.getAllRsvp();
-    console.log("THIS IS THE PAYLOADDD", this.payload)
 
   }
 
@@ -117,6 +116,7 @@ export class BeaconInfo {
 
 
   rsvpLoader(info) {
+    let that = this;
     let prompt = this.alertCtrl.create({
     title: 'RSVP',
     message: "RSVP for this event! Add any details you want to.",
@@ -140,9 +140,10 @@ export class BeaconInfo {
           this.payload.details = data.details;
           this.payload.token = localStorage.getItem('userId');
           console.log('Saved clicked', this.payload);
-          let joiner = `${JSON.parse(localStorage.getItem('profile'))['user_metadata'].firstName} ${JSON.parse(localStorage.getItem('profile'))['user_metadata'].lastName}`;
-          this.payload.joiner = joiner;
-          this.socket.emit('newRsvp', this.payload);
+          // let joiner = `${JSON.parse(localStorage.getItem('profile'))['user_metadata'].firstName} ${JSON.parse(localStorage.getItem('profile'))['user_metadata'].lastName}`;
+          // this.payload.joiner = joiner;
+          // this.socket.emit('newRsvp', this.payload);
+          console.log(this.payload)
           this.rsvpService.rsvpPost(this.payload)
             .subscribe(result => {
               console.log("Beacons have categories now");
