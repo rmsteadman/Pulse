@@ -14,7 +14,6 @@ export class rsvpService {
 
 
     rsvpPost(info): Observable<any> {
-      this.sockets.emit('newRsvp', info)
       return this.http.post('http://localhost:8080/api/rsvps/create', info)
         .map(data => {
           console.log( "This is data", data.json() )

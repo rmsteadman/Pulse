@@ -19,7 +19,9 @@ export class BeaconInfo {
   chats: any = this.params.get('chat');
   payload: any = {};
   public rsvps = [];
-
+  public author = JSON.parse(localStorage.getItem('profile'))['user_metadata'];
+  
+  
   tabToShow : number = 1;
 
 
@@ -39,16 +41,17 @@ export class BeaconInfo {
         this.chats.push(message)
       })
     })
-    this.socket.on('newRsvp', rsvp => {
-      this.zone.run(() => {
-        this.rsvps.push(rsvp)
-      })
-    })
   }
 
   ngOnInit() {
     // this.httpService.getMessages(this.beacon.chatroom);
     this.getAllRsvp();
+    this.socket.on('newRsvp', rsvp => {
+      this.zone.run(() => {
+        this.rsvps.push(rsvp)
+        console.log("GOT EM!", this.rsvps)
+      })
+    })
 
   }
 
@@ -75,11 +78,10 @@ export class BeaconInfo {
   sendMessage() {
     let date = new Date().toString();
     date = date.toLocaleString();
-    let author = `${JSON.parse(localStorage.getItem('profile'))['user_metadata'].firstName} ${JSON.parse(localStorage.getItem('profile'))['user_metadata'].lastName}`;
     
-    console.log(author)
+    console.log(this.author)
     let messageObject = {
-      author: author,
+      author: this.author.firstName + " " + this.author.lastName,
       message: this.chatInput,
       date: date,
       chatroom: this.beacon.chatroom
@@ -106,7 +108,6 @@ export class BeaconInfo {
   getAllRsvp() {
     let that = this;
     // TESTING GET ALL RSVPs
-    // this.socket.emit('rsvp', this.beacon);
     this.rsvpService.getRsvpAll(this.beacon.id)
       .subscribe(results => {
         that.rsvps = results;
@@ -140,9 +141,13 @@ export class BeaconInfo {
           this.payload.details = data.details;
           this.payload.token = localStorage.getItem('userId');
           console.log('Saved clicked', this.payload);
+          this.payload.User = {
+            firstName: this.author.firstName,
+            lastName: this.author.lastName
+          }
           // let joiner = `${JSON.parse(localStorage.getItem('profile'))['user_metadata'].firstName} ${JSON.parse(localStorage.getItem('profile'))['user_metadata'].lastName}`;
           // this.payload.joiner = joiner;
-          // this.socket.emit('newRsvp', this.payload);
+          this.socket.emit('newRsvp', this.payload);
           console.log(this.payload)
           this.rsvpService.rsvpPost(this.payload)
             .subscribe(result => {
