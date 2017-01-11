@@ -62,15 +62,13 @@
       <!--<ion-card *ngFor="let chat of chats" class="triangle-border.left">-->
 
         <div id="messageList" *ngFor="let chat of chats">
-          <div class="speech-bubble">
-            
-            <h4 id="messageBody">{{chat.message}}</h4>
-
-            <h5 id="messageAuthor">{{chat.author}}</h5>
-            <small>{{chat.date}}</small>
+          <div class="speech">
+            <div class="insideSpeech">
+            <h4 class="chatText">{{chat.message}}</h4>
+            <h5 class="chatAuthor">{{chat.author}}</h5>
+            <h6 class="chatDate">{{chat.date}}</h6>
+            </div>
           </div>
-          <div class="arrow bottom right"></div>
-
         </div>
 
         <!--<ion-card-header>

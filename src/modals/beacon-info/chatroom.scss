@@ -1,6 +1,70 @@
 .card-md, #chatMessage {
     background-color:#e2e2e2;
 }
+
+.speech {
+  position: relative;
+  width: 100%;
+  height: 80px;
+  overflow: none;
+  text-align: center;
+  line-height: 100px;
+  background-color: #fff;
+  border: 8px solid #666;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+  -webkit-box-shadow: 2px 2px 4px #888;
+  -moz-box-shadow: 2px 2px 4px #888;
+  box-shadow: 2px 2px 4px #888;
+}
+
+.insideSpeech {
+  overflow:auto;
+  height: 90%;
+}
+
+.speech:before {
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 30px;
+  top: 65px;
+  border: 25px solid;
+  border-color: #666 transparent transparent #666;
+}
+
+.speech:after {
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 38px;
+  top: 63px;
+  border: 15px solid;
+  border-color: #fff transparent transparent #fff;
+}
+
+.chatText {
+    overflow: auto;
+    font-size: 12px;
+    text-align: center;
+    padding: 2px;
+    bottom: 0px;
+}
+
+.chatAuthor {
+    padding: 0px;
+    font-size: 10px;
+}
+
+.chatDate {
+    font-size: 8;
+}
+
+
+
 #down{
     top:20px;
 }
@@ -22,32 +86,20 @@
     position:fixed;
     background-color:white;
     width:100%;
+    z-index: 1000;
 }
 #messageList{
     padding-bottom:100px;
+    padding: 23px;
 }
-#messageDate{
-    position:right;
-}
+// #messageDate{
+//     position:right;
+// }
 #messageBody{
     font-size:16px;
 }
 #messageAuthor{
     font-size:12px;
-}
-.speech-bubble, .messageList {
-    background-color: #f8f8f8;
-    border: 1px solid #c8c8c8;
-    border-radius: 5px;
-    width: 90%;
-    text-align: center;
-    padding: 5px;
-    height:100%;
-}
-
-.arrow {
-    border-style: solid;
-    position:absolute;
 }
  
 .bottom {
