@@ -1,4 +1,4 @@
-<ion-header id="down">
+<ion-header>
     <ion-toolbar id="beaconHeader">
     <ion-title>
        {{beacon.title}}
@@ -12,9 +12,33 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content id="down">
+<ion-content>
 
-    <ion-segment [(ngModel)]="beaconState" id="beaconNavbar">
+    <ion-segment [(ngModel)]="beaconState" id="beaconNavbar" hideWhen="android, windows, ios">
+      <ion-segment-button  class="tabButton" value="rsvp" (click)="this.letsDigest()">
+        RSVP List
+      </ion-segment-button>
+      <ion-segment-button class="tabButton" value="info" (click)="this.letsDigest()">
+        Information
+      </ion-segment-button>
+      <ion-segment-button class="tabButton" value="chat" (click)="this.letsDigest()">
+        Chat
+      </ion-segment-button>
+    </ion-segment>
+
+    <ion-segment [(ngModel)]="beaconState" id="beaconNavbar" showWhen="android, windows">
+      <ion-segment-button  class="tabButton" value="rsvp" (click)="this.letsDigest()">
+        RSVP List
+      </ion-segment-button>
+      <ion-segment-button class="tabButton" value="info" (click)="this.letsDigest()">
+        Information
+      </ion-segment-button>
+      <ion-segment-button class="tabButton" value="chat" (click)="this.letsDigest()">
+        Chat
+      </ion-segment-button>
+    </ion-segment>
+    
+    <ion-segment [(ngModel)]="beaconState" id="beaconNavbar2"showWhen="ios">
       <ion-segment-button  class="tabButton" value="rsvp" (click)="this.letsDigest()">
         RSVP List
       </ion-segment-button>
@@ -49,38 +73,38 @@
               {{beacon.title}}
             </ion-card-title>
           <ion-item>
-            <p>
-              Details: {{beacon.details}}
-            </p>
+            <p>Created at: {{beacon.createdAt}} </p>
+            <p>Created By: {{beacon.firstName}} {{beacon.lastName}}</p>
+            <p>Details: {{beacon.details}}</p>
           </ion-item>
         </ion-card-content>
       </ion-card>
       <button ion-button round (click)="rsvpLoader(beacon)">RSVP</button>
     </div>
 
-    <div *ngSwitchCase="'chat'" class="tabBody" padding>
+    <div  id="messageList" *ngSwitchCase="'chat'" class="tabBody" padding>
+      <ion-list>
+        <div *ngFor="let chat of chats">
+            <div class="Speech">
+            <h4 class="chatText">{{chat.message}}</h4>
+            <h5 class="chatAuthor">{{chat.author}}</h5>
+            </div>
+        </div>
+        <ion-label>&nbsp;</ion-label>
+      <ion-label id="mychat">&nbsp;</ion-label>
+      </ion-list>
       <!--<ion-card *ngFor="let chat of chats" class="triangle-border.left">-->
 
-        <div id="messageList" *ngFor="let chat of chats">
+        
+         
+        <!--<div id="messageList" *ngFor="let chat of chats">
           <div class="speech">
             <div class="insideSpeech">
             <h4 class="chatText">{{chat.message}}</h4>
             <h5 class="chatAuthor">{{chat.author}}</h5>
-            <h6 class="chatDate">{{chat.date}}</h6>
             </div>
           </div>
-        </div>
-
-        <!--<ion-card-header>
-          {{ chat.message }}
-        </ion-card-header>
-        <ion-card-content>
-          <div>{{ chat.author }}</div>
-          <small id="messageDate">{{chat.date}}</small>
-        </ion-card-content>-->
-
-      <!--</ion-card>-->
-
+        </div> -->
 
       <div id="messageBuild">
         <ion-input (keyup.enter)="sendMessage(chatInput)" [(ngModel)]="chatInput" placeholder="What's the word?"></ion-input>
@@ -89,3 +113,4 @@
           
     </div>    
 </div>
+</ion-content>

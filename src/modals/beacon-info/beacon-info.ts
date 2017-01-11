@@ -1,15 +1,17 @@
-import { Component, NgZone } from '@angular/core';
+import { Component, NgZone, ViewChild } from '@angular/core';
 import { ModalController, Platform, NavParams, ViewController, NavController } from 'ionic-angular';
 import { rsvpService } from '../rsvp/rsvp.service'
 import { BeaconInfoService } from './beacon-info.service';
 import * as io from 'socket.io-client';
-import { AlertController } from 'ionic-angular';
+import { AlertController, Content } from 'ionic-angular';
 
 @Component({
   templateUrl: 'beacon-info.html',
   providers: [BeaconInfoService, rsvpService]
 })
 export class BeaconInfo {
+
+  @ViewChild(Content) content: Content;
 
   public socket = io('http://localhost:8080');
   public chatInput = '';
@@ -51,8 +53,14 @@ export class BeaconInfo {
 
   }
 
-  goToBottom() {
-    
+  gotoBottom() {
+    // this.content.scrollToBottom;
+    // var objDiv = document.getElementById('down');
+    // objDiv.scrollTop = objDiv.scrollHeight;
+    var element = document.getElementById("mychat");
+    setTimeout(()=>{element.scrollIntoView(true)},200); 
+    console.log("got bottom");
+
   };
 
   dismiss() {
@@ -85,6 +93,7 @@ export class BeaconInfo {
         })
     }
     this.chatInput = '';
+    this.gotoBottom();
   }
 
   getMessages(chatroom) {
@@ -92,6 +101,7 @@ export class BeaconInfo {
       .subscribe(data => {
         console.log('data: ', data)
       })
+    this.gotoBottom();
   }
 
   getAllRsvp() {
