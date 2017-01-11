@@ -81,8 +81,33 @@ beaconController.getAllBeacons = (req, res) => {
     });
 };
 
+beaconController.getMyBeacons = (req, res) => {
+  console.log('Thi is sis params: ', req.params.userId)
+  let userId = req.params.userId;
+
+  userQuery.findUser(userId)
+    .then(user => {
+      beaconQuery.findBeaconsByUser(user.id)
+        .then(beacons => {
+          res.send(beacons)
+        })
+        .catch(err => {
+          console.log('There has been an error in the get my beacons: ', err)
+        })
+    })
+}
+
+
 beaconController.deleteBeacon = (req, res) => {
-  console.log("REQ DAAA BODYYYYYYY")
+  console.log("REQ DAAA BODYYYYYYY: ", req.params.beaconId)
+  let beaconId = req.params.beaconId;
+  beaconQuery.deleteBeacon(beaconId)
+    .then(data => {
+      console.log("HERES SOME DATA BWEH: ", data)
+    })
+    .catch(err => {
+      console.log("Error in beacon deletion promise: ", err)
+    })
 }
 
 

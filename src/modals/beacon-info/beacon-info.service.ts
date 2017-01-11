@@ -29,11 +29,4 @@ export class BeaconInfoService {
             })
     };
 
-    deleteBeacon(beacon): Observable<any> {
-        console.log("Beacon from the service!!! ", beacon);
-        return this.http.delete('http://localhost:8080/api/beacons/deletebeacon', beacon)
-            .map(data => {
-                console.log('Here is some data bweh: ', data)
-            })
-    }
 }

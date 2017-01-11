@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>beacon-list</ion-title>
+    <ion-title>My Beacons</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,7 +15,17 @@
 
 <ion-content padding>
 
-THIS IS WORKING
+  <ion-list *ngFor="let beacon of beaconList">  
+
+    <ion-item>
+      <ion-icon name="{{beacon.icon}}" item-left></ion-icon>
+        {{ beacon.title }}
+        <p>{{ beacon.details }}</p>
+
+      <button ion-button color="red" (click)="deleteBeacon(beacon)" item-right>Delete</button>  
+
+    </ion-item>
+  </ion-list>
 
 
 </ion-content>
