@@ -36,6 +36,7 @@
           <p>
             {{ rsvp.details }}
           </p>
+
         </ion-item>
       </ion-list>
     
@@ -57,21 +58,28 @@
       <button ion-button round (click)="rsvpLoader(beacon)">RSVP</button>
     </div>
 
-    <div *ngSwitchCase="'chat'" id="messageList" class="tabBody" padding>
-      <ion-card *ngFor="let chat of chats" id="messages">
+    <div *ngSwitchCase="'chat'" class="tabBody" padding>
+      <!--<ion-card *ngFor="let chat of chats" class="triangle-border.left">-->
 
-        <ion-card-header>
+        <div id="messageList" *ngFor="let chat of chats">
+          <div class="speech">
+            <div class="insideSpeech">
+            <h4 class="chatText">{{chat.message}}</h4>
+            <h5 class="chatAuthor">{{chat.author}}</h5>
+            <h6 class="chatDate">{{chat.date}}</h6>
+            </div>
+          </div>
+        </div>
+
+        <!--<ion-card-header>
           {{ chat.message }}
         </ion-card-header>
-        <!--<ion-card-header>
-          {{ chat.author }}
-        </ion-card-header>-->
         <ion-card-content>
           <div>{{ chat.author }}</div>
           <small id="messageDate">{{chat.date}}</small>
-        </ion-card-content>
+        </ion-card-content>-->
 
-      </ion-card>
+      <!--</ion-card>-->
 
 
       <div id="messageBuild">
