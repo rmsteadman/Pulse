@@ -29,7 +29,7 @@ export class HomePage {
   myData: any;
   token: any;
   theCenter: any;
-
+  public socket = io.connect('http://localhost:8080');
   
 
 
@@ -162,12 +162,13 @@ export class HomePage {
 
     let infoWindow = new google.maps.InfoWindow({
       content: `
+      
         <div id="infoWindow">
-          <div id="=infoWindowTitle">
+          <div class="=infoWindowTitle">
             ${content.title}
           </div>
+          <br>
           <div id="infoWindowBody">
-            ${content.address}
             ${content.details}
           </div>
         </div>`

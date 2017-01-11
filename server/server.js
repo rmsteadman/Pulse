@@ -27,9 +27,9 @@ io.on('connection', (socket) => {
     io.sockets.emit('beacon', data);
   });
 
-  socket.on('rsvp', (data) => {
+  socket.on('newRsvp', (data) => {
     console.log("THERES AN RSVP::: ", data)
-    io.sockets.emit('rsvp', data);
+    io.sockets.emit('newRrsvp', data);
   })
 
 });

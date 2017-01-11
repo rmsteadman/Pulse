@@ -18,7 +18,7 @@ export class BeaconInfo {
   beacon: any = this.params.get('beacon');
   chats: any = this.params.get('chat');
   payload: any = {};
-  rsvps: any;
+  public rsvps = [];
 
   tabToShow : number = 1;
 
@@ -39,7 +39,7 @@ export class BeaconInfo {
         this.chats.push(message)
       })
     })
-    this.socket.on('rsvp', rsvp => {
+    this.socket.on('newRsvp', rsvp => {
       this.zone.run(() => {
         this.rsvps.push(rsvp)
       })
@@ -140,12 +140,13 @@ export class BeaconInfo {
           this.payload.details = data.details;
           this.payload.token = localStorage.getItem('userId');
           console.log('Saved clicked', this.payload);
-          console.log("SAAAVEEE", this.beacon);
-          this.socket.emit('message', this.payload);
+          let joiner = `${JSON.parse(localStorage.getItem('profile'))['user_metadata'].firstName} ${JSON.parse(localStorage.getItem('profile'))['user_metadata'].lastName}`;
+          this.payload.joiner = joiner;
+          this.socket.emit('newRsvp', this.payload);
           this.rsvpService.rsvpPost(this.payload)
-          .subscribe(result => {
-          console.log("Beacons have categories now")
-          })
+            .subscribe(result => {
+              console.log("Beacons have categories now");
+            })
         }
       }
     ]
