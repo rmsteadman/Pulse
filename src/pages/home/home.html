@@ -8,3 +8,7 @@
     <button ion-fab color="" (click)="centerMap()"><ion-icon name="locate"></ion-icon></button>
   </ion-fab>
 </ion-content>
+<div class="load" *ngIf="!this.loaded">
+   <div class="dot"></div>
+   <div class="outline"><span>Please wait</span></div>
+</div>

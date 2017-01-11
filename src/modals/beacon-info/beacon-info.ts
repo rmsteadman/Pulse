@@ -15,13 +15,11 @@ export class BeaconInfo {
 
   public socket = io('http://localhost:8080');
   public chatInput = '';
+  public rsvps = [];
+  public author = JSON.parse(localStorage.getItem('profile'))['user_metadata'];
   beacon: any = this.params.get('beacon');
   chats: any = this.params.get('chat');
   payload: any = {};
-  public rsvps = [];
-  public author = JSON.parse(localStorage.getItem('profile'))['user_metadata'];
-  
-  
   tabToShow : number = 1;
 
 
@@ -41,28 +39,21 @@ export class BeaconInfo {
         this.chats.push(message)
       })
     })
-  }
-
-  ngOnInit() {
-    // this.httpService.getMessages(this.beacon.chatroom);
-    this.getAllRsvp();
     this.socket.on('newRsvp', rsvp => {
       this.zone.run(() => {
         this.rsvps.push(rsvp)
-        console.log("GOT EM!", this.rsvps)
       })
     })
+  }
 
+  ngOnInit() {
+    this.getAllRsvp();
   }
 
   gotoBottom() {
-    // this.content.scrollToBottom;
-    // var objDiv = document.getElementById('down');
-    // objDiv.scrollTop = objDiv.scrollHeight;
     var element = document.getElementById("mychat");
     setTimeout(()=>{element.scrollIntoView(true)},200); 
     console.log("got bottom");
-
   };
 
   dismiss() {
@@ -79,7 +70,6 @@ export class BeaconInfo {
     let date = new Date().toString();
     date = date.toLocaleString();
     
-    console.log(this.author)
     let messageObject = {
       author: this.author.firstName + " " + this.author.lastName,
       message: this.chatInput,
@@ -112,7 +102,6 @@ export class BeaconInfo {
       .subscribe(results => {
         that.rsvps = results;
       })
-    console.log('these are the rsvps:', that.rsvps);
   }
 
 
@@ -159,13 +148,6 @@ export class BeaconInfo {
     });
     prompt.present();
   }
-  // rsvpLoader(info) {
-  //       let modal = this.modalCtrl.create(Rsvp, {
-  //         info: info
-  //       });
-  //       modal.present();
-  //     }
-
 }
 
 
