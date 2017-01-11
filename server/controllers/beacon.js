@@ -81,6 +81,23 @@ beaconController.getAllBeacons = (req, res) => {
     });
 };
 
+beaconController.getMyBeacons = (req, res) => {
+  console.log('Thi is sis params: ', req.params.userId)
+  let userId = req.params.userId;
+
+  userQuery.findUser(userId)
+    .then(user => {
+      beaconQuery.findBeaconsByUser(user.id)
+        .then(beacons => {
+          res.send(beacons)
+        })
+        .catch(err => {
+          console.log('There has been an error in the get my beacons: ', err)
+        })
+    })
+}
+
+
 beaconController.deleteBeacon = (req, res) => {
   console.log("REQ DAAA BODYYYYYYY")
 }

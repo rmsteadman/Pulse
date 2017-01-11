@@ -21,7 +21,12 @@ export class BeaconListPage {
   }
 
   getMyBeacons() {
-    this.httpService.getBeaconList();
+    let userId = localStorage.getItem('userId')
+    console.log(userId)
+    this.httpService.getBeaconList(userId)
+      .subscribe(data => {
+        console.log('there is data: ', data)
+      })
 
   }
 

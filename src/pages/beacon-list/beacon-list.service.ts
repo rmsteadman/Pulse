@@ -10,11 +10,9 @@ export class BeaconListService {
 
     constructor(public http: Http) {}
 
-    getBeaconList() {
-        console.log('in the get: ')
-        return this.http.get(`http://localhost:8080/api/beacons/getmessages/${userId}`)
+    getBeaconList(userId): Observable<any> {
+        return this.http.get(`http://localhost:8080/api/beacons/mybeacons/${userId}`)
             .map(data => {
-                console.log("This is data from getMessages", data)
                 return data.json();
             })
         }

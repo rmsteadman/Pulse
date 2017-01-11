@@ -6,4 +6,5 @@ let beaconRouter = express.Router();
 beaconRouter.get('/allbeacons', beaconController.getAllBeacons);
 beaconRouter.post('/create', beaconController.createBeacon);
 beaconRouter.delete('/deletebeacon', beaconController.deleteBeacon);
+beaconRouter.get('/mybeacons/:userId', beaconController.getMyBeacons);
 module.exports = beaconRouter;
