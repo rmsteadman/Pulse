@@ -34,7 +34,11 @@ export class BeaconListPage {
   }
 
   deleteBeacon(beacon) {
-    this.httpService.deleteBeacon(beacon)
+    let index = this.beaconList.indexOf(beacon)
+    this.beaconList.splice(index, 1)
+    let beaconId = beacon.id;
+   
+    this.httpService.deleteBeacon(beaconId)
       .subscribe(data => {
         console.log('Deleted')
       })

@@ -99,7 +99,15 @@ beaconController.getMyBeacons = (req, res) => {
 
 
 beaconController.deleteBeacon = (req, res) => {
-  console.log("REQ DAAA BODYYYYYYY: ", req.params)
+  console.log("REQ DAAA BODYYYYYYY: ", req.params.beaconId)
+  let beaconId = req.params.beaconId;
+  beaconQuery.deleteBeacon(beaconId)
+    .then(data => {
+      console.log("HERES SOME DATA BWEH: ", data)
+    })
+    .catch(err => {
+      console.log("Error in beacon deletion promise: ", err)
+    })
 }
 
 

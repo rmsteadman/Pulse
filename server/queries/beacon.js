@@ -63,4 +63,13 @@ beaconQueries.findBeaconsByUser = (userId) => {
     });
 };
 
+beaconQueries.deleteBeacon = (beaconId) => {
+  return Beacon.destroy({
+    where: {
+      id: beaconId
+    }
+  })
+}
+
+
 module.exports = beaconQueries;
