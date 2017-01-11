@@ -5,52 +5,41 @@
 .speech {
   position: relative;
   width: 100%;
-  height: 80px;
+  height: 110px;
   overflow: none;
   line-height: 100px;
-  background-color: #fff;
+  background-color: #666;
   border: 8px solid #666;
   -webkit-border-radius: 30px;
   -moz-border-radius: 30px;
-  border-radius: 30px;
+  border-radius: 18px;
   -webkit-box-shadow: 2px 2px 4px #888;
   -moz-box-shadow: 2px 2px 4px #888;
   box-shadow: 2px 2px 4px #888;
 }
 
 .insideSpeech {
-  overflow:auto;
+  padding-bottom:20px;
+  color:white;
   height: 90%;
 }
 
 .speech:before {
-  content: ' ';
+  content: '';
   position: absolute;
   width: 0;
   height: 0;
   left: 30px;
-  top: 65px;
+  top: 70px;
   border: 25px solid;
   border-color: #666 transparent transparent #666;
 }
 
-.speech:after {
-  content: ' ';
-  position: absolute;
-  width: 0;
-  height: 0;
-  left: 38px;
-  top: 63px;
-  border: 15px solid;
-  border-color: #fff transparent transparent #fff;
-}
-
 .chatText {
-    overflow: auto;
-    font-size: 12px;
-    text-align: center;
+    font-size: 17px;
     padding: 2px;
     bottom: 0px;
+    left:20px;
 }
 
 .chatAuthor {
@@ -59,7 +48,7 @@
 }
 
 .chatDate {
-    font-size: 8;
+    font-size: 10px;
 }
 
 

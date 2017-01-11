@@ -18,8 +18,41 @@
 
 
 .tabBody{
-    margin-top:73px;
+    margin-top:60px;
 }
+
+#beaconInfoCard{
+    background-color:salmon;
+    height:325px;
+    font-weight:bold;
+    padding: 13px 0px 13px 0px;    
+}
+#beaconCardBody{
+    bottom:-100px;
+
+}
+#beaconCardTitle{
+    position:relative;
+    left:20px;
+}
+#rsvpButton{
+    margin:0 auto;
+    text-align:center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .segment-md .segment-button{
     background-color:white;

@@ -67,44 +67,34 @@
     </div>
 
     <div *ngSwitchCase="'info'" class="tabBody">    
-      <ion-card>
-          <ion-card-content>
-            <ion-card-title>
-              {{beacon.title}}
-            </ion-card-title>
-          <ion-item>
-            <p>Created at: {{beacon.createdAt}} </p>
-            <p>Created By: {{beacon.firstName}} {{beacon.lastName}}</p>
-            <p>Details: {{beacon.details}}</p>
+      <ion-card id="beaconInfoCardFoundation">
+        <ion-card-content id="beaconInfoCard">
+          <ion-card-title id="beaconCardTitle">
+            {{beacon.title}}
+          </ion-card-title>
+          <ion-item id="beaconCardBody">
+            <p id="beaconDate">Created at: {{ beacon.createdAt }} </p>
+            <p>Created By: {{ beacon.firstName }} {{ beacon.lastName }}</p>
+            <p>Details: {{ beacon.details }}</p>
           </ion-item>
         </ion-card-content>
       </ion-card>
-      <button ion-button round (click)="rsvpLoader(beacon)">RSVP</button>
+      <div id="rsvpButton">
+        <button ion-button (click)="rsvpLoader(beacon)" id="rsvpButton">Meet Up</button>
+      </div>
     </div>
 
     <div  id="messageList" *ngSwitchCase="'chat'" class="tabBody" padding>
       <ion-list>
         <div *ngFor="let chat of chats">
             <div class="Speech">
-            <h4 class="chatText">{{chat.message}}</h4>
-            <h5 class="chatAuthor">{{chat.author}}</h5>
+            <h4 class="chatText">{{ chat.message }}</h4>
+            <h5 class="chatAuthor">{{ chat.author }}</h5>
             </div>
         </div>
         <ion-label>&nbsp;</ion-label>
       <ion-label id="mychat">&nbsp;</ion-label>
       </ion-list>
-      <!--<ion-card *ngFor="let chat of chats" class="triangle-border.left">-->
-
-        
-         
-        <!--<div id="messageList" *ngFor="let chat of chats">
-          <div class="speech">
-            <div class="insideSpeech">
-            <h4 class="chatText">{{chat.message}}</h4>
-            <h5 class="chatAuthor">{{chat.author}}</h5>
-            </div>
-          </div>
-        </div> -->
 
       <div id="messageBuild">
         <ion-input (keyup.enter)="sendMessage(chatInput)" [(ngModel)]="chatInput" placeholder="What's the word?"></ion-input>

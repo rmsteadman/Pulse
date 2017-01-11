@@ -15,11 +15,11 @@ export class BeaconInfo {
 
   public socket = io('http://localhost:8080');
   public chatInput = '';
+  public rsvps = [];
+  public author = JSON.parse(localStorage.getItem('profile'))['user_metadata'];
   beacon: any = this.params.get('beacon');
   chats: any = this.params.get('chat');
   payload: any = {};
-  rsvps: any;
-
   tabToShow : number = 1;
 
 
@@ -39,7 +39,7 @@ export class BeaconInfo {
         this.chats.push(message)
       })
     })
-    this.socket.on('rsvp', rsvp => {
+    this.socket.on('newRsvp', rsvp => {
       this.zone.run(() => {
         this.rsvps.push(rsvp)
       })
@@ -47,20 +47,13 @@ export class BeaconInfo {
   }
 
   ngOnInit() {
-    // this.httpService.getMessages(this.beacon.chatroom);
     this.getAllRsvp();
-    console.log("THIS IS THE PAYLOADDD", this.payload)
-
   }
 
   gotoBottom() {
-    // this.content.scrollToBottom;
-    // var objDiv = document.getElementById('down');
-    // objDiv.scrollTop = objDiv.scrollHeight;
     var element = document.getElementById("mychat");
     setTimeout(()=>{element.scrollIntoView(true)},200); 
     console.log("got bottom");
-
   };
 
   dismiss() {
@@ -76,11 +69,9 @@ export class BeaconInfo {
   sendMessage() {
     let date = new Date().toString();
     date = date.toLocaleString();
-    let author = `${JSON.parse(localStorage.getItem('profile'))['user_metadata'].firstName} ${JSON.parse(localStorage.getItem('profile'))['user_metadata'].lastName}`;
     
-    console.log(author)
     let messageObject = {
-      author: author,
+      author: this.author.firstName + " " + this.author.lastName,
       message: this.chatInput,
       date: date,
       chatroom: this.beacon.chatroom
@@ -107,16 +98,15 @@ export class BeaconInfo {
   getAllRsvp() {
     let that = this;
     // TESTING GET ALL RSVPs
-    // this.socket.emit('rsvp', this.beacon);
     this.rsvpService.getRsvpAll(this.beacon.id)
       .subscribe(results => {
         that.rsvps = results;
       })
-    console.log('these are the rsvps:', that.rsvps);
   }
 
 
   rsvpLoader(info) {
+    let that = this;
     let prompt = this.alertCtrl.create({
     title: 'RSVP',
     message: "RSVP for this event! Add any details you want to.",
@@ -140,25 +130,24 @@ export class BeaconInfo {
           this.payload.details = data.details;
           this.payload.token = localStorage.getItem('userId');
           console.log('Saved clicked', this.payload);
-          console.log("SAAAVEEE", this.beacon);
-          this.socket.emit('message', this.payload);
+          this.payload.User = {
+            firstName: this.author.firstName,
+            lastName: this.author.lastName
+          }
+          // let joiner = `${JSON.parse(localStorage.getItem('profile'))['user_metadata'].firstName} ${JSON.parse(localStorage.getItem('profile'))['user_metadata'].lastName}`;
+          // this.payload.joiner = joiner;
+          this.socket.emit('newRsvp', this.payload);
+          console.log(this.payload)
           this.rsvpService.rsvpPost(this.payload)
-          .subscribe(result => {
-          console.log("Beacons have categories now")
-          })
+            .subscribe(result => {
+              console.log("Beacons have categories now");
+            })
         }
       }
     ]
     });
     prompt.present();
   }
-  // rsvpLoader(info) {
-  //       let modal = this.modalCtrl.create(Rsvp, {
-  //         info: info
-  //       });
-  //       modal.present();
-  //     }
-
 }
 
 
