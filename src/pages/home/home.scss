@@ -17,6 +17,36 @@
       ion-fab[right] {
           right: 50px;
       }
+      #infoWindow{
+        background-color:#333333;
+
+      }
+      #infoWindowTitle{
+        font-size:25px;
+        background-color:#333333;
+        color:white;
+        font-weight:bold;
+      }
+      #infoWindowBody{
+        font-size:16px;
+        background-color:#333333;
+        color: white;
+        padding:0;
+      }
+      element.style {
+        position: absolute;
+        left: 1px;
+        top: 1px;
+        border-radius: 2px;
+        background-color: #333333;
+        width: 220px;
+        height: 53px;
+      }
+
+
+
     }
  
+
+
 }

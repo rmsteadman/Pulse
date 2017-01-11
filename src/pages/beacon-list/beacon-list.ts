@@ -14,6 +14,8 @@ export class BeaconListPage {
 
   public user;
   public beaconList = [];
+  // public detailState = false;
+  // public detail = 'Details'
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BeaconListPage');
@@ -43,5 +45,15 @@ export class BeaconListPage {
         console.log('Deleted')
       })
   }
+
+  // toggleDetails() {
+  //   this.detailState = !this.detailState;
+  //   if (this.detailState){
+  //     this.detail = 'Hide'
+  //   }
+  //   else{
+  //     this.detail = 'Details'
+  //   }
+  // }
 
 }

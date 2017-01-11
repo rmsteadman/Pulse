@@ -158,8 +158,16 @@ export class HomePage {
     let mousedUp = true;
 
     let infoWindow = new google.maps.InfoWindow({
-      content: `<h2>${content.title}</h2>
-                <p>${content.details}</p>`
+      content: `
+        <div id="infoWindow">
+          <div id="=infoWindowTitle">
+            ${content.title}
+          </div>
+          <div id="infoWindowBody">
+            ${content.address}
+            ${content.details}
+          </div>
+        </div>`
     });
 
     google.maps.event.addListener(beacon, 'click', () => {
