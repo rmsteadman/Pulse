@@ -174,6 +174,8 @@ export class HomePage {
     });
 
     google.maps.event.addListener(beacon, 'click', () => {
+      console.log('this is beacon: ', beacon);
+      console.log('this is content: ', content)
       infoWindow.open(content, beacon);
     })
 
