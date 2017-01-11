@@ -19,8 +19,9 @@ beaconController.createBeacon = (req, res) => {
   config.ChatroomId = null;
   // console.log('This is config', config)
 
-  if (config.address){
+  if (config.address.length > 1){
     let location = config.address;
+    console.log("THIS IS THE LOCATION WITH AN ADDRESS!!!!", location)
     request.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + location + '&key=AIzaSyCLyU4KWsPF_hzaJeEADv3zrtGdsQDYAvc',(error, response, body) => {
       if (error) {
         console.log(`There has been a grave error: ${error}`)
@@ -36,15 +37,15 @@ beaconController.createBeacon = (req, res) => {
   // find User FOR UserId
   userQuery.findUser(authCred)
     .then(user => {
-      console.log('User after findUser: ', user.dataValues);
-      console.log('user.dataValues.id:', user.dataValues.id);
+      // console.log('User after findUser: ', user.dataValues);
+      // console.log('user.dataValues.id:', user.dataValues.id);
       config.UserId = user.dataValues.id;
       // find Category FOR CategoryId
       return categoryQuery.findCategory(categoryType);
     })
     .then(category => {
-      console.log('Category after findCat: ', category.dataValues);
-      console.log('category.dataValues.id:', category.dataValues.id);
+      // console.log('Category after findCat: ', category.dataValues);
+      // console.log('category.dataValues.id:', category.dataValues.id);
       config.CategoryId = category.dataValues.id;
       // create Chatroom FOR ChatroomId
       return chatroomQuery.createChatroom(chatRoomName);
