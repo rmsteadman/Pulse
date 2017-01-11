@@ -99,7 +99,7 @@ beaconController.getMyBeacons = (req, res) => {
 
 
 beaconController.deleteBeacon = (req, res) => {
-  console.log("REQ DAAA BODYYYYYYY")
+  console.log("REQ DAAA BODYYYYYYY: ", req.params)
 }
 
 

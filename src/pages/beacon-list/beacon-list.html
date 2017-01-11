@@ -15,11 +15,16 @@
 
 <ion-content padding>
 
-  <ion-list>  
-      <button ion-button color="red" (click)="getMyBeacons()">Get</button>  
-      <button ion-button color="red" (click)="deleteBeacon(beacon)">Delete</button>  
+  <ion-list *ngFor="let beacon of beaconList">  
 
+    <ion-item>
+      <ion-icon name="{{beacon.icon}}" item-left></ion-icon>
+        {{ beacon.title }}
+        <p>{{ beacon.details }}</p>
 
+      <button ion-button color="red" (click)="deleteBeacon(beacon.id)" item-right>Delete</button>  
+
+    </ion-item>
   </ion-list>
 
 

@@ -18,11 +18,11 @@ export class BeaconListService {
         }
 
 
-    deleteBeacon(beacon) {
-        console.log("Beacon from the service!!! ", beacon);
-        // return this.http.delete('http://localhost:8080/api/beacons/deletebeacon', beacon)
-        //     .map(data => {
-        //         console.log('Here is some data bweh: ', data)
-        //     })
+    deleteBeacon(beaconId) {
+        console.log("Beacon from the service!!! ", beaconId);
+        return this.http.delete(`http://localhost:8080/api/beacons/deletebeacon/${beaconId}`)
+            .map(data => {
+                console.log('Here is some data bweh: ', data)
+            })
     }
 }

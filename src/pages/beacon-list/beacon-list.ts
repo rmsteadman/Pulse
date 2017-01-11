@@ -13,7 +13,7 @@ export class BeaconListPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public httpService: BeaconListService) {}
 
   public user;
-
+  public beaconList = [];
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BeaconListPage');
@@ -26,12 +26,18 @@ export class BeaconListPage {
     this.httpService.getBeaconList(userId)
       .subscribe(data => {
         console.log('there is data: ', data)
+        data.forEach(beacon => {
+          this.beaconList.unshift(beacon)
+        })
       })
 
   }
 
   deleteBeacon(beacon) {
-    console.log('you clicked me')
+    this.httpService.deleteBeacon(beacon)
+      .subscribe(data => {
+        console.log('Deleted')
+      })
   }
 
 }
