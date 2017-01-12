@@ -26,7 +26,7 @@ export class CreateBeaconPage {
       details: ['', Validators.compose([Validators.maxLength(255), Validators.required])],
       address: ['', Validators.compose([Validators.maxLength(50), Validators.required])]
     })
-    
+
   }
 
   ionViewDidLoad() {
@@ -37,7 +37,7 @@ export class CreateBeaconPage {
   }
 
   toggleLocationType() {
-    this.currentLocation = !this.currentLocation;
+    this.currentLocation = !!!this.currentLocation;
     if (this.currentLocation === false){
       this.addressType = "Input Address"
     } else {

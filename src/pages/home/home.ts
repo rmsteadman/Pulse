@@ -30,8 +30,8 @@ export class HomePage {
   myData: any;
   token: any;
   theCenter: any;
-  public socket = io.connect('http://localhost:8080');
-  
+  public socket = io.connect('http://ec2-54-67-94-166.us-west-1.compute.amazonaws.com:8080');
+
 
 
   constructor(
@@ -62,7 +62,7 @@ export class HomePage {
       .subscribe(data => {
         let chat = data;
         console.log('this is chat in modal:', chat);
-        let socket = io.connect('http://localhost:8080')
+        let socket = io.connect('http://ec2-54-67-94-166.us-west-1.compute.amazonaws.com:8080')
         let modal = this.modalCtrl.create(BeaconInfo, {
           beacon: content,
           socket: socket,
@@ -91,12 +91,12 @@ export class HomePage {
           center: center,
           zoom: 15,
           mapTypeId: google.maps.MapTypeId.ROADMAP,
-          styles: 
+          styles:
           [{"featureType":"all","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"administrative","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"administrative.country","elementType":"geometry.stroke","stylers":[{"weight":"1.2"}]},{"featureType":"administrative.province","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"administrative.province","elementType":"geometry.stroke","stylers":[{"weight":"1"},{"visibility":"off"}]},{"featureType":"administrative.neighborhood","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi.business","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi.park","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45},{"visibility":"on"}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"transit.station","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#b4d2dc"}]}]
         }
         this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
         this.loadBeacon();
-        
+
       }, (err) => {
         console.log(err);
       });
@@ -163,7 +163,7 @@ export class HomePage {
 
     let infoWindow = new google.maps.InfoWindow({
       content: `
-      
+
         <div id="infoWindow">
           <div class="=infoWindowTitle">
             ${content.title}
