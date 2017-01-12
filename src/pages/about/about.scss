@@ -20,12 +20,28 @@ page-about {
   text-align:center;
   margin:0 auto;
 }
+#companyLogo{
+  margin-top:30px;
+  margin:0 auto;
+  height:250px;
+  width:375px;
+}
 
+.bio{
+  margin:0 auto;
+  text-align:center;
+}
+.devPicture{
+  // height:200px;
+  // width:200px;
+  border-radius: 50%;
+}
 
 #philosophy{
   text-align:center;
 }
 #aboutVideo{
+  max-width: 100%;
   text-align:center;
   margin:0 auto;
 }

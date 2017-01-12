@@ -21,6 +21,7 @@ let beaconData;
   templateUrl: 'home.html',
   providers: [AuthService, BeaconService, BeaconInfoService, PreferenceService, SignUpService]
 })
+
 export class HomePage {
   public chatInput;
   public loaded = false;
@@ -85,7 +86,7 @@ export class HomePage {
       .then((position) => {
 
         let center = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
+        
         this.theCenter = center
         localStorage.setItem('currentLocation', center)
         let mapOptions = {

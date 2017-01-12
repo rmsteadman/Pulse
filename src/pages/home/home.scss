@@ -48,7 +48,7 @@
 
 
 
-
+///////// LOADING PAGE /////////////
 $size : 120px;
 $color1 : #3A60DB;
 $color2 : #FFFFFF;
@@ -261,10 +261,6 @@ $color2 : #FFFFFF;
       height:120vw;
    }
 }
-
-
-
-
 *,
 *:after,
 *::before {
@@ -275,3 +271,138 @@ $color2 : #FFFFFF;
     margin:0;
     padding:0;
 }
+
+///////// END LOADING PAGE //////////////
+
+
+
+
+
+//////// CENTER BEACON ////////////
+
+
+
+// @import "compass/css3";
+
+// /*
+//  * Look, there you are! This is a simple map
+//  * marker that you could use to indicate the
+//  * user's current location on a map. The style
+//  * is that of the new geolocation map marker in
+//  * iOS7 and OSX Mavericks.
+//  *
+//  * Support: browser's that support CSS transitions,
+//  *          transforms, animations, and support all
+//             of those things on psuedo elements.
+//  */
+
+// $diameter: 2em;
+// $background: #157efb;
+// $border-width: $diameter * 0.125;
+// $border-color: white;
+// $pulse: true;
+
+// .marker {
+//   display: block;
+//   position: relative;
+//   width: $diameter;
+//   height: $diameter;
+//   background: $background;
+//   border-radius: 50%;
+//   animation: pulse 1s ease-in-out infinite alternate;
+//   box-shadow: 0 0 0 $border-width white,
+//               0 0 3px rgba(0, 0, 0, 0.4);
+  
+//   &::after {
+//     content: '';
+//     position: absolute;
+//     top: 50%;
+//     left: 50%;
+//     width: $diameter * 2;
+//     height: $diameter * 2;
+//     margin-left: -$diameter;
+//     margin-top: -$diameter;
+//     box-shadow: 0 0 0 1px $border-color;
+//     border-radius: 50%;
+//     animation: sonar 2s linear infinite;
+//   }
+
+// }
+
+// @keyframes pulse {
+//   0%   { transform: scale3d(0.8, 0.8, 0.8); }
+//   100% { transform: scale3d(1, 1, 1); }
+// }
+
+// @keyframes sonar {
+//   0% {
+//     transform: scale3d(0.5, 0.5, 0.5);
+//     opacity: 1;
+//   }
+//   50%, 100% {
+//     transform: scale3d(1, 1, 1);
+//     opacity: 0;
+//   }
+// }
+
+// // Presentation only
+
+// * {
+//   box-sizing: border-box;
+// }
+
+// body, html {
+//   height: 100%;
+// }
+
+// body {
+//   background-image: url(http://f.cl.ly/items/2q3N361g3X0i2j0t2y3N/Screen-Shot-2013-11-01-at-12.13.48-PM.jpg);
+//   background-size: cover;
+//   display: flex;
+//   flex: row nowrap;
+//   justify-content: center;
+//   align-items: center;
+// }
+
+// .marker {
+//   display: flex-item;
+// }
+
+/////// END CENTER BEACON //////////
+
+
+
+
+
+
+
+
+
+
+body{
+  background:#131313;
+  color:#E3E3E3;
+  font-family:sans-serif;
+}
+
+.loading {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0;
+  position: relative; }
+
+.loading svg {
+  width: 100%;
+  height: 75%;
+}
+
+.loading #pulsar{
+  stroke-dasharray:281;
+  -webkit-animation: dash 2.5s infinite linear forwards;
+}
+
+/*Animation*/
+@-webkit-keyframes dash{ from{stroke-dashoffset:814;} to {stroke-dashoffset:-814;}}
+
+

@@ -19,18 +19,16 @@ beaconController.createBeacon = (req, res) => {
   config.ChatroomId = null;
   // console.log('This is config', config)
 
-  if (config.address.length > 1){
+  if (config.address.length > 8){
     let location = config.address;
-    console.log("THIS IS THE LOCATION WITH AN ADDRESS!!!!", location)
     request.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + location + '&key=AIzaSyCLyU4KWsPF_hzaJeEADv3zrtGdsQDYAvc',(error, response, body) => {
       if (error) {
         console.log(`There has been a grave error: ${error}`)
       }
       let coordinates = JSON.parse(body)
       let latLong = coordinates.results[0].geometry.location;
-      console.log("CONFIG BABY!!! ", JSON.stringify(config.address));
       config.position = JSON.stringify(latLong);
-      
+      console.log("THIS IS THE CONFIG AT THE POST: ", config)
     })
   }
 
