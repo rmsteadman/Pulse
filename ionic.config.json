@@ -6,7 +6,7 @@
   "proxies": [
     {
       "path": "/api",
-      "proxyUrl": "http://localhost:8080",
+      "proxyUrl": "http://ec2-54-67-94-166.us-west-1.compute.amazonaws.com:8080",
       "rejectUnauthorized": false
     }
   ]
