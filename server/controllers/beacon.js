@@ -19,7 +19,7 @@ beaconController.createBeacon = (req, res) => {
   config.ChatroomId = null;
   console.log('This is config', config)
 
-  if (config.usingCurrentLocation === false && config.position === 'test'){
+  if (config.usingCurrentLocation === false && config.position === ''){
     let location = config.address;
     request.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + location + '&key=AIzaSyCLyU4KWsPF_hzaJeEADv3zrtGdsQDYAvc', (error, response, body) => {
       if (error) {
