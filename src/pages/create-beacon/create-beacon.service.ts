@@ -23,19 +23,19 @@ export class BeaconService {
       Other: { icon: 'http://i.imgur.com/RgsgSZI.png' },
       JB : { icon: 'http://i.imgur.com/twiMx0R.png' }
     }
-    let currentPosition = '';
-    localStorage.getItem('currentLocation').split('').forEach(char => {
-      if (char === '('){
-        char = '{"lat":'
-      }
-      if (char === ','){
-        char = ', "lng":'
-      }
-      if (char === ')'){
-        char = '}'
-      }
-      currentPosition += char
-    })
+    // let currentPosition = '';
+    // localStorage.getItem('currentLocation').split('').forEach(char => {
+    //   if (char === '('){
+    //     char = '{"lat":'
+    //   }
+    //   if (char === ','){
+    //     char = ', "lng":'
+    //   }
+    //   if (char === ')'){
+    //     char = '}'
+    //   }
+    //   currentPosition += char
+    // })
 
     let beacon = {
       authCred: authCred,
@@ -43,12 +43,16 @@ export class BeaconService {
       icon: icons[info.categoryType].icon,
       title: info.title,
       details: info.details,
-      position: currentPosition,
+      position: info.position,
       start: Date.now(),
       address: info.address,
       usingCurrentLocation: info.usingCurrentLocation
     }
     
+    if (beacon.usingCurrentLocation === false) {
+      beacon.position = '';
+    }
+
     console.log('THIS IS THE PREPOST BEACON::::: ', beacon)
     return this.http.post('http://ec2-54-67-94-166.us-west-1.compute.amazonaws.com:8080/api/beacons/create', beacon)
       .map(data => {

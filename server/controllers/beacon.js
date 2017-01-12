@@ -19,9 +19,9 @@ beaconController.createBeacon = (req, res) => {
   config.ChatroomId = null;
   console.log('This is config', config)
 
-  if (!config.usingCurrentLocation){
+  if (config.usingCurrentLocation === false && config.position === 'test'){
     let location = config.address;
-    request.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + location + '&key=AIzaSyCLyU4KWsPF_hzaJeEADv3zrtGdsQDYAvc',(error, response, body) => {
+    request.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + location + '&key=AIzaSyCLyU4KWsPF_hzaJeEADv3zrtGdsQDYAvc', (error, response, body) => {
       if (error) {
         console.log(`There has been a grave error: ${error}`)
       }
@@ -56,11 +56,13 @@ beaconController.createBeacon = (req, res) => {
 
       
       // create Beacon with updated config
-      return setTimeout(beaconQuery.createBeacon(config), 1000);
+      return beaconQuery.createBeacon(config);
     })
     .then(beacon => {
       console.log('Beacon created :', beacon.dataValues);
-      res.send(beacon);
+      setTimeout((beacon) => {
+        res.send(beacon)
+      }, 500)
     })
     .catch(err => {
       console.log('Error creating beacon:', err);
