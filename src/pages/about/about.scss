@@ -3,6 +3,7 @@ page-about {
 }
 #navybary{
     background-color: #333333;
+    padding-top:15px;
 }
 #PulseTitle{
   text-align:center;
@@ -25,6 +26,7 @@ page-about {
   margin:0 auto;
   height:250px;
   width:375px;
+  text-align:center;
 }
 
 .bio{
@@ -36,7 +38,10 @@ page-about {
   // width:200px;
   border-radius: 50%;
 }
-
+#developerBios{
+  background-color:#424242;
+  color:white;
+}
 #philosophy{
   text-align:center;
 }
