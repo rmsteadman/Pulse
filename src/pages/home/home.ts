@@ -167,7 +167,6 @@ export class HomePage {
       if (status === 'OK') {
         if (results[1]) {
           localStorage.setItem('currentAddress', results[0].formatted_address)
-          console.log(results[0].formatted_address)
         } else {
           window.alert('Current Address Not Found');
         }

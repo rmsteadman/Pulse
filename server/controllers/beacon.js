@@ -18,9 +18,8 @@ beaconController.createBeacon = (req, res) => {
   config.CategoryId = null;
   config.ChatroomId = null;
   console.log('This is config', config)
-  config.position = config.currentPosition
 
-  if (config.address.length > 3 && config.address !== ''){
+  if (!config.usingCurrentLocation){
     let location = config.address;
     request.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + location + '&key=AIzaSyCLyU4KWsPF_hzaJeEADv3zrtGdsQDYAvc',(error, response, body) => {
       if (error) {
@@ -31,6 +30,7 @@ beaconController.createBeacon = (req, res) => {
       config.position = JSON.stringify(latLong);
     })
   }
+  console.log(config)
 
   // find User FOR UserId
   userQuery.findUser(authCred)
@@ -56,7 +56,7 @@ beaconController.createBeacon = (req, res) => {
 
       
       // create Beacon with updated config
-      return beaconQuery.createBeacon(config);
+      return setTimeout(beaconQuery.createBeacon(config), 1000);
     })
     .then(beacon => {
       console.log('Beacon created :', beacon.dataValues);

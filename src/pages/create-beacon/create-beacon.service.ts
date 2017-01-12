@@ -36,7 +36,6 @@ export class BeaconService {
       }
       currentPosition += char
     })
-    console.log(currentPosition)
 
     let beacon = {
       authCred: authCred,
@@ -46,14 +45,18 @@ export class BeaconService {
       details: info.details,
       position: currentPosition,
       start: Date.now(),
-      address: info.address
+      address: info.address,
+      usingCurrentLocation: info.usingCurrentLocation
     }
-    console.log('This is pre-post Beacon:', beacon);
+    
+    console.log('THIS IS THE PREPOST BEACON::::: ', beacon)
     return this.http.post('http://ec2-54-67-94-166.us-west-1.compute.amazonaws.com:8080/api/beacons/create', beacon)
       .map(data => {
         console.log( "This is data", data.json() )
       })
   };
+
+  
 
   getBeaconsAll() : Observable<any> {
     return this.http.get('http://ec2-54-67-94-166.us-west-1.compute.amazonaws.com:8080/api/beacons/allbeacons')
