@@ -64,5 +64,5 @@
     }
   ],
   "description": "Pulse: An Ionic project",
-  "proxy": "http://localhost:8080"
+  "proxy": "http://ec2-54-67-94-166.us-west-1.compute.amazonaws.com:8080"
 }

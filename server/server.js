@@ -28,10 +28,9 @@ io.on('connection', (socket) => {
   });
 
   socket.on('newRsvp', (data) => {
-    console.log("THERES AN RSVP::: ", data)
+    console.log('THERES AN RSVP::: ', data);
     io.sockets.emit('newRsvp', data);
-  })
-
+  });
 });
 
 app.set('port', PORT);
@@ -47,7 +46,7 @@ app.use(cors());
 models.Sync();
 
 // serve static files
-// app.use('/', express.static(path.join(__dirname, '../src')))
+app.use('/', express.static(path.join(__dirname, '../www')));
 
 // establish routes
 app.use('/api', mainRouter);

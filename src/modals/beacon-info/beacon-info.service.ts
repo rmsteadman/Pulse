@@ -11,7 +11,7 @@ export class BeaconInfoService {
 
     getMessages(chatroomId): Observable<any> {
         console.log('in the get: ', chatroomId)
-        return this.http.get(`http://localhost:8080/api/chatrooms/getmessages/${chatroomId}`)
+        return this.http.get(`http://ec2-54-67-94-166.us-west-1.compute.amazonaws.com:8080/api/chatrooms/getmessages/${chatroomId}`)
             .map(data => {
                 console.log("This is data from getMessages", data)
                 return data.json();
@@ -22,7 +22,7 @@ export class BeaconInfoService {
     sendMessage(message): Observable<any> {
         console.log("THIS IS THE MESSAGE: ", message);
 
-        return this.http.put('http://localhost:8080/api/chatrooms/addmessage', message)
+        return this.http.put('http://ec2-54-67-94-166.us-west-1.compute.amazonaws.com:8080/api/chatrooms/addmessage', message)
             .map(data => {
                 console.log('things are ok')
             })

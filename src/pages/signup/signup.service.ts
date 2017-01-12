@@ -15,7 +15,7 @@ export class SignUpService {
 
   // gets user creds from Pulse DB
   public getUserToken() : Observable<any> {
-    return this.http.get('http://localhost:8080/api/users/gettoken')
+    return this.http.get('http://ec2-54-67-94-166.us-west-1.compute.amazonaws.com:8080/api/users/gettoken')
       .map(data => {
         return data.json();
       })
@@ -34,7 +34,7 @@ export class SignUpService {
     //   authToken: user.clientID
     // }
     // console.log('Step 3 OK', this.http);
-    return this.http.post('http://localhost:8080/api/users/signup', user)
+    return this.http.post('http://ec2-54-67-94-166.us-west-1.compute.amazonaws.com:8080/api/users/signup', user)
       .map(data => {
         console.log("This is data in signup", data.json());
         return data.json();

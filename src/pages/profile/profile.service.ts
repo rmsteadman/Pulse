@@ -11,7 +11,7 @@ export class PreferenceService {
 
   getPreferences(): Observable<any> {
     let userId = localStorage.getItem('userId');
-    return this.http.get(`http://localhost:8080/api/users/getprefs/${userId}`)
+    return this.http.get(`http://ec2-54-67-94-166.us-west-1.compute.amazonaws.com:8080/api/users/getprefs/${userId}`)
       .map(data => {
         return data.json();
       })
@@ -25,7 +25,7 @@ export class PreferenceService {
     prefs.updatedList = JSON.stringify(preferenceList);
     prefs.authCred = localStorage.getItem('userId');
     console.log("This is prefs: ", prefs);
-    return this.http.put('http://localhost:8080/api/users/saveprefs', prefs)
+    return this.http.put('http://ec2-54-67-94-166.us-west-1.compute.amazonaws.com:8080/api/users/saveprefs', prefs)
       .map(data => {
         data.json();
       })
