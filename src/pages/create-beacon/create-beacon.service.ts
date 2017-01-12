@@ -49,14 +49,14 @@ export class BeaconService {
       address: info.address
     }
     console.log('This is pre-post Beacon:', beacon);
-    return this.http.post('http://localhost:8080/api/beacons/create', beacon)
+    return this.http.post('http://ec2-54-67-94-166.us-west-1.compute.amazonaws.com:8080/api/beacons/create', beacon)
       .map(data => {
         console.log( "This is data", data.json() )
       })
   };
 
   getBeaconsAll() : Observable<any> {
-    return this.http.get('http://localhost:8080/api/beacons/allbeacons')
+    return this.http.get('http://ec2-54-67-94-166.us-west-1.compute.amazonaws.com:8080/api/beacons/allbeacons')
       .map(data => {
         return data.json();
       })
