@@ -17,9 +17,10 @@ beaconController.createBeacon = (req, res) => {
   config.UserId = null,
   config.CategoryId = null;
   config.ChatroomId = null;
-  // console.log('This is config', config)
+  console.log('This is config', config)
+  config.position = config.currentPosition
 
-  if (config.address.length > 8){
+  if (config.address.length > 3 && config.address !== ''){
     let location = config.address;
     request.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + location + '&key=AIzaSyCLyU4KWsPF_hzaJeEADv3zrtGdsQDYAvc',(error, response, body) => {
       if (error) {
@@ -28,7 +29,6 @@ beaconController.createBeacon = (req, res) => {
       let coordinates = JSON.parse(body)
       let latLong = coordinates.results[0].geometry.location;
       config.position = JSON.stringify(latLong);
-      console.log("THIS IS THE CONFIG AT THE POST: ", config)
     })
   }
 
