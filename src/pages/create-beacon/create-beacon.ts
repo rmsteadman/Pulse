@@ -73,12 +73,12 @@ export class CreateBeaconPage {
     //if using current address, set to current address
     //otherwise, beaconInfo.address = form specified address
     beaconInfo.usingCurrentLocation = this.currentLocation;
+    
     if (beaconInfo.usingCurrentLocation){
       beaconInfo.address = localStorage.getItem('currentAddress');
       beaconInfo.position = localStorage.getItem('currentLocation');
-    } else if (!beaconInfo.usingCurrentLocation){
-      beaconInfo.address = this.beaconForm.value.address;
-    }
+    } 
+
     
     this.httpService.beaconPost(beaconInfo)
         .subscribe(data => {
