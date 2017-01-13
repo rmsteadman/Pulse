@@ -22,16 +22,17 @@
 }
 
 #beaconInfoCard{
-    background-color:salmon;
+    background-color:#333333;
     height:325px;
-    font-weight:bold;
+
     padding: 13px 0px 13px 0px;    
 }
-#beaconCardBody{
-    bottom:-100px;
-
+#beaconDate{
+    color:#333333;
+    font-size:20px;
 }
 #beaconCardTitle{
+    color:#dedede;
     position:relative;
     left:20px;
 }
@@ -41,10 +42,46 @@
 }
 
 
+
+
+
+
+
+#messageList{
+    background-color:grey;
+}
+.chatText{
+    background-color:#e6e6e6;
+    
+    border-radius:5px;
+    padding-bottom:0;
+}
+#messageInitials{
+    border-radius:50%;
+    background-color:#00b3ff;   
+}
+.chatAuthor{
+    text-align:center;
+    padding:0;
+    margin:0;
+    border:0;
+}
+.chatDate{
+    text-align:center;
+    padding:0;
+    margin:0;
+    border:0;
+}
 #messageBreak{
     color:black;
+    height:20px;
 }
-
+#messageBuild{
+    background-color:rgba(255, 255, 255, 0);
+}
+.text-input{
+    color:blue;
+}
 
 
 
