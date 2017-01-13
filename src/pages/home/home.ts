@@ -76,7 +76,7 @@ export class HomePage {
         //   chat: chat
         // })
 
-        console.log('modal data:', modal.data);
+        // console.log('modal data:', modal.data);
         modal.present();
       })
   }
@@ -84,11 +84,20 @@ export class HomePage {
   loadMap(){
     Geolocation.getCurrentPosition()
       .then((position) => {
+        // console.log('geo position:', position);
 
         let center = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-        
+        // console.log("center:", center)
+
+        // convert center to JS object
+        let currentLocation = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        }
+        console.log('current location:', currentLocation);
+        localStorage.setItem('currentLocation', JSON.stringify(currentLocation));
+
         this.theCenter = center
-        localStorage.setItem('currentLocation', center)
         let mapOptions = {
           center: center,
           zoom: 15,
@@ -161,11 +170,13 @@ export class HomePage {
 
 
   geocodeLatLng(geocoder) {
-    let coordinates = localStorage.getItem('currentLocation');
-    let latlngStr = coordinates.split(',', 2);
-    let latlng = {lat: parseFloat(latlngStr[0].slice(1)), lng: parseFloat(latlngStr[1])};
-    console.log(latlng)
-    geocoder.geocode({'location': latlng}, (results, status) => {
+    // let coordinates = localStorage.getItem('currentLocation');
+    // let latlngStr = coordinates.split(',', 2);
+    // let latlng = {lat: parseFloat(latlngStr[0].slice(1)), lng: parseFloat(latlngStr[1])};
+    // console.log(latlng)
+    let location = JSON.parse(localStorage.getItem('currentLocation'));
+
+    geocoder.geocode({'location': location}, (results, status) => {
       if (status === 'OK') {
         if (results[1]) {
           localStorage.setItem('currentAddress', results[0].formatted_address)
