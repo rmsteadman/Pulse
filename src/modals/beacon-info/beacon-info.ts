@@ -88,7 +88,8 @@ export class BeaconInfo {
       author: this.author.firstName + " " + this.author.lastName,
       message: this.chatInput,
       date: date,
-      chatroom: this.beacon.chatroom
+      chatroom: this.beacon.chatroom,
+      initials: this.author.firstName[0] + this.author.lastName[0]
     }
     if (this.chatInput !== ''){
       this.socket.emit('message', messageObject);

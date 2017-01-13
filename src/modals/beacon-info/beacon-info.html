@@ -107,7 +107,7 @@
       <ion-list>
         <div class="Speech" *ngFor="let chat of chats">
             <div class="Speech">
-              <span id="messageInitials">JB</span><h4 class="chatText" padding>{{ chat.message }} </h4>
+              <span id="messageInitials">{{ chat.initials }}</span><h4 class="chatText" padding>{{ chat.message }} </h4>
               <h5 class="chatAuthor">{{ chat.author }}</h5>
                <div class="chatDate">
                  <small> {{ chat.date }} </small>
