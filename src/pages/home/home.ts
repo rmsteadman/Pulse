@@ -54,7 +54,7 @@ export class HomePage {
   // initialize user authentication
   userInit() {
     console.log("localStorage", localStorage);
-    if(localStorage.getItem('userId') === "null") {
+    if(localStorage.getItem('userId') === "null" || !localStorage.getItem('userId')) {
       this.auth.login();
     }
   }
