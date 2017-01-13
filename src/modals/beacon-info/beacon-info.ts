@@ -23,7 +23,7 @@ export class BeaconInfo {
   chats: any = this.params.get('chat');
   payload: any = {};
   tabToShow : number = 1;
-  
+
 
   constructor(
     public zone: NgZone,
@@ -51,15 +51,23 @@ export class BeaconInfo {
 
   ngOnInit() {
     this.getAllRsvp();
+    let realAddress = ''
     let address = localStorage.getItem('currentAddress');
     let destination = this.beacon.address;
-    this.url = `https://www.google.com/maps/embed/v1/directions?key=AIzaSyCUdH3UYv6hl69P9m1W33GUzp_t6h4oSJY&origin=${address}&destination=${destination}&zoom=9`
-  	this.safe = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
+    address.split('').forEach(char => {
+      if (char !== "&"){
+        realAddress += char
+      }
+    })
+    console.log('destination:', destination)
+    this.url = `https://www.google.com/maps/embed/v1/directions?key=AIzaSyCUdH3UYv6hl69P9m1W33GUzp_t6h4oSJY&origin=${realAddress}&destination=${destination}&zoom=9`
+    console.log('url:', this.url);
+    this.safe = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
   }
 
   gotoBottom() {
     var element = document.getElementById("mychat");
-    setTimeout(()=>{element.scrollIntoView(true)},100); 
+    setTimeout(()=>{element.scrollIntoView(true)},100);
   };
 
   dismiss() {
@@ -75,7 +83,7 @@ export class BeaconInfo {
   sendMessage() {
     let date = new Date().toString();
     date = date.toLocaleString();
-    
+
     let messageObject = {
       author: this.author.firstName + " " + this.author.lastName,
       message: this.chatInput,
@@ -155,5 +163,3 @@ export class BeaconInfo {
     prompt.present();
   }
 }
-
-
