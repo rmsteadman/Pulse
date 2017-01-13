@@ -1,6 +1,21 @@
+
+
 page-about {
   background-color:#333333;
 }
+
+#pulseIcon {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#aboutContent {
+  top: 16px;
+}
+
+
+
 #navybary{
     background-color: #333333;
     padding-top:15px;
@@ -9,6 +24,8 @@ page-about {
   text-align:center;
   font-size: 30px;
 }
+
+
 
 #titleLine{
   border-top:1px solid black;
@@ -21,12 +38,22 @@ page-about {
   text-align:center;
   margin:0 auto;
 }
-#companyLogo{
-  margin-top:30px;
-  margin:0 auto;
-  height:250px;
-  width:375px;
-  text-align:center;
+
+
+#devs {
+  border-radius: 50%;
+}
+
+#backDevs {
+  border-radius: 50%;
+}
+
+.aboutText {
+
+}
+
+.link {
+  width:100%;
 }
 
 .bio{
@@ -40,17 +67,21 @@ page-about {
 }
 .stack {
   width: 220px;
+  margin: 10px;
 }
 .stackPart {
   text-align: center;
   margin: 0 auto;
 }
-.stackExpress {
-  top: 40px;
+
+.description{
+  text-align: center;
 }
 
-.poweredBy {
+
+#titles {
   text-align: center;
+  font-family: 'Voltaire', sans-serif;
 }
 
 
@@ -89,9 +120,76 @@ page-about {
 		transform: rotateY(180deg);
 	}
 
+@media(min-width: 426px) {
+  .flip-container, .front, .back {
+  left: 80px;
+	width: 460px;
+	height: 460px;
+}
+  .vertical.flip-container .flipper {
+	transform-origin: 100% 230px; /* half of height */
+}
+.stackExpress {
+  width: 220px;
+  padding-top: 25%;
+}
+#bios {
+  text-align: center;
+  margin-top: 40%;
+  color: orange;
+  font-size: 24px;
+}
+.links {
+  length: 100px;
+  width: 100px;
+}
+#companyLogo{
+  margin-top:30px;
+  margin:0 auto;
+  height:500px;
+  width:750px;
+  text-align:center;
+}
+.WiP {
+  font-size: 32px;
+}
+.large {
+  font-size: 72px;
+}
+}
+
+@media(max-width: 425px) {
 .flip-container, .front, .back {
-	width: 320px;
-	height: 480px;
+	width: 120px;
+	height: 120px;
+}
+.vertical.flip-container .flipper {
+	transform-origin: 100% 60px; /* half of height */
+}
+.stackExpress {
+  width: 220px;
+  padding-top: 45%;
+}
+#bios {
+  text-align: center;
+  margin-top: 25%;
+  color: orange;
+  font-size: 9px;
+}
+.links {
+  height: 50px;
+  width: 50px;
+}
+#companyLogo{
+  margin-top:30px;
+  margin:0 auto;
+  height:250px;
+  width:375px;
+  text-align:center;
+}
+.WiP {
+  font-size: 16px;
+}
 }
 
 /* flip speed goes here */
@@ -121,4 +219,17 @@ page-about {
 /* back, initially hidden pane */
 .back {
 	transform: rotateY(180deg);
+}
+
+.vertical.flip-container {
+	position: relative;
+}
+
+.vertical .back {
+		transform: rotateX(180deg);
+}
+
+
+.vertical.flip-container:hover .flipper {
+		transform: rotateX(-180deg);
 }
