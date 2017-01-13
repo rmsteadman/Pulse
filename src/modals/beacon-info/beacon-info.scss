@@ -53,18 +53,23 @@
 
 
 #messageList{
+    background-color:#333333;
+    padding:20px;
+}
+.tabBody{
     background-color:grey;
 }
 .chatText{
     background-color:#e6e6e6;
-    
     border-radius:5px;
     padding-bottom:0;
 }
 #messageInitials{
+    position:relative;
+    top:20px;
     border-radius:50%;
     background-color:#0064ff;
-    color:white;   
+    color:#e6e6e6;   
 }
 .chatAuthor{
     text-align:center;
@@ -83,7 +88,7 @@
     height:20px;
 }
 #messageBuild{
-    background-color:rgba(255, 255, 255, 0);
+    width:90%;
 }
 
 
