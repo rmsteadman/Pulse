@@ -133,6 +133,8 @@ export class HomePage {
                   position: JSON.parse(beaconData.position),
                   icon: beaconData.icon
                 })
+                let beaconTime = beaconData.createdAt.toLocaleString();
+                console.log("pooo", beaconTime)
                 let content = {
                   id: beaconData.id,
                   title: beaconData.title,
@@ -140,7 +142,7 @@ export class HomePage {
                   tags: beaconData.tags,
                   private: beaconData.private,
                   chatroom: beaconData.ChatroomId,
-                  createdAt: beaconData.createdAt,
+                  createdAt: beaconTime,
                   firstName: beaconData.User.firstName,
                   lastName: beaconData.User.lastName,
                   address: beaconData.address
@@ -153,7 +155,6 @@ export class HomePage {
   }
 
   getCurrentAddress() {
-    let poo = localStorage.getItem('currentLocation');
     let geocoder = new google.maps.Geocoder;
     this.geocodeLatLng(geocoder)
   }

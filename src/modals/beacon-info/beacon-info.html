@@ -76,19 +76,20 @@
     <div *ngSwitchCase="'info'" class="tabBody">    
       <ion-card id="beaconInfoCardFoundation">
         <ion-card-content id="beaconInfoCard">
-          <ion-card-title id="beaconCardTitle">
+           <ion-card-title id="beaconCardTitle">
             {{beacon.title}}
           </ion-card-title>
-          <iframe class="e2e-iframe-trusted-src"  
-            width=100%
-            height=100%
-            frameborder="0" style="border:0"
-            [src]="safe" allowFullScreen>
-          </iframe>
-          <div id="beaconCardBody">
+            <iframe class="e2e-iframe-trusted-src"  
+              width=100%
+              height=275px
+              frameborder="0" style="border:0"
+              [src]="safe" allowFullScreen>
+            </iframe>
+         
+          <div id="beaconCardBody" padding>
             <p id="beaconDate">Created at: {{ this.beacon.createdAt }} </p>
-            <p>Created By: {{ beacon.firstName }} {{ beacon.lastName }}</p>
-            <p>Details: {{ beacon.details }}</p>
+            <p id="beaconAuthorName">Created By: {{ beacon.firstName }} {{ beacon.lastName }}</p>
+            <p id="beaconDetails">Details: {{ beacon.details }}</p>
           </div>
         </ion-card-content>
       </ion-card>
@@ -106,7 +107,7 @@
       <ion-list>
         <div *ngFor="let chat of chats">
             <div class="Speech">
-              <h4 class="chatText" padding>{{ chat.message }} <span id="messageInitials">JB</span></h4>
+              <span id="messageInitials">JB</span><h4 class="chatText" padding>{{ chat.message }} </h4>
               <h5 class="chatAuthor">{{ chat.author }}</h5>
                <div class="chatDate">
                  <small> {{ chat.date }} </small>
@@ -120,7 +121,7 @@
 
       <div id="messageBuild">
         <ion-input (keyup.enter)="sendMessage(chatInput)" [(ngModel)]="chatInput" placeholder="What's the word?"></ion-input>
-        <button ion-button (click)="sendMessage(chatInput)">Send</button>
+        <button (click)="sendMessage(chatInput)"><ion-icon name="send"></ion-icon></button>
       </div>
           
     </div>    

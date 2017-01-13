@@ -53,10 +53,8 @@ export class BeaconInfo {
     this.getAllRsvp();
     let address = localStorage.getItem('currentAddress');
     let destination = this.beacon.address;
-    this.url = `https://www.google.com/maps/embed/v1/directions?key=AIzaSyCUdH3UYv6hl69P9m1W33GUzp_t6h4oSJY&origin=${address}&destination=${destination}&zoom=10`
+    this.url = `https://www.google.com/maps/embed/v1/directions?key=AIzaSyCUdH3UYv6hl69P9m1W33GUzp_t6h4oSJY&origin=${address}&destination=${destination}&zoom=9`
   	this.safe = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
-    console.log('THIS IS A BEACON::: ', this.beacon);
-    console.log("MORE STUFFFFF::: ", localStorage.getItem('currentAddress'))
   }
 
   gotoBottom() {
