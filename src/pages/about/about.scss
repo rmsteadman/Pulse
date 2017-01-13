@@ -3,6 +3,7 @@ page-about {
 }
 #navybary{
     background-color: #333333;
+    padding-top:15px;
 }
 #PulseTitle{
   text-align:center;
@@ -20,12 +21,32 @@ page-about {
   text-align:center;
   margin:0 auto;
 }
+#companyLogo{
+  margin-top:30px;
+  margin:0 auto;
+  height:250px;
+  width:375px;
+  text-align:center;
+}
 
-
+.bio{
+  margin:0 auto;
+  text-align:center;
+}
+.devPicture{
+  // height:200px;
+  // width:200px;
+  border-radius: 50%;
+}
+#developerBios{
+  background-color:#424242;
+  color:white;
+}
 #philosophy{
   text-align:center;
 }
 #aboutVideo{
+  max-width: 100%;
   text-align:center;
   margin:0 auto;
 }

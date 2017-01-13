@@ -8,6 +8,7 @@ const beaconQueries = {};
 
 // create a beacon
 beaconQueries.createBeacon = (data) => {
+  console.log("DATA DATA DATA", data)
   return Beacon.create(data)
     .then(data => {
       return data;

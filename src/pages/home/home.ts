@@ -21,6 +21,7 @@ let beaconData;
   templateUrl: 'home.html',
   providers: [AuthService, BeaconService, BeaconInfoService, PreferenceService, SignUpService]
 })
+
 export class HomePage {
   public chatInput;
   public loaded = false;
@@ -85,7 +86,7 @@ export class HomePage {
       .then((position) => {
 
         let center = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
+        
         this.theCenter = center
         localStorage.setItem('currentLocation', center)
         let mapOptions = {
@@ -96,6 +97,7 @@ export class HomePage {
           [{"featureType":"all","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"administrative","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"administrative.country","elementType":"geometry.stroke","stylers":[{"weight":"1.2"}]},{"featureType":"administrative.province","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"administrative.province","elementType":"geometry.stroke","stylers":[{"weight":"1"},{"visibility":"off"}]},{"featureType":"administrative.neighborhood","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi.business","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi.park","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45},{"visibility":"on"}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"transit.station","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#b4d2dc"}]}]
         }
         this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+        this.getCurrentAddress();
         this.loadBeacon();
 
       }, (err) => {
@@ -148,6 +150,34 @@ export class HomePage {
           })
       })
   }
+
+  getCurrentAddress() {
+    let poo = localStorage.getItem('currentLocation');
+    let geocoder = new google.maps.Geocoder;
+    this.geocodeLatLng(geocoder)
+  }
+
+
+  geocodeLatLng(geocoder) {
+    let coordinates = localStorage.getItem('currentLocation');
+    let latlngStr = coordinates.split(',', 2);
+    let latlng = {lat: parseFloat(latlngStr[0].slice(1)), lng: parseFloat(latlngStr[1])};
+    console.log(latlng)
+    geocoder.geocode({'location': latlng}, (results, status) => {
+      if (status === 'OK') {
+        if (results[1]) {
+          localStorage.setItem('currentAddress', results[0].formatted_address)
+        } else {
+          window.alert('Current Address Not Found');
+        }
+      } else {
+        window.alert('Geocoder failed due to: ' + status);
+      }
+    });
+  }
+
+
+
 
 
   addBeacon(){

@@ -52,8 +52,7 @@ export class BeaconInfo {
 
   gotoBottom() {
     var element = document.getElementById("mychat");
-    setTimeout(()=>{element.scrollIntoView(true)},200); 
-    console.log("got bottom");
+    setTimeout(()=>{element.scrollIntoView(true)},100); 
   };
 
   dismiss() {

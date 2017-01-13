@@ -33,18 +33,18 @@ export class CreateBeaconPage {
     console.log('ionViewDidLoad CreateBeaconPage');
     this.currentLocation = true;
     this.addressType = 'Using Current Location';
-    console.log("CURRENT LOCATION Value  IS: ", this.currentLocation)
   }
 
   toggleLocationType() {
-    this.currentLocation = !this.currentLocation;
-    if (this.currentLocation === false){
-      this.addressType = "Input Address"
-    } else {
+    if (this.currentLocation){
+      this.addressType = "Input Address";
+      this.currentLocation = false;
+    } else if (!this.currentLocation) {
       this.addressType = "Using Current Location";
+      this.currentLocation = true;
     };
+    console.log(this.currentLocation)
   }
-
 
   createBeacon(beaconInfo){
 
@@ -67,9 +67,19 @@ export class CreateBeaconPage {
     if (!this.categoryChoice) {
       this.categoryChoice = 'Other'
     }
-    // beaconInfo.CategoryId = categoryOptions[this.categoryChoice];
     beaconInfo.categoryType = this.categoryChoice;
-    console.log(beaconInfo);
+
+    
+    //if using current address, set to current address
+    //otherwise, beaconInfo.address = form specified address
+    beaconInfo.usingCurrentLocation = this.currentLocation;
+    
+    if (beaconInfo.usingCurrentLocation){
+      beaconInfo.address = localStorage.getItem('currentAddress');
+      beaconInfo.position = localStorage.getItem('currentLocation');
+    } 
+
+    
     this.httpService.beaconPost(beaconInfo)
         .subscribe(data => {
           console.log("Beacons have categories now")
