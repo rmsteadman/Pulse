@@ -9,9 +9,17 @@ const mainRouter = require('./routes');
 const path = require('path');
 const PORT = process.env.PORT || 8080;
 
-const server = require('http').createServer(app);
+const fs = require('fs');
+const sslPath = '/etc/letsencrypt/live/meteoride.io/';
+
+const options = {
+  key: fs.readFileSync(sslPath + 'privkey.pem'),
+  cert: fs.readFileSync(sslPath + 'fullchain.pem')
+};
+
+const server = require('http').createServer(optoins, app);
 const io = require('socket.io')(server);
-// //
+
 io.on('connection', (socket) => {
   console.log('User Connected');
 
