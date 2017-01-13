@@ -23,7 +23,7 @@ export class BeaconInfo {
   chats: any = this.params.get('chat');
   payload: any = {};
   tabToShow : number = 1;
-
+  
 
   constructor(
     public zone: NgZone,
@@ -51,8 +51,12 @@ export class BeaconInfo {
 
   ngOnInit() {
     this.getAllRsvp();
-    this.url = "https://www.google.com/maps/embed/v1/directions?key=AIzaSyCUdH3UYv6hl69P9m1W33GUzp_t6h4oSJY&origin=827 Turquoise Ave&destination=16901 Crenshaw Blvd&zoom=12"
+    let address = localStorage.getItem('currentAddress');
+    let destination = this.beacon.address;
+    this.url = `https://www.google.com/maps/embed/v1/directions?key=AIzaSyCUdH3UYv6hl69P9m1W33GUzp_t6h4oSJY&origin=${address}&destination=${destination}&zoom=10`
   	this.safe = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
+    console.log('THIS IS A BEACON::: ', this.beacon);
+    console.log("MORE STUFFFFF::: ", localStorage.getItem('currentAddress'))
   }
 
   gotoBottom() {

@@ -142,7 +142,8 @@ export class HomePage {
                   chatroom: beaconData.ChatroomId,
                   createdAt: beaconData.createdAt,
                   firstName: beaconData.User.firstName,
-                  lastName: beaconData.User.lastName
+                  lastName: beaconData.User.lastName,
+                  address: beaconData.address
                 }
                 that.addInfoWindow(beacon, content);
               }
