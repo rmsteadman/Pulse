@@ -105,7 +105,7 @@
     
     <div  id="messageList" *ngSwitchCase="'chat'" class="tabBody">
       <ion-list>
-        <div *ngFor="let chat of chats">
+        <div class="Speech" *ngFor="let chat of chats">
             <div class="Speech">
               <span id="messageInitials">JB</span><h4 class="chatText" padding>{{ chat.message }} </h4>
               <h5 class="chatAuthor">{{ chat.author }}</h5>
