@@ -39,7 +39,7 @@ export class SignupPage {
 
   securedTest() {
   // Here we use authHttp to make an authenticated request to the server
-  this.authHttp.get('http://ec2-54-67-94-166.us-west-1.compute.amazonaws.com:8080/secured/test')
+  this.authHttp.get('https://ec2-54-67-94-166.us-west-1.compute.amazonaws.com:443/secured/test')
     .map(res => res.json())
     .subscribe(
       data => this.message = data.text,

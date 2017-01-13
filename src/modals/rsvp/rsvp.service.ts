@@ -5,7 +5,7 @@ import * as io from 'socket.io-client';
 
 @Injectable()
 export class rsvpService {
-    public sockets = io('http://ec2-54-67-94-166.us-west-1.compute.amazonaws.com:8080');
+    public sockets = io('https://ec2-54-67-94-166.us-west-1.compute.amazonaws.com:443');
 
     constructor(public http: Http) {}
 
@@ -14,7 +14,7 @@ export class rsvpService {
 
 
     rsvpPost(info): Observable<any> {
-      return this.http.post('http://ec2-54-67-94-166.us-west-1.compute.amazonaws.com:8080/api/rsvps/create', info)
+      return this.http.post('https://ec2-54-67-94-166.us-west-1.compute.amazonaws.com:443/api/rsvps/create', info)
         .map(data => {
           console.log( "This is data", data.json() )
         })
@@ -24,7 +24,7 @@ export class rsvpService {
 
     getRsvpAll(beaconId) : Observable<any> {
       console.log('get rsvp beaconId:', beaconId)
-      return this.http.get(`http://ec2-54-67-94-166.us-west-1.compute.amazonaws.com:8080/api/rsvps/getall/${beaconId}`)
+      return this.http.get(`https://ec2-54-67-94-166.us-west-1.compute.amazonaws.com:443/api/rsvps/getall/${beaconId}`)
         .map(data => {
           console.log('Array of RSVPs:', data.json());
           return data.json();
