@@ -13,7 +13,7 @@ export class BeaconInfo {
 
   @ViewChild(Content) content: Content;
 
-  public socket = io('http://ec2-54-67-94-166.us-west-1.compute.amazonaws.com:8080');
+  public socket = io('https://ec2-54-67-94-166.us-west-1.compute.amazonaws.com:443');
   public chatInput = '';
   public rsvps = [];
   public author = JSON.parse(localStorage.getItem('profile'))['user_metadata'];

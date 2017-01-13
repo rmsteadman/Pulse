@@ -54,7 +54,7 @@ export class BeaconService {
     }
 
     console.log('THIS IS THE PREPOST BEACON::::: ', beacon)
-    return this.http.post('http://ec2-54-67-94-166.us-west-1.compute.amazonaws.com:8080/api/beacons/create', beacon)
+    return this.http.post('https://ec2-54-67-94-166.us-west-1.compute.amazonaws.com:443/api/beacons/create', beacon)
       .map(data => {
         console.log( "This is data", data.json() )
       })
@@ -63,7 +63,7 @@ export class BeaconService {
   
 
   getBeaconsAll() : Observable<any> {
-    return this.http.get('http://ec2-54-67-94-166.us-west-1.compute.amazonaws.com:8080/api/beacons/allbeacons')
+    return this.http.get('https://ec2-54-67-94-166.us-west-1.compute.amazonaws.com:443/api/beacons/allbeacons')
       .map(data => {
         return data.json();
       })

@@ -31,7 +31,7 @@ export class HomePage {
   myData: any;
   token: any;
   theCenter: any;
-  public socket = io.connect('http://ec2-54-67-94-166.us-west-1.compute.amazonaws.com:8080');
+  public socket = io.connect('https://ec2-54-67-94-166.us-west-1.compute.amazonaws.com:443');
 
 
 
@@ -64,7 +64,7 @@ export class HomePage {
       .subscribe(data => {
         let chat = data;
         console.log('this is chat in modal:', chat);
-        let socket = io.connect('http://ec2-54-67-94-166.us-west-1.compute.amazonaws.com:8080')
+        let socket = io.connect('https://ec2-54-67-94-166.us-west-1.compute.amazonaws.com:443')
         let modal = this.modalCtrl.create(BeaconInfo, {
           beacon: content,
           socket: socket,
