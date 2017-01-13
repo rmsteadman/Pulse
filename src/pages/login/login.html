@@ -1,10 +1,7 @@
-<ion-header id="navybary">
-  <ion-navbar>
-    <ion-title>Login</ion-title>
-  </ion-navbar>
-</ion-header>
-
+<!--<ion-view hide-nav-bar="true">-->
 <ion-content padding *ngIf="!auth.authenticated()">
+
+<h1> Login </h1>
 
   <button ion-button block (click)="auth.login()">Login</button>
 
