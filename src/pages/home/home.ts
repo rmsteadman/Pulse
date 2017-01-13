@@ -143,7 +143,7 @@ export class HomePage {
                   icon: beaconData.icon
                 })
                 let beaconTime = beaconData.createdAt.toLocaleString();
-                console.log("pooo", beaconTime)
+                console.log("pooofdsajifdsa", beaconTime)
                 let content = {
                   id: beaconData.id,
                   title: beaconData.title,
