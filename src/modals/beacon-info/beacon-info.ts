@@ -4,6 +4,7 @@ import { rsvpService } from '../rsvp/rsvp.service'
 import { BeaconInfoService } from './beacon-info.service';
 import * as io from 'socket.io-client';
 import { AlertController, Content } from 'ionic-angular';
+import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   templateUrl: 'beacon-info.html',
@@ -12,7 +13,8 @@ import { AlertController, Content } from 'ionic-angular';
 export class BeaconInfo {
 
   @ViewChild(Content) content: Content;
-
+  url: any;
+  safe: any;
   public socket = io('https://ec2-54-67-94-166.us-west-1.compute.amazonaws.com:443');
   public chatInput = '';
   public rsvps = [];
@@ -21,7 +23,7 @@ export class BeaconInfo {
   chats: any = this.params.get('chat');
   payload: any = {};
   tabToShow : number = 1;
-
+  
 
   constructor(
     public zone: NgZone,
@@ -32,7 +34,8 @@ export class BeaconInfo {
     public httpService: BeaconInfoService,
     public rsvpService: rsvpService,
     public modalCtrl : ModalController,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    private sanitizer: DomSanitizer
   ) {
     this.socket.on('message', message => {
       this.zone.run(() => {
@@ -48,6 +51,10 @@ export class BeaconInfo {
 
   ngOnInit() {
     this.getAllRsvp();
+    let address = localStorage.getItem('currentAddress');
+    let destination = this.beacon.address;
+    this.url = `https://www.google.com/maps/embed/v1/directions?key=AIzaSyCUdH3UYv6hl69P9m1W33GUzp_t6h4oSJY&origin=${address}&destination=${destination}&zoom=9`
+  	this.safe = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
   }
 
   gotoBottom() {
